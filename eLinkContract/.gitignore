@@ -1,0 +1,18 @@
+# Project specific
+deployments
+
+# environment variables
+.env
+.env.local
+
+# Packages
+node_modules/
+
+# Hardhat build outputs
+artifacts/
+artifacts-ovm/
+cache/
+cache-ovm
+
+# Packages
+scripts/node_modules/

@@ -22,7 +22,6 @@ contract CallbackTest is CallbackInterface{
 
    // string
    bytes public data;
-
    function callbackResult(bytes32 _requestId,bytes memory _data) override external{
       
       data = _data;

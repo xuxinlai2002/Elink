@@ -1,6 +1,6 @@
 
 const { ethers, getChainId} = require('hardhat')
-const { readConfig} = require('./helper')
+const { readConfig,isTxSuccess} = require('./helper')
 
 const main = async () => {
 
@@ -13,13 +13,20 @@ const main = async () => {
 
     const DataConsumer__Contract = await ethers.getContractFactory('DataConsumer',deployer)
     let dataConsumerAddress = await readConfig("5","DATACONSUMER_ADDRESS");
-
-    let dataConsumer = await DataConsumer__Contract.connect(deployer).attach(dataConsumerAddress);  
+  
+    let dataConsumer = await DataConsumer__Contract.connect(deployer).attach(dataConsumerAddress);    
+    let resultObj = await dataConsumer.clearSearchCondition(
+        {
+            gasPrice: 0x02540be400,
+            gasLimit: 0x7a1200
+        }
+    );
     
-    let res = await dataConsumer.getOralceAndJobs();
-    console.log("xxl res",res);
+    let isOK = await isTxSuccess(resultObj)
+    console.log("call consume result : ",isOK);
 
 }
+
 
 
 main();

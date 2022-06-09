@@ -9,9 +9,9 @@ import "hardhat/console.sol";
  */
 contract Arbiter {
 
-    uint256 constant public ARBITER_NUM = 3;
+    uint256 constant public ARBITER_NUM = 1;
 
-    function isArbiterInList(bytes32 arbiter)internal returns (bool){
+    function isArbiterInList(bytes32 arbiter)internal view returns (bool){
 
         bytes32[ARBITER_NUM] memory arbiterList = getArbiterList();
 
@@ -65,7 +65,7 @@ contract Arbiter {
         return string(ret);
     }
 
-    function hexStr2bytes(string memory _data) internal view returns (bytes memory){
+    function hexStr2bytes(string memory _data) internal pure returns (bytes memory){
     
         bytes memory a = bytes(_data);
         uint8[] memory b = new uint8[](a.length);

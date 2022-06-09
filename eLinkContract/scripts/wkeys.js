@@ -1,10 +1,6 @@
 // const { ethers, getChainId} = require('hardhat');
 const EthCrypto = require('eth-crypto');
-
-
 const ethers = require('ethers');
-
-
 
 const main = async () => {
 

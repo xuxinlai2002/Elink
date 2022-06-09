@@ -25,15 +25,6 @@ const main = async () => {
     console.log("dataConsumer address : " + dataConsumer.address);    
     await writeConfig("3","5","DATACONSUMER_ADDRESS",dataConsumer.address);
 
-    // let linkAddress = await readConfig("3","LINK_ADDRESS");
-    // const Link__Contract = await ethers.getContractFactory('ERC677',deployer)
-    // let link = await Link__Contract.connect(deployer).attach(linkAddress);
-    
-    // let amount = utils.parseEther("10");
-    // let resultObj = await link.transfer(dataConsumer.address,amount);
-    // let isOK = await isTxSuccess(resultObj)
-    // console.log("transfer : ",isOK);
-
 }
 
 

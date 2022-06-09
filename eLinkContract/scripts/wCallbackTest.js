@@ -18,18 +18,20 @@ const subscribeLogEvent = (contract, eventName) => {
     topics: [eventJsonInterface.signature]
   }, (error, result) => {
 
-    // console.log("block result :  ",result);
-    console.log("block number :  ",result.blockNumber);
-    
+    console.log("block number is  ",result.blockNumber);
+
     if (!error) {
       const eventObj = web3.eth.abi.decodeLog(
         eventJsonInterface.inputs,
         result.data,
         result.topics.slice(1)
       )
-      console.log("data bytes:", eventObj.data)
-      console.log("data hash :", web3.utils.sha3(eventObj.data));
-      console.log("data json :", hex2a(eventObj.data));
+
+
+      console.log("decodeLog is :", eventObj);
+      // console.log("data bytes:", eventObj.data)
+      // console.log("data hash :", web3.utils.sha3(eventObj.data));
+      // console.log("data json :", hex2a(eventObj.data));
       console.log("--------------------------------\n");
 
     }
@@ -46,15 +48,12 @@ const main = async () => {
 
   console.log("**************** watch elink data ****************");
 
-  let dataConsumerAddress = await readConfig("5","DATACONSUMER_ADDRESS");
-  const dataConsumer = require('../artifacts/contracts/DataConsumer.sol/DataConsumer.json');
+  let callbackAddress = await readConfig("6","CALLBACK_ADDRESS");
+  const callbackTest = require('../artifacts/contracts/mock/CallbackTest.sol/CallbackTest.json');
 
-  let dataConsumerInstance = new web3.eth.Contract(dataConsumer.abi,dataConsumerAddress)
-  subscribeLogEvent(dataConsumerInstance,"SearchConformed");
-  //subscribeLogEvent(dataConsumerInstance,"SearchInfo");
-
-
-  
+  let callbackInstance = new web3.eth.Contract(callbackTest.abi,callbackAddress)
+  // subscribeLogEvent(callbackInstance,"KeyRquestId");
+  subscribeLogEvent(callbackInstance,"CallbackResult");
 
 }
 

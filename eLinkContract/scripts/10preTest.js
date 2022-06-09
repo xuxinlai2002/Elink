@@ -2,6 +2,9 @@
 const { ethers, getChainId} = require('hardhat')
 const { sleep,readConfig,isTxSuccess} = require('./helper')
 
+const Web3 = require('web3')
+const web3 = new Web3('http://127.0.0.1:6111')
+
 const main = async () => {
 
     console.log("7 request Ethereum Post ....");
@@ -13,34 +16,28 @@ const main = async () => {
 
     const DataConsumer__Contract = await ethers.getContractFactory('DataConsumer',deployer)
     let dataConsumerAddress = await readConfig("5","DATACONSUMER_ADDRESS");
-    let dataConsumer = await DataConsumer__Contract.connect(deployer).attach(dataConsumerAddress);
-    
-    let pressNum = 100;
+    let dataConsumer = await DataConsumer__Contract.connect(deployer).attach(dataConsumerAddress);    
+    let pressNum = 1;
 
-    // let resultObj = await dataConsumer.requestResultFromList(
-    //     "iqpcQKggxJDGSFbXwhFxs7ySpyJBnfZsDJ",
-    //     {
-    //         gasPrice: 0x02540be400,
-    //         gasLimit: 0x7a1200
-    //     }
-    // );
+    // ms
+    let timeForWait = 1000;
+    await sleep(timeForWait);
 
-    // let isOK = await isTxSuccess(resultObj)
-    // console.log("call consume result : ",isOK);
+    let nonce = await web3.eth.getTransactionCount(deployer.address);
+    console.log("xxl nonce is :",nonce);
 
     for(var i = 0 ;i < pressNum ;i ++){
-
+        
+        
+        console.time("test" + i);
         dataConsumer.requestResultFromList(
-            "5b802c1d2c9248ee8b645992f6fd7cae",
+            "c64aa3376edc4f329adbab44dfe0f3e1",
             {
-                gasPrice: 0x02540be400,
-                gasLimit: 0x7a1200
+                nonce:nonce ++ 
             }
         );
+        console.timeEnd("test" + i);
         
-        let timeForWait = 60000 / pressNum;
-        await sleep(timeForWait);
-
     }
 
 

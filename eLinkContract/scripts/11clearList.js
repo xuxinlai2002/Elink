@@ -13,13 +13,12 @@ const main = async () => {
 
     const DataConsumer__Contract = await ethers.getContractFactory('DataConsumer',deployer)
     let dataConsumerAddress = await readConfig("5","DATACONSUMER_ADDRESS");
-
-    let dataConsumer = await DataConsumer__Contract.connect(deployer).attach(dataConsumerAddress);  
+  
+    let dataConsumer = await DataConsumer__Contract.connect(deployer).attach(dataConsumerAddress);
+    await dataConsumer.clearOralceAndJobId();
     
-    let res = await dataConsumer.getOralceAndJobs();
-    console.log("xxl res",res);
-
 }
+
 
 
 main();

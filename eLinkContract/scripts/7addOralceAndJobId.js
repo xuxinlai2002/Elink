@@ -15,12 +15,17 @@ const main = async () => {
     let dataConsumerAddress = await readConfig("5","DATACONSUMER_ADDRESS");
 
     let dataConsumer = await DataConsumer__Contract.connect(deployer).attach(dataConsumerAddress);  
-       
-    let _oracle =  ("0x4f5BF88fb29f9F0B10543153aA1c240E2f27EB92").toLowerCase();
-    let _jobId = "3ecd8c94d2644e839068445ce4bde86c";
+      
+    // xuxinlai@xxl accountTool % ./accontTool /Users/xuxinlai/work/Elink/1node/keystore.dat 123 38e1f933c849dae330e6efb3c5cabab5cde376f3c64aa3376edc4f329adbab44dfe0f3e1
+    // publick key: 03bfd8bd2b10e887ec785360f9b329c2ae567975c784daca2f223cb19840b51914
+    // signature  : e89d40ad1079426646d426d25efedb2c2eb151500cf09b49408f1179f54a284f1d7d0c419f0708c433f86a418fb38151f46db27f072b9ea1ecde04b87677c5e9
+    
+    //0x38e1f933c849dae330e6efb3c5cabab5cde376f3
+    //c64aa3376edc4f329adbab44dfe0f3e1
+    let _oracle =  ("0x38e1f933C849Dae330E6EFb3c5cABAb5CDE376F3").toLowerCase();
+    let _jobId = "c64aa3376edc4f329adbab44dfe0f3e1";
     let _pubKey = "03bfd8bd2b10e887ec785360f9b329c2ae567975c784daca2f223cb19840b51914"
-    // let _address = ("5b4A755b609bca3CAFb48bA893973ef6Fa146554").toLowerCase();
-    let _sign = "19784b9626dcd658ac7d552722a93c6dee38b57f93e16956c8d72bc61b136feaec182fae781fab25d1edf6c50921b443c1a95a65eb513655cf65548180d33e43"
+    let _sign = "995deeaf54aa4efdc77e150e62b8343c5a69614009979671ae7ee105694b88afd294bd03d32ff046bb7c59686b91494d29c31cc5cbc702e9fc792c7e2b49faf3"
     
     await dataConsumer.addOralceAndJobId(
         _oracle,_jobId,_pubKey,_sign,{
@@ -30,7 +35,7 @@ const main = async () => {
     );
 
 
-
+    
 }
 
 

@@ -2,7 +2,7 @@ type = "directrequest"
 schemaVersion = 1
 name = "POST > Bytes001 testNet"
 maxTaskDuration = "0s"
-contractAddress = "0x3a95b87EA51C1694576e3fE0D236b19c856e0eBB"
+contractAddress = "0x38e1f933C849Dae330E6EFb3c5cABAb5CDE376F3"
 minIncomingConfirmations = 0
 observationSource = """
     decode_log   [type="ethabidecodelog"
@@ -26,7 +26,7 @@ observationSource = """
                 data="{\\"requestId\\": $(decode_log.requestId), \\"payment\\":   $(decode_log.payment), \\"callbackAddress\\": $(decode_log.callbackAddr), \\"callbackFunctionId\\": $(decode_log.callbackFunctionId), \\"expiration\\": $(decode_log.cancelExpiration), \\"data\\": $(encode_large)}"
                 ]
 
-    submit_tx    [type="ethtx" to="0x3a95b87EA51C1694576e3fE0D236b19c856e0eBB" data="$(encode_tx)"]
+    submit_tx    [type="ethtx" to="0x38e1f933C849Dae330E6EFb3c5cABAb5CDE376F3" data="$(encode_tx)"]
 
     decode_log -> decode_cbor -> fetch ->  encode_large -> encode_tx -> submit_tx
 """

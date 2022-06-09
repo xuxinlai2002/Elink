@@ -1,0 +1,18 @@
+{
+    "name": "layer1",
+    "type": "ethereum",
+    "id": 1,
+    "endpoint": "http://localhost:1111",
+    "freshstart": true,
+    "opts": {
+        "bridge": "0x746eB81eAA8bce681BEbE4C26f1784886239462c",
+        "wethHandler": "0xD590F114E0F5aa8240E7BA37782C8B0bAc5c8A73",
+        "erc20Handler": "0xB562ccF5784bcD2518BB3bcbf89d0eE12D613ca6",
+        "erc721Handler": "0x185d0623c0Ea127D18C69B656fEff2A3535CcedE",
+        "genericHandler": "",
+        "gasLimit": 1000000,
+        "maxGasPrice": 10000000000,
+        "blockConfirmations": 1,
+        "gasMultiplier": 1
+    }    
+}

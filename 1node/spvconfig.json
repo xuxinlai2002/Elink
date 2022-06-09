@@ -1,0 +1,25 @@
+{
+  "Configuration": {
+    "Magic": 2018201,
+    "OriginArbiters": [
+      "038eba1db314e7569aafc62a3c0fd1de9fe6359f88962521768a37786fce62dd37",
+      "02fb5528297b3c43e015d7e20a62b2fc70592cb0b08dfdec7ff95bcd11ff5a5fe6",
+      "03a9d3bbed3db04a4a6c167514b6a4e187b3eaeb3b8d4edd9a618d27b9fe4a0179",
+      "03022428a02e52ef0dd6adc1c7d95ea9cd93854057e9dd6a48486dc536ece71603",
+      "0251fc966a08f0e097711f54fa22ef69c90510ea8e8cf4431e8167c221cf3c7b86"
+    ],
+    "CRCArbiters": [
+      "0342eeb0d664e2507d732382c66d0eedbd0a0f989179fd33d71679aa607d5d3b57",
+      "02cf7e80d1a1a76ab6259e0abdf2848c618655393f1fa3328901f80949ebed1476"
+    ],
+    "CheckAddressHeight": 101,
+    "VoteStartHeight": 100,
+    "CRCOnlyDPOSHeight": 300,
+    "PublicDPOSHeight": 308,
+    "Foundation": "EgLe9ZAQyLmjxFZLp5em9VfqsYKvdhpGys",
+    "PermanentPeers": [
+      "127.0.0.1::10018",
+      "127.0.0.1:10118"
+    ]
+  }
+}

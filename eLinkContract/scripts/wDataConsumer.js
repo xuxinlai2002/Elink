@@ -1,5 +1,5 @@
 const Web3 = require('web3')
-const web3 = new Web3('ws://192.168.0.103:7111')
+const web3 = new Web3('ws://192.168.0.100:7111')
 const { hex2a } = require('./helper')
 
 // a list for saving subscribed event instances
@@ -18,7 +18,7 @@ const subscribeLogEvent = (contract, eventName) => {
     topics: [eventJsonInterface.signature]
   }, (error, result) => {
 
-    // console.log("block result :  ",result);
+    //console.log("block result :  ",result);
     console.log("block number :  ",result.blockNumber);
     
     if (!error) {
@@ -50,8 +50,8 @@ const main = async () => {
   const dataConsumer = require('../artifacts/contracts/DataConsumer.sol/DataConsumer.json');
 
   let dataConsumerInstance = new web3.eth.Contract(dataConsumer.abi,dataConsumerAddress)
-  subscribeLogEvent(dataConsumerInstance,"SearchConformed");
-  //subscribeLogEvent(dataConsumerInstance,"SearchInfo");
+  //subscribeLogEvent(dataConsumerInstance,"SearchConformed");
+  subscribeLogEvent(dataConsumerInstance,"SearchInfo");
 
 
   

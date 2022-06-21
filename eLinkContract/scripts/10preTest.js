@@ -17,7 +17,7 @@ const main = async () => {
     const DataConsumer__Contract = await ethers.getContractFactory('DataConsumer',deployer)
     let dataConsumerAddress = await readConfig("5","DATACONSUMER_ADDRESS");
     let dataConsumer = await DataConsumer__Contract.connect(deployer).attach(dataConsumerAddress);    
-    let pressNum = 1;
+    let pressNum = 200;
 
     // ms
     let timeForWait = 1000;
@@ -31,11 +31,19 @@ const main = async () => {
         
         console.time("test" + i);
         dataConsumer.requestResultFromList(
-            "c64aa3376edc4f329adbab44dfe0f3e1",
+            "iW8oCQShdduv7TZGovKQM76gaqdQiKhkgB",
             {
                 nonce:nonce ++ 
             }
         );
+
+        // dataConsumer.requestResultFromList(
+        //     "iV6keniHfidTPxbkpBRqE5pTkQfkW9aXQM",
+        //     {   
+        //         nonce:nonce ++ 
+        //     }
+        // );
+
         console.timeEnd("test" + i);
         
     }

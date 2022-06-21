@@ -7,7 +7,7 @@ import "../DataConsumer.sol";
 
 contract CallbackTest is CallbackInterface{
 
-   uint256 constant public ARBITER_NUM = 1;
+   uint256 constant public ARBITER_NUM = 12;
    mapping( string => bytes32[ARBITER_NUM]) private didRequestsMap;
    
    event KeyRquestId(
@@ -24,7 +24,7 @@ contract CallbackTest is CallbackInterface{
    bytes public data;
    function callbackResult(bytes32 _requestId,bytes memory _data) override external{
       
-      data = _data;
+      // data = _data;
       emit CallbackResult(_requestId,_data); 
    }
 

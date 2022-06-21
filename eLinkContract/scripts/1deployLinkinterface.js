@@ -14,11 +14,11 @@ const main = async () => {
 
     const LINKInterface__Contract = await ethers.getContractFactory('LinkInterface',deployer)
     const LINKInterface = await LINKInterface__Contract.connect(deployer).deploy();
-    console.log(LINKInterface.address);
+    console.log("link interface address ",LINKInterface.address);
     await writeConfig("0","1","LINK_INTERFACE_ADDRESS",LINKInterface.address);
 
     let linkAddress = await readConfig("0","LINK_ADDRESS");
-    console.log("set Address ",linkAddress);
+    console.log("link address ",linkAddress);
 
     await LINKInterface.setAddress(linkAddress,
         {

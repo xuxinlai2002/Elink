@@ -16,12 +16,20 @@ const main = async () => {
     let dataConsumer = await DataConsumer__Contract.connect(deployer).attach(dataConsumerAddress);
     
     let resultObj = await dataConsumer.requestResultFromList(
-        "iqpcQKggxJDGSFbXwhFxs7ySpyJBnfZsDJ",
+        "iW8oCQShdduv7TZGovKQM76gaqdQiKhkgB",
         {
             gasPrice: 0x02540be400,
             gasLimit: 0x7a1200
         }
     );
+
+    // let resultObj = await dataConsumer.requestResultFromList(
+    //     "iW8oCQShdduv7TZGovKQM76gaqdQiKhkgA",
+    //     {
+    //         gasPrice: 0x02540be400,
+    //         gasLimit: 0x7a1200
+    //     }
+    // );
 
     let isOK = await isTxSuccess(resultObj)
     console.log("call consume result : ",isOK);

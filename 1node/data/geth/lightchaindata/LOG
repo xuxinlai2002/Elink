@@ -293,3 +293,88 @@
 16:20:13.835060 table@build revert @56
 16:20:13.835434 db@write was delayed N·1 T·1.037305ms
 16:20:13.835682 db@close done T·13.24802ms
+=============== Jun 14, 2022 (CST) ===============
+15:54:18.390007 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+15:54:18.391157 version@stat F·[18] S·12KiB[12KiB] Sc·[4.50]
+15:54:18.391210 db@open opening
+15:54:18.391405 journal@recovery F·1
+15:54:18.393826 journal@recovery recovering @54
+15:54:18.409865 memdb@flush created L0@56 N·1 S·695B "eth..\x124\x16,v58":"eth..\x124\x16,v58"
+15:54:18.412450 version@stat F·[19] S·13KiB[13KiB] Sc·[4.75]
+15:54:18.449993 db@janitor F·21 G·0
+15:54:18.450088 db@open done T·58.859329ms
+15:54:18.450230 table@compaction L0·19 -> L1·0 S·13KiB Q·59
+15:54:18.459519 db@close closing
+15:54:18.469588 table@build created L1@59 N·22 S·1KiB "HS\xe7..\x124\x16,v15":"\xe3Ј..\xb1\xae\x04,v11"
+15:54:18.469699 table@build exiting
+15:54:18.469737 table@build revert @59
+15:54:18.470400 db@write was delayed N·1 T·1.02769ms
+15:54:18.470776 db@close done T·11.256546ms
+=============== Jun 14, 2022 (CST) ===============
+23:26:30.416728 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+23:26:30.417678 version@stat F·[19] S·13KiB[13KiB] Sc·[4.75]
+23:26:30.417717 db@open opening
+23:26:30.417879 journal@recovery F·1
+23:26:30.419931 journal@recovery recovering @57
+23:26:30.434504 memdb@flush created L0@59 N·1 S·695B "eth..\x124\x16,v60":"eth..\x124\x16,v60"
+23:26:30.436915 version@stat F·[20] S·13KiB[13KiB] Sc·[5.00]
+23:26:30.477067 db@janitor F·22 G·0
+23:26:30.477111 db@open done T·59.380295ms
+23:26:30.477218 table@compaction L0·20 -> L1·0 S·13KiB Q·61
+23:26:30.484714 db@close closing
+23:26:30.493858 table@build created L1@62 N·22 S·1KiB "HS\xe7..\x124\x16,v15":"\xe3Ј..\xb1\xae\x04,v11"
+23:26:30.493976 table@build exiting
+23:26:30.494006 table@build revert @62
+23:26:30.494359 db@write was delayed N·1 T·1.047025ms
+23:26:30.494572 db@close done T·9.856932ms
+=============== Jun 15, 2022 (CST) ===============
+21:40:46.470043 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+21:40:46.475845 version@stat F·[20] S·13KiB[13KiB] Sc·[5.00]
+21:40:46.475889 db@open opening
+21:40:46.476059 journal@recovery F·1
+21:40:46.478130 journal@recovery recovering @60
+21:40:46.488118 memdb@flush created L0@62 N·1 S·648B "eth..\x124\x16,v62":"eth..\x124\x16,v62"
+21:40:46.491270 version@stat F·[21] S·14KiB[14KiB] Sc·[5.25]
+21:40:46.532302 db@janitor F·23 G·0
+21:40:46.532353 db@open done T·56.449176ms
+21:40:46.532423 table@compaction L0·21 -> L1·0 S·14KiB Q·63
+21:40:46.540912 db@close closing
+21:40:46.549741 table@build created L1@65 N·22 S·1KiB "HS\xe7..\x124\x16,v15":"\xe3Ј..\xb1\xae\x04,v11"
+21:40:46.549792 table@build exiting
+21:40:46.549805 table@build revert @65
+21:40:46.549982 db@write was delayed N·1 T·1.030434ms
+21:40:46.550102 db@close done T·9.188881ms
+=============== Jun 16, 2022 (CST) ===============
+17:08:12.806065 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+17:08:12.807511 version@stat F·[21] S·14KiB[14KiB] Sc·[5.25]
+17:08:12.807584 db@open opening
+17:08:12.807882 journal@recovery F·1
+17:08:12.810683 journal@recovery recovering @63
+17:08:12.824133 memdb@flush created L0@65 N·1 S·648B "eth..\x124\x16,v64":"eth..\x124\x16,v64"
+17:08:12.826497 version@stat F·[22] S·15KiB[15KiB] Sc·[5.50]
+17:08:12.871046 db@janitor F·24 G·0
+17:08:12.871139 db@open done T·63.504039ms
+17:08:12.871332 table@compaction L0·22 -> L1·0 S·15KiB Q·65
+17:08:12.882226 db@close closing
+17:08:12.893911 table@build created L1@68 N·22 S·1KiB "HS\xe7..\x124\x16,v15":"\xe3Ј..\xb1\xae\x04,v11"
+17:08:12.894034 table@build exiting
+17:08:12.894050 table@build revert @68
+17:08:12.894375 db@write was delayed N·1 T·1.147691ms
+17:08:12.894548 db@close done T·12.321772ms
+=============== Jun 16, 2022 (CST) ===============
+18:58:08.211654 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+18:58:08.212441 version@stat F·[22] S·15KiB[15KiB] Sc·[5.50]
+18:58:08.212487 db@open opening
+18:58:08.212654 journal@recovery F·1
+18:58:08.215048 journal@recovery recovering @66
+18:58:08.227185 memdb@flush created L0@68 N·1 S·648B "eth..\x124\x16,v66":"eth..\x124\x16,v66"
+18:58:08.229410 version@stat F·[23] S·15KiB[15KiB] Sc·[5.75]
+18:58:08.266403 db@janitor F·25 G·0
+18:58:08.266438 db@open done T·53.936568ms
+18:58:08.266521 table@compaction L0·23 -> L1·0 S·15KiB Q·67
+18:58:08.273760 db@close closing
+18:58:08.283830 table@build created L1@71 N·22 S·1KiB "HS\xe7..\x124\x16,v15":"\xe3Ј..\xb1\xae\x04,v11"
+18:58:08.283895 table@build exiting
+18:58:08.283908 table@build revert @71
+18:58:08.284394 db@write was delayed N·1 T·1.089897ms
+18:58:08.284520 db@close done T·10.76072ms

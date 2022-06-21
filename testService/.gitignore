@@ -1,0 +1,11 @@
+/db/
+node_modules/
+yarn-error.log
+.env
+test/temp/
+build/
+artifacts/
+1node/
+ch1/
+testService/node_modules
+eLinkContract/node_modules/

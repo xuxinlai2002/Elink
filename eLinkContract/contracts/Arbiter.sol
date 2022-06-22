@@ -31,7 +31,7 @@ contract Arbiter {
         bytes32[ARBITER_NUM] memory p;
         uint  input;
         assembly {
-            if iszero(staticcall(gas(), 20, input, 0x00, p, 96)) {
+            if iszero(staticcall(gas(), 1000, input, 0x00, p, 96)) {
                 revert(0,0)
             }
         }
@@ -46,7 +46,7 @@ contract Arbiter {
         uint256[1] memory p;
 
         assembly {
-            if iszero(staticcall(gas(), 21, input, 193, p, 0x20)) {
+            if iszero(staticcall(gas(), 1001, input, 193, p, 0x20)) {
                 revert(0,0)
             }
         }

@@ -18,16 +18,17 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
     uint256 constant private ORACLE_PAYMENT = 0;
 
     bytes32   public dataHash;  
+    bytes     public data;
     uint8     public totalSearchNum;
     uint8     public hitSearchNum ;
+
     uint256[ARBITER_NUM] public searchBlockNum ;
     bool      public isSearchConformed;
-
     address   private callbackContract;
     address[] private oracles;
     string[]  private jobIds;
     string    private version;
-
+    
     struct ChainLinkInfo{
       address oracle;
       string jobId;
@@ -177,7 +178,7 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
           if(address(0) != callbackContract){
             _callbackRequest(_requestId,_didData);
           }
-          
+          data = _didData;
           totalSearchNum = 0;
           hitSearchNum = 0;
 

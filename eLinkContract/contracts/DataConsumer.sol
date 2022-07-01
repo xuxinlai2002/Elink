@@ -89,9 +89,26 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
         isVerified = isArbiterInList(pubKeyHash);
         require(isVerified,"arbiter is not in the list !");
 
-        oracles.push(_oracle);
-        jobIds.push(_jobId);
+        if(isJobIdInArray == false){
+          oracles.push(_oracle);
+          jobIds.push(_jobId);
+        }
+    }
+
+    function isJobIdInArray(string memory _jobId) returns (bool){
+
+      int256 jobIdLength = oracles.length;
+
+      for(int256 i = 0 ;i < jobIdLength ;i ++ ){
+        
+        if(jobIds[i] == _jobId){
+          return true;
+        }
       
+      }
+
+      return false;  
+    
     }
 
     function clearOralceAndJobId() onlyOwner external {

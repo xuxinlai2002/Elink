@@ -53,13 +53,12 @@ function hex2a(hexx) {
   }
   
 
+
 module.exports = {
     writeConfig,
     readConfig, 
     sleep,
 
     isTxSuccess,
-    hex2a
-
-
+    hex2a,
 }

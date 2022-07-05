@@ -10,7 +10,7 @@ module.exports = {
   networks: {
 
     reg: {
-      url: `http://127.0.0.1:20636`,
+      url: ` http://23.22.178.172:20636`,
       accounts: [
         "0xc03b0a988e2e18794f2f0e881d7ffcd340d583f63c1be078426ae09ddbdec9f5"
       ],

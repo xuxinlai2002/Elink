@@ -15,6 +15,7 @@ const main = async () => {
     let dataConsumerAddress = await readConfig("5","DATACONSUMER_ADDRESS");
     let dataConsumer = await DataConsumer__Contract.connect(deployer).attach(dataConsumerAddress);
     
+    //44cd5b4d-f4b4-4756-991b-be907c2ffdee
     let resultObj = await dataConsumer.requestResultFromList(
         "iW8oCQShdduv7TZGovKQM76gaqdQiKhkgB",
         {

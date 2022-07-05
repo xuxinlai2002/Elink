@@ -26,10 +26,13 @@
     "@openzeppelin/contracts": "3.1.0-solc-0.7",
     "@openzeppelin/contracts-upgradeable": "3.4.0",
     "@openzeppelin/hardhat-upgrades": "^1.17.0",
+    "axios": "^0.27.2",
+    "dotenv": "^16.0.1",
     "eth-crypto": "^2.3.0",
     "ethereum-private-key-to-address": "^0.0.7",
     "ethereum-private-key-to-public-key": "^0.0.5",
     "ethereum-public-key-to-address": "^0.0.5",
+    "log4js": "^6.5.2",
     "solidity-bytes-utils": "^0.8.0",
     "web3": "^1.0.0"
   }

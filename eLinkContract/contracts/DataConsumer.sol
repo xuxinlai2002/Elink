@@ -77,6 +77,7 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
       ) external{
         
         bool isVerified = false;
+        bool isJobIdInArray = false;
 
         string memory strOracleAndJobId = strConcat(addressToString(_oracle),_jobId);
         bytes32 oracleAndJobId = keccak256(hexStr2bytes(strOracleAndJobId));    
@@ -95,13 +96,13 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
         }
     }
 
-    function isJobIdInArray(string memory _jobId) returns (bool){
+    function isJobIdInArray(string memory _jobId) private view returns (bool){
 
-      int256 jobIdLength = oracles.length;
+      uint256 jobIdLength = oracles.length;
 
-      for(int256 i = 0 ;i < jobIdLength ;i ++ ){
+      for(uint256 i = 0 ;i < jobIdLength ;i ++ ){
         
-        if(jobIds[i] == _jobId){
+        if(compareStrings(jobIds[i], _jobId)){
           return true;
         }
       
@@ -110,6 +111,11 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
       return false;  
     
     }
+
+    function compareStrings(string memory a, string memory b) private view returns (bool) {
+        return (keccak256(abi.encodePacked((a))) == keccak256(abi.encodePacked((b))));
+    }
+
 
     function clearOralceAndJobId() onlyOwner external {
 

@@ -5,14 +5,18 @@ require("@nomiclabs/hardhat-etherscan");
 
 require('@openzeppelin/hardhat-upgrades');
 
+const dotenv = require("dotenv");
+dotenv.config({path: __dirname + '/.env'});
+const { private_key, internal_url } = process.env;
+
 module.exports = {
   
   networks: {
 
     reg: {
-      url: ` http://23.22.178.172:20636`,
+      url: `http://${internal_url}:20636`,
       accounts: [
-        "0xc03b0a988e2e18794f2f0e881d7ffcd340d583f63c1be078426ae09ddbdec9f5"
+        `${private_key}`
       ],
       gasLimit: 0x7a1200,
       gas: 0x02540be400

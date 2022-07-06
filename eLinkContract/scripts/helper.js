@@ -338,6 +338,8 @@ async function createJob(){
         showInfo="submit [chainlink job]";
         result = await runCmd()
         let resultObj = JSON.parse(result);
+        console.log("xxl :",resultObj);
+        
         let jobId = resultObj.data.attributes.externalJobID.replaceAll("-","");
         await writeConfig("3","3","JOB_ID",jobId);
         

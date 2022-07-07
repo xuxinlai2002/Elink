@@ -309,7 +309,7 @@ async function createJob(){
     
         decode_cbor  [type="cborparse" data="$(decode_log.data)"]
         
-        fetch        [type="http" method=POST url=”http://${process.env.internal_url}:20646"
+        fetch        [type="http" method=POST url="http://${process.env.internal_url}:20646"
                      requestData="{'jsonrpc':'2.0','method':'did_resolveDID','params':[{'did':$(decode_cbor.did)}],'id':1}"
                      ]
     

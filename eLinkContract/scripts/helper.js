@@ -309,18 +309,18 @@ async function createJob(){
     
         decode_cbor  [type="cborparse" data="$(decode_log.data)"]
         
-        fetch        [type="http" method=POST url="http://${process.env.internal_url}:20646/eid"
-                     requestData="{'jsonrpc':'2.0','method':'did_resolveDID','params':[{'did':$(decode_cbor.did)}],'id':1}"
+        fetch        [type="http" method=POST url="http://${process.env.internal_url}:20646"
+                     requestData="{\\\\"jsonrpc\\\\":\\\\"2.0\\\\",\\\\"method\\\\":\\\\"did_resolveDID\\\\",\\\\"params\\\\":[{\\\\"did\\\\":$(decode_cbor.did)}],\\\\"id\\\\":1}"
                      ]
     
         encode_large [type="ethabiencode"
                     abi="(bytes32 requestId, bytes _data)"
-                    data="{'requestId': $(decode_log.requestId), '_data': $(fetch)}"
+                    data="{\\\\"requestId\\\\": $(decode_log.requestId), \\\\"_data\\\\": $(fetch)}"
                     ]
     
         encode_tx  [type="ethabiencode"
                     abi="fulfillOracleRequest2(bytes32 requestId, uint256 payment, address callbackAddress, bytes4 callbackFunctionId, uint256 expiration, bytes calldata data)"
-                    data="{'requestId': $(decode_log.requestId), 'payment':   $(decode_log.payment), 'callbackAddress': $(decode_log.callbackAddr), 'callbackFunctionId': $(decode_log.callbackFunctionId), 'expiration': $(decode_log.cancelExpiration), 'data': $(encode_large)}"
+                    data="{\\\\"requestId\\\\": $(decode_log.requestId), \\\\"payment\\\\":   $(decode_log.payment), \\\\"callbackAddress\\\\": $(decode_log.callbackAddr), \\\\"callbackFunctionId\\\\": $(decode_log.callbackFunctionId), \\\\"expiration\\\\": $(decode_log.cancelExpiration), \\\\"data\\\\": $(encode_large)}"
                     ]
     
         submit_tx    [type="ethtx" to="${oracleAddress}" data="$(encode_tx)"]

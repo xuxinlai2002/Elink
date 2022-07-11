@@ -370,6 +370,16 @@ async function setHardhatConfig(){
 }
 
 
+async function updateJobId(){
+
+    let jobId = await readConfig("3","JOB_ID");
+    let dataConsumerAddress = await readConfig("5","DATACONSUMER_ADDRESS");
+    await writeConfig("3","5","JOB_ID",jobId);
+    await writeConfig("5","DATACONSUMER_ADDRESS","JOB_ID",dataConsumerAddress);
+
+
+}
+
 module.exports = {
     writeConfig,
     readConfig, 
@@ -393,6 +403,7 @@ module.exports = {
     addLinkAccountAndPassword,
     setSession,
     createJob,
-    setHardhatConfig
+    setHardhatConfig,
+    updateJobId
 
 }

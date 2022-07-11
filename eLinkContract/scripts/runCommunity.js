@@ -6,6 +6,7 @@ const {
     getAribtrSign,
     callAddOracleAddJobId,
     setFulfillmentPermission,
+    updateJobId
 } = require('./helper')
 
 
@@ -23,6 +24,7 @@ const main = async () => {
     await createJob();
     await sleep(2000);
     
+    await updateJobId();
     await getAribtrSign();
     await callAddOracleAddJobId();
 

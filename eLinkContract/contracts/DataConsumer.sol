@@ -233,6 +233,7 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
       hitSearchNum = 0;
       isSearchConformed = false;
       delete searchBlockNum ;
+      data = "";
 
     }
 

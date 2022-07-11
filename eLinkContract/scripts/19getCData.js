@@ -13,7 +13,7 @@ const main = async () => {
 
     const DataConsumer__Contract = await ethers.getContractFactory('DataConsumer',deployer)
 
-    let DataConsumerAddress = await readConfig("5","DataConsumer");
+    let DataConsumerAddress = await readConfig("5","DATACONSUMER_ADDRESS");
     console.log("xxl callback Test Address :",DataConsumerAddress);
     
     let DataConsumer = await DataConsumer__Contract.connect(deployer).attach(DataConsumerAddress);

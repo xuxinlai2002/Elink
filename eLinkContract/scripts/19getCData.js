@@ -1,10 +1,11 @@
 
 const { ethers, getChainId} = require('hardhat')
 const { readConfig,isTxSuccess} = require('./helper')
+const { hex2a } = require('./helper')
 
 const main = async () => {
 
-    console.log("6 get arbiter list ....");
+    console.log("19 get data ....");
 
     let chainID = await getChainId();
     let accounts = await ethers.getSigners()
@@ -14,12 +15,11 @@ const main = async () => {
     const DataConsumer__Contract = await ethers.getContractFactory('DataConsumer',deployer)
 
     let DataConsumerAddress = await readConfig("5","DATACONSUMER_ADDRESS");
-    console.log("xxl callback Test Address :",DataConsumerAddress);
+    //console.log("xxl callback Test Address :",DataConsumerAddress);
     
     let DataConsumer = await DataConsumer__Contract.connect(deployer).attach(DataConsumerAddress);
-    
     let resultData = await DataConsumer.data();
-    console.log("xxl result data ",resultData);
+    console.log("xxl result data ",hex2a(resultData));
 
 }
 

@@ -1,5 +1,5 @@
 const Web3 = require('web3')
-const web3 = new Web3('ws://192.168.0.100:7111')
+const web3 = new Web3('ws://192.168.0.103:7111')
 const { hex2a } = require('./helper')
 
 // a list for saving subscribed event instances
@@ -19,20 +19,18 @@ const subscribeLogEvent = (contract, eventName) => {
   }, (error, result) => {
 
     //console.log("block result :  ",result);
-    console.log("block number :  ",result.blockNumber);
-    
-    // if (!error) {
-    //   const eventObj = web3.eth.abi.decodeLog(
-    //     eventJsonInterface.inputs,
-    //     result.data,
-    //     result.topics.slice(1)
-    //   )
-    //   console.log("data bytes:", eventObj.data)
-    //   console.log("data hash :", web3.utils.sha3(eventObj.data));
-    //   console.log("data json :", hex2a(eventObj.data));
-    //   console.log("--------------------------------\n");
-
-    // }
+    console.log("block number :  ",result.blockNumber);    
+    if (!error) {
+      const eventObj = web3.eth.abi.decodeLog(
+        eventJsonInterface.inputs,
+        result.data,
+        result.topics.slice(1)
+      )
+      console.log("data bytes:", eventObj.data)
+      console.log("data hash :", web3.utils.sha3(eventObj.data));
+      console.log("data json :", hex2a(eventObj.data));
+      console.log("--------------------------------\n");
+    }
 
   })
   subscribedEvents[eventName] = subscription

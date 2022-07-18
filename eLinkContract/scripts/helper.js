@@ -136,6 +136,8 @@ async function addChainLinkAccount(){
     try{
         showInfo = "get [chainlink account]" 
         result = await runCmd()
+
+        console.log("xxl result :",result);
         let resultObj = JSON.parse(result);
         
         if(resultObj.data.length > 0){
@@ -292,6 +294,7 @@ async function setSession(){
 
 async function createJob(){
 
+    //xxl Done ==> https://api-testnet.trinity-tech.io/eid
     let oracleAddress = await readConfig("3","ORACLE_ADDRESS");
     //console.log("xxl oracleAddress",oracleAddress);
     let jobSpec = `
@@ -310,7 +313,7 @@ async function createJob(){
         decode_cbor  [type="cborparse" data="$(decode_log.data)"]
         
         fetch        [type="http" method=POST url="http://${process.env.internal_url}:20646"
-                     requestData="{\\\\"jsonrpc\\\\":\\\\"2.0\\\\",\\\\"method\\\\":\\\\"did_resolveDID\\\\",\\\\"params\\\\":[{\\\\"did\\\\":$(decode_cbor.did)}],\\\\"id\\\\":1}"
+                     requestData="{\\\\"jsonrpc\\\\":\\\\"2.0\\\\",\\\\"method\\\\":$(decode_cbor.method),\\\\"params\\\\":[{\\\\"did\\\\":$(decode_cbor.did)}],\\\\"id\\\\":$(decode_cbor.id)}"
                      ]
     
         encode_large [type="ethabiencode"

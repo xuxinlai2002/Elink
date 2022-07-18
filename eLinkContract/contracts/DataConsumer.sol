@@ -16,6 +16,7 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
 
     using Chainlink for Chainlink.Request;
     uint256 constant private ORACLE_PAYMENT = 0;
+   
 
     bytes32   public dataHash;  
     bytes     public data;
@@ -28,6 +29,7 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
     address[] private oracles;
     string[]  private jobIds;
     string    private version;
+    uint256   private id;
     
     struct ChainLinkInfo{
       address oracle;
@@ -61,6 +63,7 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
         dataHash = bytes32(0);
         totalSearchNum = 0;
         hitSearchNum = 0;
+        id = 0;
         isSearchConformed = false;
         __Ownable_init();
     }
@@ -84,6 +87,7 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
         string memory data = strConcat(bytes32ToString(oracleAndJobId),bytes32ToString(oracleAndJobId));
         bytes32 pubKeyHash = keccak256(hexStr2bytes(_pubKey));  
 
+        //xxl Done
         isVerified = p256Verify(_pubKey, data, _sign);
         require(isVerified,"p256Verify do not pass !");
 
@@ -128,7 +132,7 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
       return (oracles,jobIds);  
     }
 
-    function requestResultFromList(string memory did)
+    function requestResultFromList(string memory did,string memory method)
       public returns (bytes32[ARBITER_NUM] memory){
       
       bytes32[ARBITER_NUM] memory requestIdList ;
@@ -138,6 +142,8 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
         Chainlink.Request memory req = buildChainlinkRequest(stringToBytes32(jobIds[i]), address(this), this.fulfillEthereumDidData.selector);
 
         req.add("did", did);
+        req.addUint("id", id);
+        req.add("method", method);
         req.add("path", "result,transaction");
 
         requestIdList[i] = sendOperatorRequestTo(oracles[i], req, ORACLE_PAYMENT);
@@ -145,22 +151,8 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
         emit SearchInfo(requestIdList[i],did);
 
       }
-
+      id ++ ;
       return requestIdList;
-
-    }
-
-    function requestResultFromParam(address _oracle, string memory _jobId,string memory did)
-      public {
-
-      Chainlink.Request memory req = buildChainlinkRequest(stringToBytes32(_jobId), address(this), this.fulfillEthereumDidData.selector);
-
-      req.add("did", did);
-      req.add("path", "result,transaction");
-      
-      bytes32 requestId = sendOperatorRequestTo(_oracle, req, ORACLE_PAYMENT);
-
-      emit SearchInfo(requestId,did);
 
     }
 

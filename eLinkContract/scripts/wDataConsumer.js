@@ -1,5 +1,7 @@
 const Web3 = require('web3')
-const web3 = new Web3('ws://192.168.0.100:7111')
+require('dotenv').config({path:'../.env'});
+
+const web3 = new Web3(`ws://${process.env.internal_url}:${process.env.esc_ws_port}`)
 const { hex2a } = require('./helper')
 
 // a list for saving subscribed event instances
@@ -17,9 +19,6 @@ const subscribeLogEvent = (contract, eventName) => {
     address: contract.options.address,
     topics: [eventJsonInterface.signature]
   }, (error, result) => {
-
-    //console.log("block result :  ",result);
-    console.log("block number :  ",result.blockNumber);
     
     if (!error) {
       const eventObj = web3.eth.abi.decodeLog(
@@ -27,14 +26,27 @@ const subscribeLogEvent = (contract, eventName) => {
         result.data,
         result.topics.slice(1)
       )
-      console.log("data bytes:", eventObj.data)
-      console.log("data hash :", web3.utils.sha3(eventObj.data));
-      console.log("data json :", hex2a(eventObj.data));
-      console.log("--------------------------------\n");
+
+      if(eventObj.hasOwnProperty("key")){
+        console.log("--------------search condition--------------"); 
+        console.log("block number :  ",result.blockNumber); 
+        console.log("data requestId :", eventObj.requestId)
+        console.log("data searchKey :", eventObj.key)
+      }else if(eventObj.hasOwnProperty("data")){
+        console.log("\n**************search result**************"); 
+        //console.log("data bytes:", eventObj.data)
+        //console.log("data hash :", web3.utils.sha3(eventObj.data));
+        console.log("block number :  ",result.blockNumber); 
+        console.log("data requestId :", eventObj.requestId)
+        console.log("data result :", hex2a(eventObj.data));
+      }else{
+        console.log("unused event");
+      }
 
     }
 
   })
+
   subscribedEvents[eventName] = subscription
 }
 
@@ -50,9 +62,9 @@ const main = async () => {
   const dataConsumer = require('../artifacts/contracts/DataConsumer.sol/DataConsumer.json');
 
   let dataConsumerInstance = new web3.eth.Contract(dataConsumer.abi,dataConsumerAddress)
-  //subscribeLogEvent(dataConsumerInstance,"SearchConformed");
   subscribeLogEvent(dataConsumerInstance,"SearchInfo");
-
+  subscribeLogEvent(dataConsumerInstance,"SearchConformed");
+  
 
   
 

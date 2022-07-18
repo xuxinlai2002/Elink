@@ -30,11 +30,11 @@ contract CallbackTest is CallbackInterface{
 
    function quiryByDid(string memory did,address dataConsumerAddress) public{
 
-      bytes32[ARBITER_NUM] memory requestIdList;
-      DataConsumer dataConsumerContract = DataConsumer(dataConsumerAddress);
-      requestIdList = dataConsumerContract.requestResultFromList(did);
-      didRequestsMap[did] = requestIdList;
-      emit KeyRquestId(did,requestIdList);
+      // bytes32[ARBITER_NUM] memory requestIdList;
+      // DataConsumer dataConsumerContract = DataConsumer(dataConsumerAddress);
+      // requestIdList = dataConsumerContract.requestResultFromList(did);
+      // didRequestsMap[did] = requestIdList;
+      // emit KeyRquestId(did,requestIdList);
 
    }
 

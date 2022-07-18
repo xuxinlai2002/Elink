@@ -18,7 +18,7 @@ const main = async () => {
 
     //start postgres
     await startPostgres();
-    await sleep(20000);
+    await sleep(30000);
 
     //start start chainlink
     await startChainlink();

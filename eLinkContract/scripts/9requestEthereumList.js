@@ -15,22 +15,36 @@ const main = async () => {
     let dataConsumerAddress = await readConfig("5","DATACONSUMER_ADDRESS");
     let dataConsumer = await DataConsumer__Contract.connect(deployer).attach(dataConsumerAddress);
     
-    //44cd5b4d-f4b4-4756-991b-be907c2ffdee
-    let resultObj = await dataConsumer.requestResultFromList(
-        "iW8oCQShdduv7TZGovKQM76gaqdQiKhkgB",
-        {
-            gasPrice: 0x02540be400,
-            gasLimit: 0x7a1200
-        }
-    );
-
+    // function requestResultFromList(string memory did,string memory method)
+    // did_resolveDID
     // let resultObj = await dataConsumer.requestResultFromList(
-    //     "iW8oCQShdduv7TZGovKQM76gaqdQiKhkgA",
+    //     "iW8oCQShdduv7TZGovKQM76gaqdQiKhkgB",
+    //     "did_resolveDID",
     //     {
     //         gasPrice: 0x02540be400,
     //         gasLimit: 0x7a1200
     //     }
     // );
+
+    // did_listCredentials
+    // let resultObj = await dataConsumer.requestResultFromList(
+    //     "iULReN45NDUrzL1fGx3dHr62zNwMuFsAux",
+    //     "did_listCredentials",
+    //     {
+    //         gasPrice: 0x02540be400,
+    //         gasLimit: 0x7a1200
+    //     }
+    // );
+
+    // did_resolveCredential
+    let resultObj = await dataConsumer.requestResultFromList(
+        "iULReN45NDUrzL1fGx3dHr62zNwMuFsAux",
+        "did_resolveCredential",
+        {
+            gasPrice: 0x02540be400,
+            gasLimit: 0x7a1200
+        }
+    );
 
     let isOK = await isTxSuccess(resultObj)
     console.log("call consume result : ",isOK);

@@ -9,7 +9,9 @@ import "hardhat/console.sol";
  */
 contract Arbiter {
 
+    //xxl Done
     uint256 constant public ARBITER_NUM = 12;
+    //uint256 constant public ARBITER_NUM = 3;
 
     function isArbiterInList(bytes32 arbiter)internal view returns (bool){
 

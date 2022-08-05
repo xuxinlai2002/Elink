@@ -121,7 +121,7 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
     }
 
 
-    function clearOralceAndJobId() onlyOwner external {
+    function clearOralceAndJobId() {
 
       delete oracles;
       delete jobIds;

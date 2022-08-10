@@ -47,9 +47,7 @@ const getConfigPath = () => {
 const isTxSuccess = async (resultObj) =>{
 
     let repObj = await resultObj.wait();  
-
-    console.log(repObj);
-    
+    //console.log(repObj);
     return repObj.status == 1 ? true:false
 
 }
@@ -61,11 +59,10 @@ function hex2a(hexx) {
     for (var i = 0; i < hex.length; i += 2)
         str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
     return str;
-  }
+}
   
 
-
-  async function clearPostgres(){
+async function clearPostgres(){
     
     //clear data
     cmd = `rm -rf ${process.env.db_path}/*`
@@ -151,6 +148,23 @@ async function addChainLinkAccount(){
     }
 }
 
+async function deployLink(){
+
+    //
+    cmd = `yarn scripts scripts/0deployLink.js --network ${process.env.enviroment}`;
+    showInfo="deploy [link contract]";
+    try{ await runCmd()}catch(err){console.log("xxl error",err);}
+
+}
+
+async function deployLinkInterface(){
+
+    cmd = `yarn scripts scripts/1deployLinkinterface.js --network ${process.env.enviroment}`;
+    showInfo="deploy [linkinterface contract]";
+    try{ await runCmd()}catch(err){console.log("xxl error",err);}
+
+}
+
 async function deployOralce(){
 
     //
@@ -184,8 +198,8 @@ async function deployDataConsumer(){
 
 async function getAribtrSign(){
 
-    let oracleAddress =  await readConfig("5","ORACLE_ADDRESS");
-    let jobId = await readConfig("5","JOB_ID");
+    let oracleAddress =  await readConfig("1","ORACLE_ADDRESS");
+    let jobId = await readConfig("1","JOB_ID");
     let oracleAndJobId = oracleAddress.toLowerCase().substr(2) + jobId
     // console.log("xxl :",oracleAndJobId);
     
@@ -198,8 +212,8 @@ async function getAribtrSign(){
         if(resultArray.length > 2){
             publicKey = resultArray[0].split(":")[1].trim();
             signtrue = resultArray[1].split(":")[1].trim();
-            await writeConfig("5","5","PUBLIC_KEY",publicKey);
-            await writeConfig("5","5","SIGNTRUE",signtrue);
+            await writeConfig("1","1","PUBLIC_KEY",publicKey);
+            await writeConfig("1","1","SIGNTRUE",signtrue);
         }else{
             console.log("parse [account tool] error");
             exit -1;
@@ -238,6 +252,7 @@ async function writeEvnFile(){
     cmd =`mkdir -p ${linkPath}`;
     try{ await runCmd(false)}catch(err){}
 
+//xxl TODO
     let evnContent =`ROOT=/chainlink
 LOG_LEVEL=warn
 ETH_CHAIN_ID=${process.env.chain_id}
@@ -247,7 +262,7 @@ CHAINLINK_TLS_PORT=0
 SECURE_COOKIES=false
 GAS_UPDATER_ENABLED=false
 ALLOW_ORIGINS=*
-ETH_URL=ws://${process.env.internal_url}:${process.env.esc_ws_port}
+ETH_URL=ws://api-testnet.elastos.io/eth
 DATABASE_URL=postgresql://postgres:elastos@${process.env.internal_url}:5432/postgres?sslmode=disable
 DATABASE_TIMEOUT=0
 DEFAULT_HTTP_TIMEOUT=100s
@@ -255,6 +270,24 @@ MINIMUM_CONTRACT_PAYMENT_LINK_JUELS=0
 ETH_GAS_LIMIT_DEFAULT=1150000
 DEFAULT_HTTP_LIMIT=3276800
 `
+
+// let evnContent =`ROOT=/chainlink
+// LOG_LEVEL=warn
+// ETH_CHAIN_ID=${process.env.chain_id}
+// MIN_OUTGOING_CONFIRMATIONS=1
+// LINK_CONTRACT_ADDRESS=${process.env.link_address}
+// CHAINLINK_TLS_PORT=0
+// SECURE_COOKIES=false
+// GAS_UPDATER_ENABLED=false
+// ALLOW_ORIGINS=*
+// ETH_URL=ws://${process.env.internal_url}:${process.env.esc_ws_port}
+// DATABASE_URL=postgresql://postgres:elastos@${process.env.internal_url}:5432/postgres?sslmode=disable
+// DATABASE_TIMEOUT=0
+// DEFAULT_HTTP_TIMEOUT=100s
+// MINIMUM_CONTRACT_PAYMENT_LINK_JUELS=0
+// ETH_GAS_LIMIT_DEFAULT=1150000
+// DEFAULT_HTTP_LIMIT=3276800
+// `
     let linkPathEnv = process.env.link_path + "/.env";
     fs.writeFileSync(linkPathEnv,evnContent, { encoding: 'utf8' }, err => {})
 
@@ -295,7 +328,7 @@ async function setSession(){
 async function createJob(){
 
     //xxl Done ==> https://api-testnet.trinity-tech.io/eid
-    let oracleAddress = await readConfig("3","ORACLE_ADDRESS");
+    let oracleAddress = await readConfig("1","ORACLE_ADDRESS");
     //console.log("xxl oracleAddress",oracleAddress);
     let jobSpec = `
     type = "directrequest"
@@ -344,7 +377,7 @@ async function createJob(){
         console.log("xxl :",resultObj);
         
         let jobId = resultObj.data.attributes.externalJobID.replaceAll("-","");
-        await writeConfig("3","3","JOB_ID",jobId);
+        await writeConfig("1","1","JOB_ID",jobId);
         
     }catch(err){
         console.log("xxl error",err);
@@ -375,10 +408,38 @@ async function setHardhatConfig(){
 
 async function updateJobId(){
 
-    let jobId = await readConfig("3","JOB_ID");
-    let dataConsumerAddress = await readConfig("5","DATACONSUMER_ADDRESS");
+    let jobId = await readConfig("1","JOB_ID");
+    let dataConsumerAddress = await readConfig("1","DATACONSUMER_ADDRESS");
     await writeConfig("3","5","JOB_ID",jobId);
     await writeConfig("5","5","DATACONSUMER_ADDRESS",dataConsumerAddress);
+
+}
+async function settingLinkInterfaceFromConfig(){
+
+    let linkinterface = await readConfig("1","LINK_INTERFACE_ADDRESS");
+    await settingLinkInterfaceFromParam(linkinterface);
+
+}
+
+async function settingLinkInterfaceFromParam(linkinterface){
+    
+    let fullPath = "./contracts/chainlink/ChainlinkClient.sol";
+    let contentText = fs.readFileSync(fullPath,'utf-8');
+    contentText = contentText.replace(/0x[a-fA-F0-9]{40}/i,linkinterface);
+    fs.writeFileSync(fullPath, contentText, { encoding: 'utf8' }, err => {})
+
+
+}
+
+
+async function updateEvnSetting(){
+
+    await writeConfig("1","1","LINK_ADDRESS",process.env.link_address);
+    await writeConfig("1","1","LINK_INTERFACE_ADDRESS",process.env.link_interface_address);
+    await writeConfig("1","1","ORACLE_ADDRESS",process.env.oracle_address);
+    await writeConfig("1","1","DATACONSUMER_ADDRESS",process.env.dataconsumer_address);
+
+    await settingLinkInterfaceFromParam(process.env.link_interface_address)
 
 }
 
@@ -406,6 +467,12 @@ module.exports = {
     setSession,
     createJob,
     setHardhatConfig,
-    updateJobId
+    updateJobId,
+
+    deployLink,
+    deployLinkInterface,
+    settingLinkInterfaceFromConfig,
+    settingLinkInterfaceFromParam,
+    updateEvnSetting
 
 }

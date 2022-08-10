@@ -2275,3 +2275,177 @@ signature  : aa33ad3ec368cd4ddb24cee592ab2ae9fd189b9443d933e16b763225bcb6310c2d1
 6 get arbiter list ....
 chainID is :83 address :0x41eA6aD88bbf4E22686386783e7817bB7E82c1ed
 
+[2022-08-09T23:12:56.078] [INFO] default - $ npx hardhat run  scripts/0deployLink.js --network test
+0 deploy link ....
+chainID is :21 address :0x92f886c808EAFF2E396e2c41116c5D6057759476
+Duplicate definition of Transfer (Transfer(address,address,uint256,bytes), Transfer(address,address,uint256))
+link address :  0x979883842c82945e9cF8Ff3523fE6a6b1A412454
+
+[2022-08-10T08:17:09.772] [INFO] default - $ npx hardhat run  scripts/0deployLink.js --network test
+0 deploy link ....
+chainID is :21 address :0x92f886c808EAFF2E396e2c41116c5D6057759476
+Duplicate definition of Transfer (Transfer(address,address,uint256,bytes), Transfer(address,address,uint256))
+link address :  0x5EE81fc1cFC68B7F0dB53E49B725403FB949B0BD
+
+[2022-08-10T08:17:29.001] [INFO] default - $ npx hardhat run  scripts/1deployLinkinterface.js --network test
+1 deploy link interface
+chainID is :21 address :0x92f886c808EAFF2E396e2c41116c5D6057759476
+link interface address  0x7c48869B127b163442DE921D110d2F0B324bD612
+link address  0x5EE81fc1cFC68B7F0dB53E49B725403FB949B0BD
+
+[2022-08-10T08:17:36.461] [INFO] default - $ npx hardhat run  scripts/3deployOracle.js --network test
+3 deploy oracle ....
+chainID is :21 address :0x92f886c808EAFF2E396e2c41116c5D6057759476
+link address is : 0x47871d7CA6EE02653F36751B06348FDCf41175f4
+oracle address : 0xe84f14fAAE26a9ec11B82bF647C0C2a02C329FE1
+
+[2022-08-10T10:06:34.697] [INFO] default - $ npx hardhat run  scripts/0deployLink.js --network test
+0 deploy link ....
+chainID is :21 address :0x92f886c808EAFF2E396e2c41116c5D6057759476
+Duplicate definition of Transfer (Transfer(address,address,uint256,bytes), Transfer(address,address,uint256))
+link address :  0xa9Fb95C25C4eDff881e2688E5E00Aa988a23C6de
+
+[2022-08-10T10:06:57.571] [INFO] default - $ npx hardhat run  scripts/1deployLinkinterface.js --network test
+1 deploy link interface
+chainID is :21 address :0x92f886c808EAFF2E396e2c41116c5D6057759476
+link interface address  0x6F99Ce9ef74c099eDAAE1aFb16DA8176c6FB1d94
+link address  0xa9Fb95C25C4eDff881e2688E5E00Aa988a23C6de
+
+[2022-08-10T10:07:05.584] [INFO] default - $ npx hardhat run  scripts/3deployOracle.js --network test
+3 deploy oracle ....
+chainID is :21 address :0x92f886c808EAFF2E396e2c41116c5D6057759476
+link address is : 0x47871d7CA6EE02653F36751B06348FDCf41175f4
+oracle address : 0xcC09EEE5422dE8615482BC089E01493159e3caf9
+
+[2022-08-10T10:07:36.928] [INFO] default - $ npx hardhat run  scripts/5dataConsumer.js --network test
+5 deploy data consumer ....
+chainID is :21 address :0x92f886c808EAFF2E396e2c41116c5D6057759476
+dataConsumer address : 0xF2eD8B83A9529414a75Bd6228945e790DbDCa638
+
+[2022-08-10T10:09:41.670] [INFO] default - $ npx hardhat run  scripts/0deployLink.js --network test
+0 deploy link ....
+chainID is :21 address :0x92f886c808EAFF2E396e2c41116c5D6057759476
+Duplicate definition of Transfer (Transfer(address,address,uint256,bytes), Transfer(address,address,uint256))
+link address :  0xb5ed0827cD87fd83AEF24b92e51fc23BF236B8bE
+
+[2022-08-10T10:10:04.381] [INFO] default - $ npx hardhat run  scripts/1deployLinkinterface.js --network test
+1 deploy link interface
+chainID is :21 address :0x92f886c808EAFF2E396e2c41116c5D6057759476
+link interface address  0xDd48B24284498585D540c65a4c7CE0e84bC03ff5
+link address  0xb5ed0827cD87fd83AEF24b92e51fc23BF236B8bE
+
+[2022-08-10T10:10:11.749] [INFO] default - $ npx hardhat run  scripts/3deployOracle.js --network test
+3 deploy oracle ....
+chainID is :21 address :0x92f886c808EAFF2E396e2c41116c5D6057759476
+link address is : 0x47871d7CA6EE02653F36751B06348FDCf41175f4
+oracle address : 0x9bB1706E0669CEef6eFAe70D5F0b5FB598D90F83
+
+[2022-08-10T10:10:34.973] [INFO] default - $ npx hardhat run  scripts/5dataConsumer.js --network test
+Compiled 6 Solidity files successfully
+5 deploy data consumer ....
+chainID is :21 address :0x92f886c808EAFF2E396e2c41116c5D6057759476
+dataConsumer address : 0xf5804fB9938B8645EF039E19ad610Ce7d778294c
+
+[2022-08-10T10:17:26.978] [INFO] default - $ npx hardhat run  scripts/0deployLink.js --network test
+0 deploy link ....
+chainID is :21 address :0x92f886c808EAFF2E396e2c41116c5D6057759476
+Duplicate definition of Transfer (Transfer(address,address,uint256,bytes), Transfer(address,address,uint256))
+link address :  0xE2bc8333488a2666550F98309E27e09c459d5359
+
+[2022-08-10T10:17:46.000] [INFO] default - $ npx hardhat run  scripts/1deployLinkinterface.js --network test
+1 deploy link interface
+chainID is :21 address :0x92f886c808EAFF2E396e2c41116c5D6057759476
+link interface address  0x52D1c270F2957fbb2425BE2C17095853fB72fE0d
+link address  0xE2bc8333488a2666550F98309E27e09c459d5359
+
+[2022-08-10T10:17:54.798] [INFO] default - $ npx hardhat run  scripts/3deployOracle.js --network test
+3 deploy oracle ....
+chainID is :21 address :0x92f886c808EAFF2E396e2c41116c5D6057759476
+link address is : 0x47871d7CA6EE02653F36751B06348FDCf41175f4
+oracle address : 0xEeD6110001c11Dc4416319CE32352119c94f57E5
+
+[2022-08-10T10:18:09.635] [INFO] default - $ npx hardhat run  scripts/5dataConsumer.js --network test
+5 deploy data consumer ....
+chainID is :21 address :0x92f886c808EAFF2E396e2c41116c5D6057759476
+dataConsumer address : 0xc2861411cA98F337040Ff9eD03E94A814e7DFf6b
+
+[2022-08-10T10:34:36.269] [INFO] default - $ npx hardhat run  scripts/0deployLink.js --network test
+0 deploy link ....
+chainID is :21 address :0x92f886c808EAFF2E396e2c41116c5D6057759476
+Duplicate definition of Transfer (Transfer(address,address,uint256,bytes), Transfer(address,address,uint256))
+link address :  0xfe42d7827Fb9834b1263E462E7DCb8720Ae20429
+
+[2022-08-10T10:34:51.503] [INFO] default - $ npx hardhat run  scripts/1deployLinkinterface.js --network test
+1 deploy link interface
+chainID is :21 address :0x92f886c808EAFF2E396e2c41116c5D6057759476
+link interface address  0x7B7A46068e3EE5E8fbDDc27bf5F0f1FDF133DD1A
+link address  0xfe42d7827Fb9834b1263E462E7DCb8720Ae20429
+
+[2022-08-10T10:34:58.937] [INFO] default - $ npx hardhat run  scripts/3deployOracle.js --network test
+3 deploy oracle ....
+chainID is :21 address :0x92f886c808EAFF2E396e2c41116c5D6057759476
+link address is : 0x47871d7CA6EE02653F36751B06348FDCf41175f4
+oracle address : 0x8FAf3f72a1e52cC8aa5A41dd652F947c789340C2
+
+[2022-08-10T10:35:31.185] [INFO] default - $ npx hardhat run  scripts/5dataConsumer.js --network test
+Compiled 6 Solidity files successfully
+5 deploy data consumer ....
+chainID is :21 address :0x92f886c808EAFF2E396e2c41116c5D6057759476
+dataConsumer address : 0x16A9Dae834840711c59037C02965676FBe5fd391
+
+[2022-08-10T14:41:58.753] [INFO] default - $ npx hardhat run  scripts/0deployLink.js --network test
+0 deploy link ....
+chainID is :21 address :0x92f886c808EAFF2E396e2c41116c5D6057759476
+Duplicate definition of Transfer (Transfer(address,address,uint256,bytes), Transfer(address,address,uint256))
+link address :  0xFFf1783a12fB247401Af976F51f43d022831767A
+
+[2022-08-10T14:42:15.454] [INFO] default - $ npx hardhat run  scripts/1deployLinkinterface.js --network test
+1 deploy link interface
+chainID is :21 address :0x92f886c808EAFF2E396e2c41116c5D6057759476
+link interface address  0x1CC94d4553e4Ed2a608b468DE8964F299F82ff67
+link address  0xFFf1783a12fB247401Af976F51f43d022831767A
+
+[2022-08-10T14:42:25.608] [INFO] default - $ npx hardhat run  scripts/3deployOracle.js --network test
+3 deploy oracle ....
+chainID is :21 address :0x92f886c808EAFF2E396e2c41116c5D6057759476
+link address is : 0xFFf1783a12fB247401Af976F51f43d022831767A
+oracle address : 0xf9885B22AbD4Ac4499eCCeEBfDc27c1500a971f1
+
+[2022-08-10T14:43:08.668] [INFO] default - $ npx hardhat run  scripts/5dataConsumer.js --network test
+Compiled 6 Solidity files successfully
+5 deploy data consumer ....
+chainID is :21 address :0x92f886c808EAFF2E396e2c41116c5D6057759476
+dataConsumer address : 0x7bA58598B7ef8516E03ab77e4825B7fa3668becf
+
+[2022-08-10T15:18:05.187] [INFO] default - publick key: 03bfd8bd2b10e887ec785360f9b329c2ae567975c784daca2f223cb19840b51914
+signature  : 08f7238cac929378420aca65e097b248c234d049fbce98dc0f3e0123a440a6c53720b8b5e929956792d2663c967cf69c6647034bd721fe0d94a050aa314727f1
+
+[2022-08-10T15:30:39.540] [INFO] default - 
+[2022-08-10T15:30:39.815] [INFO] default - Error: No such container: postgres
+Error: No such container: dev/null
+
+[2022-08-10T15:30:42.069] [INFO] default - Error: No such container: chainlink
+Error: No such container: dev/null
+
+[2022-08-10T15:30:44.090] [INFO] default - 
+[2022-08-10T15:30:44.890] [INFO] default - f51aff58718fbebb5d976cb4e4ca4208e2d4536187a54834a6ebe85e844bfbd9
+
+[2022-08-10T15:31:14.907] [INFO] default - 
+[2022-08-10T15:31:17.644] [INFO] default - ae0843c948d7e2174d28393a8f0e6a26f3c5dc8753c4a0c0b3c33f83d86a7c93
+
+[2022-08-10T15:59:33.158] [INFO] default - 
+[2022-08-10T15:59:33.606] [INFO] default - postgres
+Error: No such container: dev/null
+
+[2022-08-10T15:59:35.865] [INFO] default - chainlink
+Error: No such container: dev/null
+
+[2022-08-10T15:59:37.887] [INFO] default - 
+[2022-08-10T15:59:38.545] [INFO] default - ef48f3e7300ebda2912c70bc165174ec1c048db25ecce10101859860ba5f6a38
+
+[2022-08-10T16:00:08.563] [INFO] default - 
+[2022-08-10T16:00:11.197] [INFO] default - f7a9dfad074d17c198faf911bab55dbb03b5dadc89caf9d3715236ff74dad6b1
+
+[2022-08-10T16:12:57.690] [INFO] default - publick key: 03bfd8bd2b10e887ec785360f9b329c2ae567975c784daca2f223cb19840b51914
+signature  : a2eef1967017d3f39d34fedd4074be02de41f77d5c606da5a0becd6a6edd04a05f3409c6d3a3abc9de386ab584d90e6f6f33d91e7feeb5aa62021b2628f4ad76
+

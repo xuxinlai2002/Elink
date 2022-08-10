@@ -12,11 +12,11 @@ const main = async () => {
     console.log("chainID is :" + chainID + " address :" + deployer.address);
 
     const DataConsumer__Contract = await ethers.getContractFactory('DataConsumer',deployer)
-    let dataConsumerAddress = await readConfig("5","DATACONSUMER_ADDRESS");
-    let oracleAddress = await readConfig("5","ORACLE_ADDRESS");
-    let jobId = await readConfig("5","JOB_ID");
-    let publicKey = await readConfig("5","PUBLIC_KEY");
-    let signture = await readConfig("5","SIGNTRUE");
+    let dataConsumerAddress = await readConfig("1","DATACONSUMER_ADDRESS");
+    let oracleAddress = await readConfig("1","ORACLE_ADDRESS");
+    let jobId = await readConfig("1","JOB_ID");
+    let publicKey = await readConfig("1","PUBLIC_KEY");
+    let signture = await readConfig("1","SIGNTRUE");
     
   
     let dataConsumer = await DataConsumer__Contract.connect(deployer).attach(dataConsumerAddress);  

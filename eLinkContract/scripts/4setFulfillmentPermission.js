@@ -13,20 +13,32 @@ const main = async () => {
     console.log("chainID is :" + chainID + " address :" + deployer.address);
 
     const ORACLE__Contract = await ethers.getContractFactory('Operator',deployer)
-    let oracleAddress = await readConfig("3","ORACLE_ADDRESS");
-    let accountAddress = await readConfig("3","ACCOUNT_ADDRESS");
-    
-    oracle = await ORACLE__Contract.connect(deployer).attach(oracleAddress);
+    let oracleAddress = await readConfig("1","ORACLE_ADDRESS");
 
+    oracle = await ORACLE__Contract.connect(deployer).attach(oracleAddress);
     console.log("oracle address : " + oracle.address);
 
-    let resultObj = await oracle.setAuthorizedSenders([accountAddress],
+
+    let accountList = [];
+    accountAddresses = await oracle.getAuthorizedSenders();
+    for(var i = 0 ;i < accountAddresses.length ;i ++){
+        console.log("xxl : ",accountAddresses[i]);
+        accountList.push(accountAddresses[i]);
+    }
+   
+    let accountAddress = await readConfig("1","ACCOUNT_ADDRESS");
+    console.log("xxl push :",accountAddresses,accountAddress);
+    accountList.push(accountAddress);
+    console.log("account address : ", accountList);
+
+    let resultObj = await oracle.setAuthorizedSenders(accountAddresses,
         {
             gasPrice: 0x02540be400,
             gasLimit: 0x7a1200
         });
+    
     let isOK = await isTxSuccess(resultObj)
-    console.log("transfer : ",isOK);
+    console.log("set Fulfillment Permission : ",isOK);
 }
 
 

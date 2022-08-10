@@ -1,6 +1,5 @@
 
 const { ethers, getChainId} = require('hardhat')
-
 const { writeConfig,readConfig } = require('./helper')
 
 const main = async () => {
@@ -28,7 +27,7 @@ const main = async () => {
     );
 
     console.log("oracle address : " + oracle.address);
-    await writeConfig("1","3","ORACLE_ADDRESS",oracle.address);
+    await writeConfig("1","1","ORACLE_ADDRESS",oracle.address);
     
 }
 

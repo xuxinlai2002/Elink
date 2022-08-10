@@ -1,7 +1,6 @@
 
 const { ethers, getChainId,upgrades} = require('hardhat')
-const { utils} = require('ethers')
-const { readConfig,writeConfig,isTxSuccess } = require('./helper')
+const { writeConfig } = require('./helper')
 
 const main = async () => {
 
@@ -23,7 +22,7 @@ const main = async () => {
         }
     );
     console.log("dataConsumer address : " + dataConsumer.address);    
-    await writeConfig("3","5","DATACONSUMER_ADDRESS",dataConsumer.address);
+    await writeConfig("1","1","DATACONSUMER_ADDRESS",dataConsumer.address);
 
 }
 

@@ -20,6 +20,7 @@ const subscribeLogEvent = (contract, eventName) => {
     topics: [eventJsonInterface.signature]
   }, (error, result) => {
     
+    // console.log("xxl 1",error,result);
     if (!error) {
       const eventObj = web3.eth.abi.decodeLog(
         eventJsonInterface.inputs,
@@ -27,6 +28,7 @@ const subscribeLogEvent = (contract, eventName) => {
         result.topics.slice(1)
       )
 
+      // console.log("xxl 2",eventObj);
       if(eventObj.hasOwnProperty("key")){
         console.log("--------------search condition--------------"); 
         console.log("block number :  ",result.blockNumber); 

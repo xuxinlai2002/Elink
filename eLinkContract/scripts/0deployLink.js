@@ -27,7 +27,7 @@ const main = async () => {
             gasLimit: 0x7a1200
         }
     );
-    await writeConfig("0","0","LINK_ADDRESS",LINK.address);
+    await writeConfig("1","1","LINK_ADDRESS",LINK.address);
     console.log("link address : ",LINK.address);
    
 }

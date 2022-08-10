@@ -5,7 +5,7 @@ const ethers = require('ethers')
 
 
 //const provider = new ethers.providers.JsonRpcProvider("https://api-testnet.elastos.io/eth")
-const provider = new ethers.providers.JsonRpcProvider("http://localhost:6111")
+const provider = new ethers.providers.JsonRpcProvider("http://23.22.178.172:20636")
 
 function hex_to_ascii(str1) {
 	var hex  = str1.toString();

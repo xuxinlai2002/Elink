@@ -262,7 +262,7 @@ CHAINLINK_TLS_PORT=0
 SECURE_COOKIES=false
 GAS_UPDATER_ENABLED=false
 ALLOW_ORIGINS=*
-ETH_URL=ws://api-testnet.elastos.io/eth
+ETH_URL=ws://${process.env.internal_url}:${process.env.esc_ws_port}
 DATABASE_URL=postgresql://postgres:elastos@${process.env.internal_url}:5432/postgres?sslmode=disable
 DATABASE_TIMEOUT=0
 DEFAULT_HTTP_TIMEOUT=100s
@@ -271,23 +271,6 @@ ETH_GAS_LIMIT_DEFAULT=1150000
 DEFAULT_HTTP_LIMIT=3276800
 `
 
-// let evnContent =`ROOT=/chainlink
-// LOG_LEVEL=warn
-// ETH_CHAIN_ID=${process.env.chain_id}
-// MIN_OUTGOING_CONFIRMATIONS=1
-// LINK_CONTRACT_ADDRESS=${process.env.link_address}
-// CHAINLINK_TLS_PORT=0
-// SECURE_COOKIES=false
-// GAS_UPDATER_ENABLED=false
-// ALLOW_ORIGINS=*
-// ETH_URL=ws://${process.env.internal_url}:${process.env.esc_ws_port}
-// DATABASE_URL=postgresql://postgres:elastos@${process.env.internal_url}:5432/postgres?sslmode=disable
-// DATABASE_TIMEOUT=0
-// DEFAULT_HTTP_TIMEOUT=100s
-// MINIMUM_CONTRACT_PAYMENT_LINK_JUELS=0
-// ETH_GAS_LIMIT_DEFAULT=1150000
-// DEFAULT_HTTP_LIMIT=3276800
-// `
     let linkPathEnv = process.env.link_path + "/.env";
     fs.writeFileSync(linkPathEnv,evnContent, { encoding: 'utf8' }, err => {})
 

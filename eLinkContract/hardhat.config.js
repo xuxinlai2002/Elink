@@ -22,9 +22,8 @@ module.exports = {
       gas: 0x02540be400
     },
 
-    //xxl TODO when to test  
     test: {
-      url: `https://api-testnet.elastos.io/eth`,
+      url: `http://${internal_url}:20636`,
       accounts: [
         `${private_key}`
       ],

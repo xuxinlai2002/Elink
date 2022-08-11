@@ -1,7 +1,8 @@
 const Web3 = require('web3')
 require('dotenv').config({path:'../.env'});
 
-const web3 = new Web3(`ws://${process.env.internal_url}:${process.env.esc_ws_port}`)
+// const web3 = new Web3(`ws://${process.env.internal_url}:${process.env.esc_ws_port}`)
+const web3 = new Web3("wss://api-testnet.elastos.io/esc-ws");
 const { hex2a } = require('./helper')
 
 // a list for saving subscribed event instances
@@ -60,7 +61,7 @@ const main = async () => {
 
   console.log("**************** watch elink data ****************");
 
-  let dataConsumerAddress = await readConfig("5","DATACONSUMER_ADDRESS");
+  let dataConsumerAddress = await readConfig("1","DATACONSUMER_ADDRESS");
   const dataConsumer = require('../artifacts/contracts/DataConsumer.sol/DataConsumer.json');
 
   let dataConsumerInstance = new web3.eth.Contract(dataConsumer.abi,dataConsumerAddress)

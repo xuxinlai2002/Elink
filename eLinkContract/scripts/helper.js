@@ -419,8 +419,8 @@ async function updateEvnSetting(){
 
     await writeConfig("1","1","LINK_ADDRESS",process.env.link_address);
     await writeConfig("1","1","LINK_INTERFACE_ADDRESS",process.env.link_interface_address);
-    await writeConfig("1","1","ORACLE_ADDRESS",process.env.oracle_address);
-    // await writeConfig("1","1","DATACONSUMER_ADDRESS",process.env.dataconsumer_address);
+    //await writeConfig("1","1","ORACLE_ADDRESS",process.env.oracle_address);
+    await writeConfig("1","1","DATACONSUMER_ADDRESS",process.env.dataconsumer_address);
 
     await settingLinkInterfaceFromParam(process.env.link_interface_address)
 

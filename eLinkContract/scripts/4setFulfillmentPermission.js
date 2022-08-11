@@ -19,19 +19,20 @@ const main = async () => {
     console.log("oracle address : " + oracle.address);
 
 
-    let accountList = [];
-    accountAddresses = await oracle.getAuthorizedSenders();
-    for(var i = 0 ;i < accountAddresses.length ;i ++){
-        console.log("xxl : ",accountAddresses[i]);
-        accountList.push(accountAddresses[i]);
-    }
+    // let accountList = [];
+    // accountAddresses = await oracle.getAuthorizedSenders();
+    // for(var i = 0 ;i < accountAddresses.length ;i ++){
+    //     console.log("xxl : ",accountAddresses[i]);
+    //     accountList.push(accountAddresses[i]);
+    // }
    
-    let accountAddress = await readConfig("1","ACCOUNT_ADDRESS");
-    console.log("xxl push :",accountAddresses,accountAddress);
-    accountList.push(accountAddress);
-    console.log("account address : ", accountList);
+    // let accountAddress = await readConfig("1","ACCOUNT_ADDRESS");
+    // console.log("xxl push :",accountAddresses,accountAddress);
+    // accountList.push(accountAddress);
+    // console.log("account address : ", accountList);
 
-    let resultObj = await oracle.setAuthorizedSenders(accountList,
+    let accountAddress = await readConfig("1","ACCOUNT_ADDRESS");
+    let resultObj = await oracle.setAuthorizedSenders([accountAddress],
         {
             gasPrice: 0x02540be400,
             gasLimit: 0x7a1200

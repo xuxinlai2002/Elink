@@ -20,7 +20,7 @@ const main = async () => {
     await deployLinkInterface();
 
     //3.0 oracle 
-    await deployOralce();
+    // await deployOralce();
 
     //4.0 set link interface
     await settingLinkInterfaceFromConfig();

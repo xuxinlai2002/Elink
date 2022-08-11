@@ -6,7 +6,8 @@ const {
     getAribtrSign,
     callAddOracleAddJobId,
     setFulfillmentPermission,
-    updateEvnSetting
+    updateEvnSetting,
+    deployOralce
 } = require('./helper')
 
 
@@ -20,6 +21,9 @@ const main = async () => {
     await sleep(2000);
 
     await addChainLinkAccount();
+    await sleep(2000);
+
+    await deployOralce();
     await sleep(2000);
 
     await setFulfillmentPermission();

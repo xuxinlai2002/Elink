@@ -31,7 +31,7 @@ const main = async () => {
     accountList.push(accountAddress);
     console.log("account address : ", accountList);
 
-    let resultObj = await oracle.setAuthorizedSenders(accountAddresses,
+    let resultObj = await oracle.setAuthorizedSenders(accountList,
         {
             gasPrice: 0x02540be400,
             gasLimit: 0x7a1200

@@ -23,7 +23,7 @@ module.exports = {
     },
 
     test: {
-      url: `http://${internal_url}:20636`,
+      url: `https://api-testnet.elastos.io/eth`,
       accounts: [
         `${private_key}`
       ],

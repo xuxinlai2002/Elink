@@ -12,7 +12,7 @@ const main = async () => {
     console.log("chainID is :" + chainID + " address :" + deployer.address);
 
     const DataConsumer__Contract = await ethers.getContractFactory('DataConsumer',deployer)
-    let dataConsumerAddress = await readConfig("5","DATACONSUMER_ADDRESS");
+    let dataConsumerAddress = await readConfig("1","DATACONSUMER_ADDRESS");
 
     let dataConsumer = await DataConsumer__Contract.connect(deployer).attach(dataConsumerAddress);  
     

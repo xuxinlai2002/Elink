@@ -50,6 +50,42 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
       bytes32 datahash
     );
 
+    event SearchResult1(
+      bytes32 indexed requestId,
+      bytes data,
+      uint256 blockNumber,
+      bytes32 datahash,
+      uint8 totalSearchNum,
+      uint8 hitSearchNum
+    );
+
+    event SearchResult2(
+      bytes32 indexed requestId,
+      bytes data,
+      uint256 blockNumber,
+      bytes32 datahash,
+      uint8 totalSearchNum,
+      uint8 hitSearchNum
+    );
+
+    event SearchResult3(
+      bytes32 indexed requestId,
+      bytes data,
+      uint256 blockNumber,
+      bytes32 datahash,
+      uint8 totalSearchNum,
+      uint8 hitSearchNum
+    );
+
+    event SearchResult4(
+      bytes32 indexed requestId,
+      bytes data,
+      uint256 blockNumber,
+      bytes32 datahash,
+      uint8 totalSearchNum,
+      uint8 hitSearchNum
+    );
+
     /**
       * @dev __DataConsumer_init
         @param _version version of ERC1155 Platform
@@ -159,7 +195,10 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
     function fulfillEthereumDidData(bytes32 _requestId, bytes memory _didData)
       public recordChainlinkFulfillment(_requestId){
 
+      emit SearchResult1(_requestId,data,block.number,keccak256(_didData),totalSearchNum,hitSearchNum);
+
       if(totalSearchNum == 0){
+
         isSearchConformed = false;
 
         dataHash = keccak256(_didData);
@@ -167,6 +206,7 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
         totalSearchNum ++ ;
         hitSearchNum ++ ;
 
+        emit SearchResult2(_requestId,data,block.number,keccak256(_didData),totalSearchNum,hitSearchNum);
         _runResult(_requestId,_didData);
       
       }else{
@@ -178,6 +218,7 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
           hitSearchNum ++ ;
         }
 
+        emit SearchResult3(_requestId,data,block.number,keccak256(_didData),totalSearchNum,hitSearchNum);
         _runResult(_requestId,_didData);
 
       }
@@ -186,6 +227,14 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
 
 
     function _runResult(bytes32 _requestId, bytes memory _didData) internal {
+
+        emit SearchResult4(
+          _requestId,data,
+          block.number,
+          keccak256(_didData),
+          totalSearchNum,
+          hitSearchNum
+        );
 
         if(hitSearchNum * 3 >= ARBITER_NUM * 2 ){
 

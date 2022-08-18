@@ -21,7 +21,6 @@ const subscribeLogEvent = (contract, eventName) => {
     topics: [eventJsonInterface.signature]
   }, (error, result) => {
     
-    // console.log("xxl 1",error,result);
     if (!error) {
       const eventObj = web3.eth.abi.decodeLog(
         eventJsonInterface.inputs,
@@ -29,22 +28,33 @@ const subscribeLogEvent = (contract, eventName) => {
         result.topics.slice(1)
       )
 
+      console.log("xxl eventObj ",eventObj);
       // console.log("xxl 2",eventObj);
-      if(eventObj.hasOwnProperty("key")){
-        console.log("--------------search condition--------------"); 
-        console.log("block number :  ",result.blockNumber); 
-        console.log("data requestId :", eventObj.requestId)
-        console.log("data searchKey :", eventObj.key)
-      }else if(eventObj.hasOwnProperty("data")){
-        console.log("\n**************search result**************"); 
-        //console.log("data bytes:", eventObj.data)
-        //console.log("data hash :", web3.utils.sha3(eventObj.data));
-        console.log("block number :  ",result.blockNumber); 
-        console.log("data requestId :", eventObj.requestId)
-        console.log("data result :", hex2a(eventObj.data));
-      }else{
-        console.log("unused event");
-      }
+      // if(eventObj.hasOwnProperty("logNum")){
+      //   console.log("--------------search log--------------"); 
+      //   console.log("data logNum :  ",eventObj.logNum); 
+      //   console.log("data requestId :", eventObj.requestId)
+      //   console.log("data data :", eventObj.data)
+      //   console.log("block number :  ",result.blockNumber); 
+      //   console.log("data datahash :", eventObj.datahash)
+      //   console.log("data totalSearchNum :", eventObj.totalSearchNum)
+      //   console.log("data hitSearchNum :", eventObj.hitSearchNum)
+
+      // }else if(eventObj.hasOwnProperty("key")){
+      //   console.log("--------------search condition--------------"); 
+      //   console.log("block number :  ",result.blockNumber); 
+      //   console.log("data requestId :", eventObj.requestId)
+      //   console.log("data searchKey :", eventObj.key)
+      // }else if(eventObj.hasOwnProperty("data")){
+      //   console.log("\n**************search result**************"); 
+      //   //console.log("data bytes:", eventObj.data)
+      //   //console.log("data hash :", web3.utils.sha3(eventObj.data));
+      //   console.log("block number :  ",result.blockNumber); 
+      //   console.log("data requestId :", eventObj.requestId)
+      //   console.log("data result :", hex2a(eventObj.data));
+      // }else{
+      //   console.log("unused event");
+      // }
 
     }
 
@@ -60,12 +70,19 @@ const {
 const main = async () => {
 
   console.log("**************** watch elink data ****************");
-
   let dataConsumerAddress = await readConfig("1","DATACONSUMER_ADDRESS");
   const dataConsumer = require('../artifacts/contracts/DataConsumer.sol/DataConsumer.json');
 
   let dataConsumerInstance = new web3.eth.Contract(dataConsumer.abi,dataConsumerAddress)
+
+  subscribeLogEvent(dataConsumerInstance,"Log");
   subscribeLogEvent(dataConsumerInstance,"SearchInfo");
+
+  // subscribeLogEvent(dataConsumerInstance,"SearchResult1");
+  // subscribeLogEvent(dataConsumerInstance,"SearchResult2");
+  // subscribeLogEvent(dataConsumerInstance,"SearchResult3");
+  // subscribeLogEvent(dataConsumerInstance,"SearchResult4");
+
   subscribeLogEvent(dataConsumerInstance,"SearchConformed");
   
 

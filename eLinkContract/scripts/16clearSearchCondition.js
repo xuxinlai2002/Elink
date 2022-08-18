@@ -15,7 +15,7 @@ const main = async () => {
     let dataConsumerAddress = await readConfig("1","DATACONSUMER_ADDRESS");
   
     let dataConsumer = await DataConsumer__Contract.connect(deployer).attach(dataConsumerAddress);    
-    let resultObj = await dataConsumer.clearSearchCondition(
+    let resultObj = await dataConsumer.clearSearchResult("a","b",
         {
             gasPrice: 0x02540be400,
             gasLimit: 0x7a1200

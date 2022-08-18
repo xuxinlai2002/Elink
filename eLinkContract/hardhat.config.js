@@ -57,8 +57,19 @@ module.exports = {
       blockGasLimit: 8000000
     }
 
-
-
   },
   solidity: '0.7.6',
+  settings: {
+    optimizer: {
+      enabled: true,
+      runs: 2000,
+      details: {
+        yul: true,
+        yulDetails: {
+          stackAllocation: true,
+          optimizerSteps: "dhfoDgvulfnTUtnIf"
+        }
+      }
+    }
+  },
 }

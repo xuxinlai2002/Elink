@@ -8,35 +8,38 @@ import "./bytesUtils/BytesLib.sol";
 import "./Arbiter.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
-import "./interfaces/CallbackInterface.sol";
-
-import "hardhat/console.sol";
 
 contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbiter{
 
-    using Chainlink for Chainlink.Request;
+    uint256 constant public MAX_CHANNEL = 20;
     uint256 constant private ORACLE_PAYMENT = 0;
-   
 
-    bytes32   public dataHash;  
-    bytes     public data;
-    uint8     public totalSearchNum;
-    uint8     public hitSearchNum ;
+    using Chainlink for Chainlink.Request;
 
-    uint256[ARBITER_NUM] public searchBlockNum ;
-    bool      public isSearchConformed;
-    address   private callbackContract;
     address[] private oracles;
     string[]  private jobIds;
     string    private version;
     uint256   private id;
     
-    struct ChainLinkInfo{
-      address oracle;
-      string jobId;
+    struct RequestInfo{
+      bytes32 requestId;
+      bool isSearched;
     }
 
-    mapping( bytes32 => ChainLinkInfo) private chainlinkInfoMap;
+    struct ChannelInfo {
+        string did;
+        string method;
+        uint8 status; //0: idle 1:searching 2:finish
+        bytes32 dataHash;
+        //bytes data;
+        RequestInfo[ARBITER_NUM] requestInfoList;
+    }
+    ChannelInfo[MAX_CHANNEL] private channelInfoList;
+
+    event Log(
+      bytes32 indexed requestId,
+      uint8 logNum
+    );
 
     event SearchInfo(
       bytes32 indexed requestId,
@@ -50,42 +53,6 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
       bytes32 datahash
     );
 
-    event SearchResult1(
-      bytes32 indexed requestId,
-      bytes data,
-      uint256 blockNumber,
-      bytes32 datahash,
-      uint8 totalSearchNum,
-      uint8 hitSearchNum
-    );
-
-    event SearchResult2(
-      bytes32 indexed requestId,
-      bytes data,
-      uint256 blockNumber,
-      bytes32 datahash,
-      uint8 totalSearchNum,
-      uint8 hitSearchNum
-    );
-
-    event SearchResult3(
-      bytes32 indexed requestId,
-      bytes data,
-      uint256 blockNumber,
-      bytes32 datahash,
-      uint8 totalSearchNum,
-      uint8 hitSearchNum
-    );
-
-    event SearchResult4(
-      bytes32 indexed requestId,
-      bytes data,
-      uint256 blockNumber,
-      bytes32 datahash,
-      uint8 totalSearchNum,
-      uint8 hitSearchNum
-    );
-
     /**
       * @dev __DataConsumer_init
         @param _version version of ERC1155 Platform
@@ -96,16 +63,33 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
         
         setPublicChainlinkToken();
         version = _version;
-        dataHash = bytes32(0);
-        totalSearchNum = 0;
-        hitSearchNum = 0;
         id = 0;
-        isSearchConformed = false;
         __Ownable_init();
+        _initChannelInfoList();
     }
 
-    function registerCallbackContract(address _callbackContract) public{
-        callbackContract = _callbackContract;
+
+    function _initChannelInfoList() internal {
+
+      for(uint i = 0 ;i < MAX_CHANNEL ;i ++ ){
+        _initChannelByNum(i);
+      }
+
+    }
+
+    function _initChannelByNum(uint _channelNum) internal{
+            
+      channelInfoList[_channelNum].did = "";
+      channelInfoList[_channelNum].method = "";
+      channelInfoList[_channelNum].status = 0;
+      channelInfoList[_channelNum].dataHash = bytes32(0);
+      //channelInfoList[_channelNum].data = "";
+
+        for(uint i = 0 ;i < ARBITER_NUM ;i ++ ){
+          channelInfoList[_channelNum].requestInfoList[i].requestId = bytes32(0);
+          channelInfoList[_channelNum].requestInfoList[i].isSearched = false;
+        }
+
     }
 
     function addOralceAndJobId(
@@ -116,7 +100,6 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
       ) external{
         
         bool isVerified = false;
-        bool isJobIdInArray = false;
 
         string memory strOracleAndJobId = strConcat(addressToString(_oracle),_jobId);
         bytes32 oracleAndJobId = keccak256(hexStr2bytes(strOracleAndJobId));    
@@ -130,19 +113,19 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
         isVerified = isArbiterInList(pubKeyHash);
         require(isVerified,"arbiter is not in the list !");
 
-        if(isJobIdInArray == false){
+        if(!_isJobIdInArray(_jobId)){
           oracles.push(_oracle);
           jobIds.push(_jobId);
         }
     }
 
-    function isJobIdInArray(string memory _jobId) private view returns (bool){
+    function _isJobIdInArray(string memory _jobId) internal view returns (bool){
 
       uint256 jobIdLength = oracles.length;
 
       for(uint256 i = 0 ;i < jobIdLength ;i ++ ){
         
-        if(compareStrings(jobIds[i], _jobId)){
+        if(_compareString(jobIds[i], _jobId)){
           return true;
         }
       
@@ -152,10 +135,9 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
     
     }
 
-    function compareStrings(string memory a, string memory b) private view returns (bool) {
+    function _compareString(string memory a, string memory b) internal pure returns (bool) {
         return (keccak256(abi.encodePacked((a))) == keccak256(abi.encodePacked((b))));
     }
-
 
     function clearOralceAndJobId() onlyOwner external {
 
@@ -169,124 +151,177 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
     }
 
     function requestResultFromList(string memory did,string memory method)
-      public returns (bytes32[ARBITER_NUM] memory){
+      public {
       
-      bytes32[ARBITER_NUM] memory requestIdList ;
+      emit Log(bytes32(0),0);
+      
+      //is search result in list
+      //if(_isInChannelist(did,method)) return;
+      
       uint len = oracles.length;
+
+      uint channelNum = _getCurChannelNum();
+      require(channelNum < MAX_CHANNEL,"to many calls,please wait ");
+
+      //set channel info 
+      channelInfoList[channelNum].did = did;
+      channelInfoList[channelNum].method = method;
+      channelInfoList[channelNum].status = 1;
+
       for(uint i = 0 ;i < len ; i ++){
 
-        Chainlink.Request memory req = buildChainlinkRequest(stringToBytes32(jobIds[i]), address(this), this.fulfillEthereumDidData.selector);
+        Chainlink.Request memory req = buildChainlinkRequest(
+            stringToBytes32(jobIds[i]), 
+            address(this), 
+            this.fulfillEthereumDidData.selector
+        );
 
         req.add("did", did);
         req.addUint("id", id);
         req.add("method", method);
         req.add("path", "result,transaction");
 
-        requestIdList[i] = sendOperatorRequestTo(oracles[i], req, ORACLE_PAYMENT);
-
-        emit SearchInfo(requestIdList[i],did);
+        //set request info
+        channelInfoList[channelNum].requestInfoList[i].requestId = sendOperatorRequestTo(
+            oracles[i], 
+            req, 
+            ORACLE_PAYMENT
+        );
+        emit Log(channelInfoList[channelNum].requestInfoList[i].requestId,1);
+        channelInfoList[channelNum].requestInfoList[i].isSearched = false;
+        emit SearchInfo(channelInfoList[channelNum].requestInfoList[i].requestId,did);
 
       }
       id ++ ;
-      return requestIdList;
 
     }
 
-    function fulfillEthereumDidData(bytes32 _requestId, bytes memory _didData)
-      public recordChainlinkFulfillment(_requestId){
+    function _getCurChannelNum() internal view returns(uint256){
 
-      emit SearchResult1(_requestId,data,block.number,keccak256(_didData),totalSearchNum,hitSearchNum);
+      //first look at idle list
+      for(uint i = 0 ;i < MAX_CHANNEL ;i ++){
+        if(channelInfoList[i].status == 0){
+          return i;
+        }
+      }
 
-      if(totalSearchNum == 0){
+      //then look at finish list
+      for(uint i = 0 ;i < MAX_CHANNEL ;i ++){
+        if(channelInfoList[i].status == 2){
+          return i;
+        }
+      }
 
-        isSearchConformed = false;
+      //no idea channel for use  
+      return MAX_CHANNEL + 1;
+    }
 
-        dataHash = keccak256(_didData);
-        searchBlockNum[totalSearchNum] = block.number;
-        totalSearchNum ++ ;
-        hitSearchNum ++ ;
+    function _isInChannelist(string memory did,string memory method) internal view returns(bool){
 
-        emit SearchResult2(_requestId,data,block.number,keccak256(_didData),totalSearchNum,hitSearchNum);
-        _runResult(_requestId,_didData);
-      
-      }else{
-        
-        searchBlockNum[totalSearchNum] = block.number;
-        totalSearchNum ++ ;
+      for(uint i = 0 ;i < MAX_CHANNEL ;i ++){
+        if(_compareString(did,channelInfoList[i].did) && _compareString(method,channelInfoList[i].method)){
+          return true;
+        }
+      }
 
-        if(dataHash == keccak256(_didData)){
-          hitSearchNum ++ ;
+      return false;
+    }
+
+    function fulfillEthereumDidData(bytes32 _requestId, bytes memory _didData) public recordChainlinkFulfillment(_requestId){
+
+      emit Log(_requestId,2);
+      uint256 channelNum = _getChannelNumberFormRequestId(_requestId);
+
+      bytes32 dataHash = keccak256(_didData);
+      if(channelInfoList[channelNum].status == 1){
+
+        emit Log(_requestId,3);
+        if(channelInfoList[channelNum].dataHash == bytes32(0)){
+
+          emit Log(_requestId,4);
+          // channelInfoList[channelNum].data = _didData;
+          channelInfoList[channelNum].dataHash = dataHash;
+          _setRequestInfo(channelNum,_requestId);
+        }else if(channelInfoList[channelNum].dataHash == dataHash){
+          emit Log(_requestId,5);
+          _setRequestInfo(channelNum,_requestId);
         }
 
-        emit SearchResult3(_requestId,data,block.number,keccak256(_didData),totalSearchNum,hitSearchNum);
-        _runResult(_requestId,_didData);
+        _runSearchResult(_requestId,channelNum,_didData,dataHash);
 
       }
 
     }
 
+    function _setRequestInfo(uint256 _channelNum,bytes32 _requestId) internal{
 
-    function _runResult(bytes32 _requestId, bytes memory _didData) internal {
+      emit Log(_requestId,6);
+      for(uint i = 0 ;i < ARBITER_NUM ;i ++){
+         
+         if(channelInfoList[_channelNum].requestInfoList[i].requestId == _requestId){
+          channelInfoList[_channelNum].requestInfoList[i].isSearched = true;
+         }
+      }
 
-        emit SearchResult4(
-          _requestId,data,
-          block.number,
-          keccak256(_didData),
-          totalSearchNum,
-          hitSearchNum
-        );
+    }
 
-        if(hitSearchNum * 3 >= ARBITER_NUM * 2 ){
+    function _runSearchResult(bytes32 _requestId,uint256 _channelNum,bytes memory _didData,bytes32 _dataHash) internal {
 
-          emit SearchConformed(_requestId, _didData,block.number,dataHash);
-          if(address(0) != callbackContract){
-            _callbackRequest(_requestId,_didData);
-          }
-          data = _didData;
-          totalSearchNum = 0;
-          hitSearchNum = 0;
+      if(_getHitTotalFromChannelNum(_channelNum) * 3 >= ARBITER_NUM * 2){
+          emit SearchConformed(_requestId, _didData,block.number,_dataHash);
+          channelInfoList[_channelNum].status = 2;
 
         }
     }
 
-    function _callbackRequest(bytes32 _requestId, bytes memory _didData) internal{
 
-      bool success  = false;
-      (success,) = address(CallbackInterface(callbackContract)).call(
-         abi.encodeWithSignature("callbackResult(bytes32,bytes)",_requestId,_didData)
-      );
+    function _getHitTotalFromChannelNum(uint256 _channelNum) internal view returns(uint8){
 
-      console.log("call result is ",success);
-      require(success,"callback Interface failed");
+      uint8 totalHitNum = 0 ; 
+      for(uint i = 0 ;i < ARBITER_NUM ;i ++){
+         if(channelInfoList[_channelNum].requestInfoList[i].isSearched){
+           totalHitNum ++ ;
+         }
+      }
 
-    }
-
-    function getSearchResult() view public returns(bool,bytes32,uint256,uint256,uint256[ARBITER_NUM] memory){
-
-      return (isSearchConformed,dataHash,totalSearchNum,hitSearchNum,searchBlockNum);
+      return totalHitNum;
 
     }
 
-    function clearSearchCondition() public{
+    function _getChannelNumberFormRequestId(bytes32 _requestId) internal view returns(uint256){
 
-      dataHash = bytes32(0);
-      totalSearchNum = 0;
-      hitSearchNum = 0;
-      isSearchConformed = false;
-      delete searchBlockNum ;
-      data = "";
+      for(uint i = 0 ; i < MAX_CHANNEL ;i ++){
+
+        for(uint j = 0 ;j < ARBITER_NUM ; j ++){
+          if(channelInfoList[i].requestInfoList[j].requestId == _requestId){
+            return i;
+          }
+        }
+
+      }
+      return 0;
 
     }
 
-    function cancelRequest(
-      bytes32 _requestId,
-      uint256 _payment,
-      bytes4 _callbackFunctionId,
-      uint256 _expiration
-    ) public {
 
-      cancelChainlinkRequest(_requestId, _payment, _callbackFunctionId, _expiration);
-    
-    }
+  function getSearchResult(string memory _did,string memory _method) external view returns(bytes32){
+
+     for(uint i = 0 ;i < MAX_CHANNEL ;i ++){
+      if(_compareString(_did,channelInfoList[i].did) && 
+         _compareString(_method,channelInfoList[i].method) &&  
+         channelInfoList[i].status == 2 ){
+          return channelInfoList[i].dataHash;
+      }
+     }
+     return "";
+  }
+
+  function getChannelInfoList() external view returns( ChannelInfo[MAX_CHANNEL] memory) {
+    return channelInfoList;
+  }
+
+  function clearSearchResult() external {
+      _initChannelInfoList();
+  }
 
 }

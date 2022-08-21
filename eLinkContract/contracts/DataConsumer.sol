@@ -179,9 +179,9 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
         );
 
         if(_compareString(method,"did_resolveCredential")){
-            req.add("keyId", "id");
+            req.add("key", "id");
         }else{
-            req.add("keyId", "did");
+            req.add("key", "did");
         }
         
         req.add("did", did);

@@ -329,7 +329,7 @@ async function createJob(){
         decode_cbor  [type="cborparse" data="$(decode_log.data)"]
         
         fetch        [type="http" method=POST url="http://${process.env.internal_url}:20646"
-                     requestData="{\\\\"jsonrpc\\\\":\\\\"2.0\\\\",\\\\"method\\\\":$(decode_cbor.method),\\\\"params\\\\":[{ $(decode_cbor.key):$(decode_cbor.did)}],\\\\"id\\\\":$(decode_cbor.id)}"
+                     requestData="{\\\\"jsonrpc\\\\":\\\\"2.0\\\\",\\\\"method\\\\":$(decode_cbor.method),\\\\"params\\\\":[{\\\\"did\\\\":$(decode_cbor.did);\\\\"id\\\\":$(decode_cbor.did)}],\\\\"id\\\\":$(decode_cbor.id)}"
                      ]
     
         encode_large [type="ethabiencode"

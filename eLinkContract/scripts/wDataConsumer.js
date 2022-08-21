@@ -28,7 +28,7 @@ const subscribeLogEvent = (contract, eventName) => {
         result.topics.slice(1)
       )
 
-      console.log("xxl eventObj ",eventObj);
+      // console.log("xxl eventObj ",eventObj);
       // console.log("xxl 2",eventObj);
       // if(eventObj.hasOwnProperty("logNum")){
       //   console.log("--------------search log--------------"); 
@@ -39,22 +39,22 @@ const subscribeLogEvent = (contract, eventName) => {
       //   console.log("data datahash :", eventObj.datahash)
       //   console.log("data totalSearchNum :", eventObj.totalSearchNum)
       //   console.log("data hitSearchNum :", eventObj.hitSearchNum)
-
       // }else if(eventObj.hasOwnProperty("key")){
-      //   console.log("--------------search condition--------------"); 
-      //   console.log("block number :  ",result.blockNumber); 
-      //   console.log("data requestId :", eventObj.requestId)
-      //   console.log("data searchKey :", eventObj.key)
-      // }else if(eventObj.hasOwnProperty("data")){
-      //   console.log("\n**************search result**************"); 
-      //   //console.log("data bytes:", eventObj.data)
-      //   //console.log("data hash :", web3.utils.sha3(eventObj.data));
-      //   console.log("block number :  ",result.blockNumber); 
-      //   console.log("data requestId :", eventObj.requestId)
-      //   console.log("data result :", hex2a(eventObj.data));
-      // }else{
-      //   console.log("unused event");
-      // }
+      if(eventObj.hasOwnProperty("key")){
+        console.log("--------------search condition--------------"); 
+        console.log("block number :  ",result.blockNumber); 
+        console.log("data requestId :", eventObj.requestId)
+        console.log("data searchKey :", eventObj.key)
+      }else if(eventObj.hasOwnProperty("data")){
+        console.log("\n**************search result**************"); 
+        //console.log("data bytes:", eventObj.data)
+        //console.log("data hash :", web3.utils.sha3(eventObj.data));
+        console.log("block number :  ",result.blockNumber); 
+        console.log("data requestId :", eventObj.requestId)
+        console.log("data result :", hex2a(eventObj.data));
+      }else{
+        console.log("unused event");
+      }
 
     }
 
@@ -75,7 +75,7 @@ const main = async () => {
 
   let dataConsumerInstance = new web3.eth.Contract(dataConsumer.abi,dataConsumerAddress)
 
-  subscribeLogEvent(dataConsumerInstance,"Log");
+  // subscribeLogEvent(dataConsumerInstance,"Log");
   subscribeLogEvent(dataConsumerInstance,"SearchInfo");
 
   // subscribeLogEvent(dataConsumerInstance,"SearchResult1");

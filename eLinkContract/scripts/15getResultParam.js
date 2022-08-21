@@ -18,7 +18,7 @@ const main = async () => {
 
     let resultParam = await dataConsumer.getChannelInfoList();
 
-    for(var i = 0 ;i < 3 ;i ++){
+    for(var i = 0 ;i < 20 ;i ++){
         if(resultParam[i].status != 0){
             console.log("\n####%d ",i);
             console.log("did      : %s",resultParam[i].did);

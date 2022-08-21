@@ -26,9 +26,7 @@ module.exports = {
       url: `https://api-testnet.elastos.io/eth`,
       accounts: [
         `${private_key}`
-      ],
-      gasLimit: 0x7a1200,
-      gas: 0x02540be400
+      ]
     },
 
     local: {

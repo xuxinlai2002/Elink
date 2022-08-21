@@ -18,11 +18,7 @@ const main = async () => {
 
     await upgrades.upgradeProxy(
         dataConsumerAddress, 
-        dataConsumer__Contract,{from:accounts[0].address},
-        {
-            gasPrice: 0x02540be400,
-            gasLimit: 0x7a12000
-        }
+        dataConsumer__Contract,{from:accounts[0].address}
     );
     console.log('Bridge upgraded');
 

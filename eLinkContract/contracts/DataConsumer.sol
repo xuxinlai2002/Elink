@@ -35,6 +35,7 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
         RequestInfo[ARBITER_NUM] requestInfoList;
     }
     ChannelInfo[MAX_CHANNEL] private channelInfoList;
+    uint256   private my11;
 
     event Log(
       bytes32 indexed requestId,
@@ -53,6 +54,7 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
       bytes32 datahash
     );
 
+
     /**
       * @dev __DataConsumer_init
         @param _version version of ERC1155 Platform
@@ -66,6 +68,8 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
         id = 0;
         __Ownable_init();
         _initChannelInfoList();
+        my11 = 0;
+
     }
 
 
@@ -176,6 +180,12 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
             this.fulfillEthereumDidData.selector
         );
 
+        if(_compareString(method,"did_resolveCredential")){
+            req.add("keyId", "id");
+        }else{
+            req.add("keyId", "did");
+        }
+        
         req.add("did", did);
         req.addUint("id", id);
         req.add("method", method);

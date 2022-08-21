@@ -35,7 +35,6 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
         RequestInfo[ARBITER_NUM] requestInfoList;
     }
     ChannelInfo[MAX_CHANNEL] private channelInfoList;
-    uint256   private my11;
 
     event Log(
       bytes32 indexed requestId,
@@ -68,7 +67,6 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
         id = 0;
         __Ownable_init();
         _initChannelInfoList();
-        my11 = 0;
 
     }
 
@@ -197,11 +195,13 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
             req, 
             ORACLE_PAYMENT
         );
+
         emit Log(channelInfoList[channelNum].requestInfoList[i].requestId,1);
         channelInfoList[channelNum].requestInfoList[i].isSearched = false;
         emit SearchInfo(channelInfoList[channelNum].requestInfoList[i].requestId,did);
 
       }
+
       id ++ ;
 
     }

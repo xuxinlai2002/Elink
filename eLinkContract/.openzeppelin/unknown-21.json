@@ -49,6 +49,21 @@
       "address": "0xE51b0b80Ffc0f2913BF127146B5B8AC4De4A3d8B",
       "txHash": "0x8d8d47e248764eb970814d24505275fd954bc6bc9293d2cc0c695f61958ca2f7",
       "kind": "transparent"
+    },
+    {
+      "address": "0x607582A4ea421FEc104419f5D03950ffb778717D",
+      "txHash": "0x927a67897242683c68b2b25577a5fcb837b15d2c8005e52c01735f897da8791d",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x8822579567Dad896AB9f64FCECFc4FF466595f12",
+      "txHash": "0xbb422d99ee8ffa496989fe2d5c739201c17e4107c1d056cde1ac34022085e943",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x68EBB02Fe9507ABFaF17DAbeE50fE203551f4702",
+      "txHash": "0xa378680103a31063e74905cf53578f7c07744f59fa5dccdb5f4f5fdcb54d7b5e",
+      "kind": "transparent"
     }
   ],
   "impls": {
@@ -3073,7 +3088,7 @@
             "slot": "111",
             "type": "t_array(t_struct(ChannelInfo)1082_storage)20_storage",
             "contract": "DataConsumer",
-            "src": "contracts/DataConsumer.sol:40"
+            "src": "contracts/DataConsumer.sol:37"
           },
           {
             "label": "my11",
@@ -3081,7 +3096,7 @@
             "slot": "671",
             "type": "t_uint256",
             "contract": "DataConsumer",
-            "src": "contracts/DataConsumer.sol:60"
+            "src": "contracts/DataConsumer.sol:38"
           }
         ],
         "types": {
@@ -3658,6 +3673,1574 @@
             "numberOfBytes": "20"
           },
           "t_contract(OperatorInterface)3464": {
+            "label": "contract OperatorInterface",
+            "numberOfBytes": "20"
+          },
+          "t_mapping(t_bytes32,t_address)": {
+            "label": "mapping(bytes32 => address)",
+            "numberOfBytes": "32"
+          },
+          "t_string_storage": {
+            "label": "string",
+            "numberOfBytes": "32"
+          },
+          "t_struct(ChannelInfo)1082_storage": {
+            "label": "struct DataConsumer.ChannelInfo",
+            "members": [
+              {
+                "label": "did",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "method",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "status",
+                "type": "t_uint8",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "dataHash",
+                "type": "t_bytes32",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "requestInfoList",
+                "type": "t_array(t_struct(RequestInfo)1069_storage)12_storage",
+                "offset": 0,
+                "slot": "4"
+              }
+            ],
+            "numberOfBytes": "896"
+          },
+          "t_struct(RequestInfo)1069_storage": {
+            "label": "struct DataConsumer.RequestInfo",
+            "members": [
+              {
+                "label": "requestId",
+                "type": "t_bytes32",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "isSearched",
+                "type": "t_bool",
+                "offset": 0,
+                "slot": "1"
+              }
+            ],
+            "numberOfBytes": "64"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        }
+      }
+    },
+    "39cfb5d4c26dfbbdfca8c2f15c4f2cfe5d88acc94835dbecfe26714f0e708154": {
+      "address": "0x44E2de1459343b235Bf92fFCc9ED595E35E29892",
+      "txHash": "0x5166abaa7a4e159af3f87cf71127b39132279382fe14c57d83bda44dd8b2555a",
+      "layout": {
+        "storage": [
+          {
+            "label": "s_ens",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_contract(ENSInterface)3187",
+            "contract": "ChainlinkClient",
+            "src": "contracts/chainlink/ChainlinkClient.sol:33"
+          },
+          {
+            "label": "s_ensNode",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_bytes32",
+            "contract": "ChainlinkClient",
+            "src": "contracts/chainlink/ChainlinkClient.sol:34"
+          },
+          {
+            "label": "s_link",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_contract(LinkTokenInterface)3282",
+            "contract": "ChainlinkClient",
+            "src": "contracts/chainlink/ChainlinkClient.sol:35"
+          },
+          {
+            "label": "s_oracle",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_contract(OperatorInterface)3336",
+            "contract": "ChainlinkClient",
+            "src": "contracts/chainlink/ChainlinkClient.sol:36"
+          },
+          {
+            "label": "s_requestCount",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_uint256",
+            "contract": "ChainlinkClient",
+            "src": "contracts/chainlink/ChainlinkClient.sol:37"
+          },
+          {
+            "label": "s_pendingRequests",
+            "offset": 0,
+            "slot": "5",
+            "type": "t_mapping(t_bytes32,t_address)",
+            "contract": "ChainlinkClient",
+            "src": "contracts/chainlink/ChainlinkClient.sol:39"
+          },
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "6",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/Initializable.sol:25"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "6",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/Initializable.sol:30"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "7",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:31"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "57",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:20"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "58",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:74"
+          },
+          {
+            "label": "oracles",
+            "offset": 0,
+            "slot": "107",
+            "type": "t_array(t_address)dyn_storage",
+            "contract": "DataConsumer",
+            "src": "contracts/DataConsumer.sol:19"
+          },
+          {
+            "label": "jobIds",
+            "offset": 0,
+            "slot": "108",
+            "type": "t_array(t_string_storage)dyn_storage",
+            "contract": "DataConsumer",
+            "src": "contracts/DataConsumer.sol:20"
+          },
+          {
+            "label": "version",
+            "offset": 0,
+            "slot": "109",
+            "type": "t_string_storage",
+            "contract": "DataConsumer",
+            "src": "contracts/DataConsumer.sol:21"
+          },
+          {
+            "label": "id",
+            "offset": 0,
+            "slot": "110",
+            "type": "t_uint256",
+            "contract": "DataConsumer",
+            "src": "contracts/DataConsumer.sol:22"
+          },
+          {
+            "label": "channelInfoList",
+            "offset": 0,
+            "slot": "111",
+            "type": "t_array(t_struct(ChannelInfo)1082_storage)20_storage",
+            "contract": "DataConsumer",
+            "src": "contracts/DataConsumer.sol:37"
+          },
+          {
+            "label": "my11",
+            "offset": 0,
+            "slot": "671",
+            "type": "t_uint256",
+            "contract": "DataConsumer",
+            "src": "contracts/DataConsumer.sol:38"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_address)dyn_storage": {
+            "label": "address[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_string_storage)dyn_storage": {
+            "label": "string[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_struct(ChannelInfo)1082_storage)20_storage": {
+            "label": "struct DataConsumer.ChannelInfo[20]",
+            "numberOfBytes": "17920"
+          },
+          "t_array(t_struct(RequestInfo)1069_storage)12_storage": {
+            "label": "struct DataConsumer.RequestInfo[12]",
+            "numberOfBytes": "768"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_bytes32": {
+            "label": "bytes32",
+            "numberOfBytes": "32"
+          },
+          "t_contract(ENSInterface)3187": {
+            "label": "contract ENSInterface",
+            "numberOfBytes": "20"
+          },
+          "t_contract(LinkTokenInterface)3282": {
+            "label": "contract LinkTokenInterface",
+            "numberOfBytes": "20"
+          },
+          "t_contract(OperatorInterface)3336": {
+            "label": "contract OperatorInterface",
+            "numberOfBytes": "20"
+          },
+          "t_mapping(t_bytes32,t_address)": {
+            "label": "mapping(bytes32 => address)",
+            "numberOfBytes": "32"
+          },
+          "t_string_storage": {
+            "label": "string",
+            "numberOfBytes": "32"
+          },
+          "t_struct(ChannelInfo)1082_storage": {
+            "label": "struct DataConsumer.ChannelInfo",
+            "members": [
+              {
+                "label": "did",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "method",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "status",
+                "type": "t_uint8",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "dataHash",
+                "type": "t_bytes32",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "requestInfoList",
+                "type": "t_array(t_struct(RequestInfo)1069_storage)12_storage",
+                "offset": 0,
+                "slot": "4"
+              }
+            ],
+            "numberOfBytes": "896"
+          },
+          "t_struct(RequestInfo)1069_storage": {
+            "label": "struct DataConsumer.RequestInfo",
+            "members": [
+              {
+                "label": "requestId",
+                "type": "t_bytes32",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "isSearched",
+                "type": "t_bool",
+                "offset": 0,
+                "slot": "1"
+              }
+            ],
+            "numberOfBytes": "64"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        }
+      }
+    },
+    "9b163c6702f505505503f0f132737811bf21010bbba0fd5447e5bdeaf8241f92": {
+      "address": "0xcd22D617D270a0d8b9BbDcE2ea906fbEA9BA171e",
+      "txHash": "0x970ef3d1552d56c3c9282c938629dad17835c751985cb1e295bc77804ab2c7a9",
+      "layout": {
+        "storage": [
+          {
+            "label": "s_ens",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_contract(ENSInterface)3218",
+            "contract": "ChainlinkClient",
+            "src": "contracts/chainlink/ChainlinkClient.sol:33"
+          },
+          {
+            "label": "s_ensNode",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_bytes32",
+            "contract": "ChainlinkClient",
+            "src": "contracts/chainlink/ChainlinkClient.sol:34"
+          },
+          {
+            "label": "s_link",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_contract(LinkTokenInterface)3313",
+            "contract": "ChainlinkClient",
+            "src": "contracts/chainlink/ChainlinkClient.sol:35"
+          },
+          {
+            "label": "s_oracle",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_contract(OperatorInterface)3367",
+            "contract": "ChainlinkClient",
+            "src": "contracts/chainlink/ChainlinkClient.sol:36"
+          },
+          {
+            "label": "s_requestCount",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_uint256",
+            "contract": "ChainlinkClient",
+            "src": "contracts/chainlink/ChainlinkClient.sol:37"
+          },
+          {
+            "label": "s_pendingRequests",
+            "offset": 0,
+            "slot": "5",
+            "type": "t_mapping(t_bytes32,t_address)",
+            "contract": "ChainlinkClient",
+            "src": "contracts/chainlink/ChainlinkClient.sol:39"
+          },
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "6",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/Initializable.sol:25"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "6",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/Initializable.sol:30"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "7",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:31"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "57",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:20"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "58",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:74"
+          },
+          {
+            "label": "oracles",
+            "offset": 0,
+            "slot": "107",
+            "type": "t_array(t_address)dyn_storage",
+            "contract": "DataConsumer",
+            "src": "contracts/DataConsumer.sol:19"
+          },
+          {
+            "label": "jobIds",
+            "offset": 0,
+            "slot": "108",
+            "type": "t_array(t_string_storage)dyn_storage",
+            "contract": "DataConsumer",
+            "src": "contracts/DataConsumer.sol:20"
+          },
+          {
+            "label": "version",
+            "offset": 0,
+            "slot": "109",
+            "type": "t_string_storage",
+            "contract": "DataConsumer",
+            "src": "contracts/DataConsumer.sol:21"
+          },
+          {
+            "label": "id",
+            "offset": 0,
+            "slot": "110",
+            "type": "t_uint256",
+            "contract": "DataConsumer",
+            "src": "contracts/DataConsumer.sol:22"
+          },
+          {
+            "label": "channelInfoList",
+            "offset": 0,
+            "slot": "111",
+            "type": "t_array(t_struct(ChannelInfo)1082_storage)20_storage",
+            "contract": "DataConsumer",
+            "src": "contracts/DataConsumer.sol:37"
+          },
+          {
+            "label": "my11",
+            "offset": 0,
+            "slot": "671",
+            "type": "t_uint256",
+            "contract": "DataConsumer",
+            "src": "contracts/DataConsumer.sol:38"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_address)dyn_storage": {
+            "label": "address[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_string_storage)dyn_storage": {
+            "label": "string[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_struct(ChannelInfo)1082_storage)20_storage": {
+            "label": "struct DataConsumer.ChannelInfo[20]",
+            "numberOfBytes": "17920"
+          },
+          "t_array(t_struct(RequestInfo)1069_storage)12_storage": {
+            "label": "struct DataConsumer.RequestInfo[12]",
+            "numberOfBytes": "768"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_bytes32": {
+            "label": "bytes32",
+            "numberOfBytes": "32"
+          },
+          "t_contract(ENSInterface)3218": {
+            "label": "contract ENSInterface",
+            "numberOfBytes": "20"
+          },
+          "t_contract(LinkTokenInterface)3313": {
+            "label": "contract LinkTokenInterface",
+            "numberOfBytes": "20"
+          },
+          "t_contract(OperatorInterface)3367": {
+            "label": "contract OperatorInterface",
+            "numberOfBytes": "20"
+          },
+          "t_mapping(t_bytes32,t_address)": {
+            "label": "mapping(bytes32 => address)",
+            "numberOfBytes": "32"
+          },
+          "t_string_storage": {
+            "label": "string",
+            "numberOfBytes": "32"
+          },
+          "t_struct(ChannelInfo)1082_storage": {
+            "label": "struct DataConsumer.ChannelInfo",
+            "members": [
+              {
+                "label": "did",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "method",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "status",
+                "type": "t_uint8",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "dataHash",
+                "type": "t_bytes32",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "requestInfoList",
+                "type": "t_array(t_struct(RequestInfo)1069_storage)12_storage",
+                "offset": 0,
+                "slot": "4"
+              }
+            ],
+            "numberOfBytes": "896"
+          },
+          "t_struct(RequestInfo)1069_storage": {
+            "label": "struct DataConsumer.RequestInfo",
+            "members": [
+              {
+                "label": "requestId",
+                "type": "t_bytes32",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "isSearched",
+                "type": "t_bool",
+                "offset": 0,
+                "slot": "1"
+              }
+            ],
+            "numberOfBytes": "64"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        }
+      }
+    },
+    "ce6309d4b156f37d388c7eeadc7d78ac5f051daaee7cf24943bf0c0693e6251b": {
+      "address": "0x21214F84c3BA4c4AC50960b7b013bc7D3CdEa02F",
+      "txHash": "0x8d975386cb1d64e1d4e077f65714502b61a7e4ad2974941f75aadccde054cfc1",
+      "layout": {
+        "storage": [
+          {
+            "label": "s_ens",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_contract(ENSInterface)3239",
+            "contract": "ChainlinkClient",
+            "src": "contracts/chainlink/ChainlinkClient.sol:33"
+          },
+          {
+            "label": "s_ensNode",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_bytes32",
+            "contract": "ChainlinkClient",
+            "src": "contracts/chainlink/ChainlinkClient.sol:34"
+          },
+          {
+            "label": "s_link",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_contract(LinkTokenInterface)3334",
+            "contract": "ChainlinkClient",
+            "src": "contracts/chainlink/ChainlinkClient.sol:35"
+          },
+          {
+            "label": "s_oracle",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_contract(OperatorInterface)3388",
+            "contract": "ChainlinkClient",
+            "src": "contracts/chainlink/ChainlinkClient.sol:36"
+          },
+          {
+            "label": "s_requestCount",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_uint256",
+            "contract": "ChainlinkClient",
+            "src": "contracts/chainlink/ChainlinkClient.sol:37"
+          },
+          {
+            "label": "s_pendingRequests",
+            "offset": 0,
+            "slot": "5",
+            "type": "t_mapping(t_bytes32,t_address)",
+            "contract": "ChainlinkClient",
+            "src": "contracts/chainlink/ChainlinkClient.sol:39"
+          },
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "6",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/Initializable.sol:25"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "6",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/Initializable.sol:30"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "7",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:31"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "57",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:20"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "58",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:74"
+          },
+          {
+            "label": "oracles",
+            "offset": 0,
+            "slot": "107",
+            "type": "t_array(t_address)dyn_storage",
+            "contract": "DataConsumer",
+            "src": "contracts/DataConsumer.sol:19"
+          },
+          {
+            "label": "jobIds",
+            "offset": 0,
+            "slot": "108",
+            "type": "t_array(t_string_storage)dyn_storage",
+            "contract": "DataConsumer",
+            "src": "contracts/DataConsumer.sol:20"
+          },
+          {
+            "label": "version",
+            "offset": 0,
+            "slot": "109",
+            "type": "t_string_storage",
+            "contract": "DataConsumer",
+            "src": "contracts/DataConsumer.sol:21"
+          },
+          {
+            "label": "id",
+            "offset": 0,
+            "slot": "110",
+            "type": "t_uint256",
+            "contract": "DataConsumer",
+            "src": "contracts/DataConsumer.sol:22"
+          },
+          {
+            "label": "channelInfoList",
+            "offset": 0,
+            "slot": "111",
+            "type": "t_array(t_struct(ChannelInfo)1082_storage)20_storage",
+            "contract": "DataConsumer",
+            "src": "contracts/DataConsumer.sol:37"
+          },
+          {
+            "label": "my11",
+            "offset": 0,
+            "slot": "671",
+            "type": "t_uint256",
+            "contract": "DataConsumer",
+            "src": "contracts/DataConsumer.sol:38"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_address)dyn_storage": {
+            "label": "address[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_string_storage)dyn_storage": {
+            "label": "string[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_struct(ChannelInfo)1082_storage)20_storage": {
+            "label": "struct DataConsumer.ChannelInfo[20]",
+            "numberOfBytes": "17920"
+          },
+          "t_array(t_struct(RequestInfo)1069_storage)12_storage": {
+            "label": "struct DataConsumer.RequestInfo[12]",
+            "numberOfBytes": "768"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_bytes32": {
+            "label": "bytes32",
+            "numberOfBytes": "32"
+          },
+          "t_contract(ENSInterface)3239": {
+            "label": "contract ENSInterface",
+            "numberOfBytes": "20"
+          },
+          "t_contract(LinkTokenInterface)3334": {
+            "label": "contract LinkTokenInterface",
+            "numberOfBytes": "20"
+          },
+          "t_contract(OperatorInterface)3388": {
+            "label": "contract OperatorInterface",
+            "numberOfBytes": "20"
+          },
+          "t_mapping(t_bytes32,t_address)": {
+            "label": "mapping(bytes32 => address)",
+            "numberOfBytes": "32"
+          },
+          "t_string_storage": {
+            "label": "string",
+            "numberOfBytes": "32"
+          },
+          "t_struct(ChannelInfo)1082_storage": {
+            "label": "struct DataConsumer.ChannelInfo",
+            "members": [
+              {
+                "label": "did",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "method",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "status",
+                "type": "t_uint8",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "dataHash",
+                "type": "t_bytes32",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "requestInfoList",
+                "type": "t_array(t_struct(RequestInfo)1069_storage)12_storage",
+                "offset": 0,
+                "slot": "4"
+              }
+            ],
+            "numberOfBytes": "896"
+          },
+          "t_struct(RequestInfo)1069_storage": {
+            "label": "struct DataConsumer.RequestInfo",
+            "members": [
+              {
+                "label": "requestId",
+                "type": "t_bytes32",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "isSearched",
+                "type": "t_bool",
+                "offset": 0,
+                "slot": "1"
+              }
+            ],
+            "numberOfBytes": "64"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        }
+      }
+    },
+    "2d3c604acb5fa5d433d39719dc41e1f741538c39a69c8d21aa1615c8054c0a4f": {
+      "address": "0x8f42BdeF224fd8db6ba68bD80CDe123595357ea9",
+      "txHash": "0xd03f1a2ff81f747ee4db1c354f0f3dfd145cba5c00a9511813b06e001bf91e63",
+      "layout": {
+        "storage": [
+          {
+            "label": "s_ens",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_contract(ENSInterface)3267",
+            "contract": "ChainlinkClient",
+            "src": "contracts/chainlink/ChainlinkClient.sol:33"
+          },
+          {
+            "label": "s_ensNode",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_bytes32",
+            "contract": "ChainlinkClient",
+            "src": "contracts/chainlink/ChainlinkClient.sol:34"
+          },
+          {
+            "label": "s_link",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_contract(LinkTokenInterface)3362",
+            "contract": "ChainlinkClient",
+            "src": "contracts/chainlink/ChainlinkClient.sol:35"
+          },
+          {
+            "label": "s_oracle",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_contract(OperatorInterface)3416",
+            "contract": "ChainlinkClient",
+            "src": "contracts/chainlink/ChainlinkClient.sol:36"
+          },
+          {
+            "label": "s_requestCount",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_uint256",
+            "contract": "ChainlinkClient",
+            "src": "contracts/chainlink/ChainlinkClient.sol:37"
+          },
+          {
+            "label": "s_pendingRequests",
+            "offset": 0,
+            "slot": "5",
+            "type": "t_mapping(t_bytes32,t_address)",
+            "contract": "ChainlinkClient",
+            "src": "contracts/chainlink/ChainlinkClient.sol:39"
+          },
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "6",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/Initializable.sol:25"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "6",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/Initializable.sol:30"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "7",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:31"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "57",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:20"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "58",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:74"
+          },
+          {
+            "label": "oracles",
+            "offset": 0,
+            "slot": "107",
+            "type": "t_array(t_address)dyn_storage",
+            "contract": "DataConsumer",
+            "src": "contracts/DataConsumer.sol:19"
+          },
+          {
+            "label": "jobIds",
+            "offset": 0,
+            "slot": "108",
+            "type": "t_array(t_string_storage)dyn_storage",
+            "contract": "DataConsumer",
+            "src": "contracts/DataConsumer.sol:20"
+          },
+          {
+            "label": "version",
+            "offset": 0,
+            "slot": "109",
+            "type": "t_string_storage",
+            "contract": "DataConsumer",
+            "src": "contracts/DataConsumer.sol:21"
+          },
+          {
+            "label": "id",
+            "offset": 0,
+            "slot": "110",
+            "type": "t_uint256",
+            "contract": "DataConsumer",
+            "src": "contracts/DataConsumer.sol:22"
+          },
+          {
+            "label": "channelInfoList",
+            "offset": 0,
+            "slot": "111",
+            "type": "t_array(t_struct(ChannelInfo)1082_storage)20_storage",
+            "contract": "DataConsumer",
+            "src": "contracts/DataConsumer.sol:37"
+          },
+          {
+            "label": "my11",
+            "offset": 0,
+            "slot": "671",
+            "type": "t_uint256",
+            "contract": "DataConsumer",
+            "src": "contracts/DataConsumer.sol:38"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_address)dyn_storage": {
+            "label": "address[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_string_storage)dyn_storage": {
+            "label": "string[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_struct(ChannelInfo)1082_storage)20_storage": {
+            "label": "struct DataConsumer.ChannelInfo[20]",
+            "numberOfBytes": "17920"
+          },
+          "t_array(t_struct(RequestInfo)1069_storage)12_storage": {
+            "label": "struct DataConsumer.RequestInfo[12]",
+            "numberOfBytes": "768"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_bytes32": {
+            "label": "bytes32",
+            "numberOfBytes": "32"
+          },
+          "t_contract(ENSInterface)3267": {
+            "label": "contract ENSInterface",
+            "numberOfBytes": "20"
+          },
+          "t_contract(LinkTokenInterface)3362": {
+            "label": "contract LinkTokenInterface",
+            "numberOfBytes": "20"
+          },
+          "t_contract(OperatorInterface)3416": {
+            "label": "contract OperatorInterface",
+            "numberOfBytes": "20"
+          },
+          "t_mapping(t_bytes32,t_address)": {
+            "label": "mapping(bytes32 => address)",
+            "numberOfBytes": "32"
+          },
+          "t_string_storage": {
+            "label": "string",
+            "numberOfBytes": "32"
+          },
+          "t_struct(ChannelInfo)1082_storage": {
+            "label": "struct DataConsumer.ChannelInfo",
+            "members": [
+              {
+                "label": "did",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "method",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "status",
+                "type": "t_uint8",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "dataHash",
+                "type": "t_bytes32",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "requestInfoList",
+                "type": "t_array(t_struct(RequestInfo)1069_storage)12_storage",
+                "offset": 0,
+                "slot": "4"
+              }
+            ],
+            "numberOfBytes": "896"
+          },
+          "t_struct(RequestInfo)1069_storage": {
+            "label": "struct DataConsumer.RequestInfo",
+            "members": [
+              {
+                "label": "requestId",
+                "type": "t_bytes32",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "isSearched",
+                "type": "t_bool",
+                "offset": 0,
+                "slot": "1"
+              }
+            ],
+            "numberOfBytes": "64"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        }
+      }
+    },
+    "6b82dd2e70211db0df5de509b873ac047a9377b081ef872717dfe0a29888bd82": {
+      "address": "0xC11393476ef0C38Cec72c281831d7142B0Bbe2c6",
+      "txHash": "0x64f99098779ee51e00c019203def0489243e07e0731ddeeb21a4094bf90a7501",
+      "layout": {
+        "storage": [
+          {
+            "label": "s_ens",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_contract(ENSInterface)3309",
+            "contract": "ChainlinkClient",
+            "src": "contracts/chainlink/ChainlinkClient.sol:33"
+          },
+          {
+            "label": "s_ensNode",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_bytes32",
+            "contract": "ChainlinkClient",
+            "src": "contracts/chainlink/ChainlinkClient.sol:34"
+          },
+          {
+            "label": "s_link",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_contract(LinkTokenInterface)3404",
+            "contract": "ChainlinkClient",
+            "src": "contracts/chainlink/ChainlinkClient.sol:35"
+          },
+          {
+            "label": "s_oracle",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_contract(OperatorInterface)3458",
+            "contract": "ChainlinkClient",
+            "src": "contracts/chainlink/ChainlinkClient.sol:36"
+          },
+          {
+            "label": "s_requestCount",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_uint256",
+            "contract": "ChainlinkClient",
+            "src": "contracts/chainlink/ChainlinkClient.sol:37"
+          },
+          {
+            "label": "s_pendingRequests",
+            "offset": 0,
+            "slot": "5",
+            "type": "t_mapping(t_bytes32,t_address)",
+            "contract": "ChainlinkClient",
+            "src": "contracts/chainlink/ChainlinkClient.sol:39"
+          },
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "6",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/Initializable.sol:25"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "6",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/Initializable.sol:30"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "7",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:31"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "57",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:20"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "58",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:74"
+          },
+          {
+            "label": "oracles",
+            "offset": 0,
+            "slot": "107",
+            "type": "t_array(t_address)dyn_storage",
+            "contract": "DataConsumer",
+            "src": "contracts/DataConsumer.sol:19"
+          },
+          {
+            "label": "jobIds",
+            "offset": 0,
+            "slot": "108",
+            "type": "t_array(t_string_storage)dyn_storage",
+            "contract": "DataConsumer",
+            "src": "contracts/DataConsumer.sol:20"
+          },
+          {
+            "label": "version",
+            "offset": 0,
+            "slot": "109",
+            "type": "t_string_storage",
+            "contract": "DataConsumer",
+            "src": "contracts/DataConsumer.sol:21"
+          },
+          {
+            "label": "id",
+            "offset": 0,
+            "slot": "110",
+            "type": "t_uint256",
+            "contract": "DataConsumer",
+            "src": "contracts/DataConsumer.sol:22"
+          },
+          {
+            "label": "channelInfoList",
+            "offset": 0,
+            "slot": "111",
+            "type": "t_array(t_struct(ChannelInfo)1082_storage)20_storage",
+            "contract": "DataConsumer",
+            "src": "contracts/DataConsumer.sol:37"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_address)dyn_storage": {
+            "label": "address[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_string_storage)dyn_storage": {
+            "label": "string[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_struct(ChannelInfo)1082_storage)20_storage": {
+            "label": "struct DataConsumer.ChannelInfo[20]",
+            "numberOfBytes": "17920"
+          },
+          "t_array(t_struct(RequestInfo)1069_storage)12_storage": {
+            "label": "struct DataConsumer.RequestInfo[12]",
+            "numberOfBytes": "768"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_bytes32": {
+            "label": "bytes32",
+            "numberOfBytes": "32"
+          },
+          "t_contract(ENSInterface)3309": {
+            "label": "contract ENSInterface",
+            "numberOfBytes": "20"
+          },
+          "t_contract(LinkTokenInterface)3404": {
+            "label": "contract LinkTokenInterface",
+            "numberOfBytes": "20"
+          },
+          "t_contract(OperatorInterface)3458": {
+            "label": "contract OperatorInterface",
+            "numberOfBytes": "20"
+          },
+          "t_mapping(t_bytes32,t_address)": {
+            "label": "mapping(bytes32 => address)",
+            "numberOfBytes": "32"
+          },
+          "t_string_storage": {
+            "label": "string",
+            "numberOfBytes": "32"
+          },
+          "t_struct(ChannelInfo)1082_storage": {
+            "label": "struct DataConsumer.ChannelInfo",
+            "members": [
+              {
+                "label": "did",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "method",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "status",
+                "type": "t_uint8",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "dataHash",
+                "type": "t_bytes32",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "requestInfoList",
+                "type": "t_array(t_struct(RequestInfo)1069_storage)12_storage",
+                "offset": 0,
+                "slot": "4"
+              }
+            ],
+            "numberOfBytes": "896"
+          },
+          "t_struct(RequestInfo)1069_storage": {
+            "label": "struct DataConsumer.RequestInfo",
+            "members": [
+              {
+                "label": "requestId",
+                "type": "t_bytes32",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "isSearched",
+                "type": "t_bool",
+                "offset": 0,
+                "slot": "1"
+              }
+            ],
+            "numberOfBytes": "64"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        }
+      }
+    },
+    "ee976318c4a8c9d06ef94bb35206421f64de543259f836ad9eea5f13a704c9d8": {
+      "address": "0x39282D2549107E35FB3bbD1753196BFE951FB44a",
+      "txHash": "0x627fe916f28109ead23d6189f398ff104c8cdd693dc448a4f05b708e877022fc",
+      "layout": {
+        "storage": [
+          {
+            "label": "s_ens",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_contract(ENSInterface)3309",
+            "contract": "ChainlinkClient",
+            "src": "contracts/chainlink/ChainlinkClient.sol:33"
+          },
+          {
+            "label": "s_ensNode",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_bytes32",
+            "contract": "ChainlinkClient",
+            "src": "contracts/chainlink/ChainlinkClient.sol:34"
+          },
+          {
+            "label": "s_link",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_contract(LinkTokenInterface)3404",
+            "contract": "ChainlinkClient",
+            "src": "contracts/chainlink/ChainlinkClient.sol:35"
+          },
+          {
+            "label": "s_oracle",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_contract(OperatorInterface)3458",
+            "contract": "ChainlinkClient",
+            "src": "contracts/chainlink/ChainlinkClient.sol:36"
+          },
+          {
+            "label": "s_requestCount",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_uint256",
+            "contract": "ChainlinkClient",
+            "src": "contracts/chainlink/ChainlinkClient.sol:37"
+          },
+          {
+            "label": "s_pendingRequests",
+            "offset": 0,
+            "slot": "5",
+            "type": "t_mapping(t_bytes32,t_address)",
+            "contract": "ChainlinkClient",
+            "src": "contracts/chainlink/ChainlinkClient.sol:39"
+          },
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "6",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/Initializable.sol:25"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "6",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/Initializable.sol:30"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "7",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:31"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "57",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:20"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "58",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:74"
+          },
+          {
+            "label": "oracles",
+            "offset": 0,
+            "slot": "107",
+            "type": "t_array(t_address)dyn_storage",
+            "contract": "DataConsumer",
+            "src": "contracts/DataConsumer.sol:19"
+          },
+          {
+            "label": "jobIds",
+            "offset": 0,
+            "slot": "108",
+            "type": "t_array(t_string_storage)dyn_storage",
+            "contract": "DataConsumer",
+            "src": "contracts/DataConsumer.sol:20"
+          },
+          {
+            "label": "version",
+            "offset": 0,
+            "slot": "109",
+            "type": "t_string_storage",
+            "contract": "DataConsumer",
+            "src": "contracts/DataConsumer.sol:21"
+          },
+          {
+            "label": "id",
+            "offset": 0,
+            "slot": "110",
+            "type": "t_uint256",
+            "contract": "DataConsumer",
+            "src": "contracts/DataConsumer.sol:22"
+          },
+          {
+            "label": "channelInfoList",
+            "offset": 0,
+            "slot": "111",
+            "type": "t_array(t_struct(ChannelInfo)1082_storage)20_storage",
+            "contract": "DataConsumer",
+            "src": "contracts/DataConsumer.sol:37"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_address)dyn_storage": {
+            "label": "address[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_string_storage)dyn_storage": {
+            "label": "string[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_struct(ChannelInfo)1082_storage)20_storage": {
+            "label": "struct DataConsumer.ChannelInfo[20]",
+            "numberOfBytes": "17920"
+          },
+          "t_array(t_struct(RequestInfo)1069_storage)12_storage": {
+            "label": "struct DataConsumer.RequestInfo[12]",
+            "numberOfBytes": "768"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_bytes32": {
+            "label": "bytes32",
+            "numberOfBytes": "32"
+          },
+          "t_contract(ENSInterface)3309": {
+            "label": "contract ENSInterface",
+            "numberOfBytes": "20"
+          },
+          "t_contract(LinkTokenInterface)3404": {
+            "label": "contract LinkTokenInterface",
+            "numberOfBytes": "20"
+          },
+          "t_contract(OperatorInterface)3458": {
             "label": "contract OperatorInterface",
             "numberOfBytes": "20"
           },

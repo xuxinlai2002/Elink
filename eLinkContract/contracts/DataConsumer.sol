@@ -177,12 +177,6 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
             address(this), 
             this.fulfillEthereumDidData.selector
         );
-
-        if(_compareString(method,"did_resolveCredential")){
-            req.add("key", "id");
-        }else{
-            req.add("key", "did");
-        }
         
         req.add("did", did);
         req.addUint("id", id);

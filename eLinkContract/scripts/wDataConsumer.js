@@ -53,7 +53,8 @@ const subscribeLogEvent = (contract, eventName) => {
         console.log("data requestId :", eventObj.requestId)
         console.log("data result :", hex2a(eventObj.data));
       }else{
-        console.log("unused event");
+        console.log(eventObj);
+        console.log("other event");
       }
 
     }

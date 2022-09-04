@@ -264,6 +264,7 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
          
          if(channelInfoList[_channelNum].requestInfoList[i].requestId == _requestId){
           channelInfoList[_channelNum].requestInfoList[i].isSearched = true;
+          channelInfoList[_channelNum].dataHash = bytes32(0);
          }
       }
 

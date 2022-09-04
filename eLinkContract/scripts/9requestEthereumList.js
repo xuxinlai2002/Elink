@@ -38,11 +38,11 @@ const main = async () => {
 
     // did_resolveCredential
     let resultObj = await dataConsumer.requestResultFromList(
-        //"iULReN45NDUrzL1fGx3dHr62zNwMuFsAux",
-        "did:elastos:iULReN45NDUrzL1fGx3dHr62zNwMuFsAux#passport",
+        "iULReN45NDUrzL1fGx3dHr62zNwMuFsAux",
+        //"did:elastos:iULReN45NDUrzL1fGx3dHr62zNwMuFsAux#passport",
         //"iULReN45NDUrzL1fGx3dHr62zNwMuFsAu3",
-        //"did_resolveDID",
-        "did_resolveCredential",
+        "did_resolveDID",
+        //"did_resolveCredential",
         {
             gasPrice: 0x02540be400,
             gasLimit: 0x7a1200

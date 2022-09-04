@@ -47,7 +47,7 @@ const main = async () => {
         {
             gasPrice: 0x02540be400 ,
             gasLimit: 0x7a1200,
-            nonce:323
+            nonce:335
         }
     );
 

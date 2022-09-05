@@ -16,10 +16,21 @@ const main = async () => {
     let dataConsumerAddress = await readConfig("1","DATACONSUMER_ADDRESS");
     console.log("dataConsumer Address :",dataConsumerAddress);
 
+    // await upgrades.upgradeProxy(
+    //     dataConsumerAddress, 
+    //     dataConsumer__Contract,
+    // );
+
     await upgrades.upgradeProxy(
         dataConsumerAddress, 
-        dataConsumer__Contract,{from:accounts[0].address}
+        dataConsumer__Contract,{
+            from:accounts[0].address,
+            gasPrice: 0x02540be400 * 4,
+            gasLimit: 0x7a1200 * 1.5
+        },        
     );
+
+    
     console.log('Bridge upgraded');
 
 

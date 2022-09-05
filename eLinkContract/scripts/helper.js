@@ -426,6 +426,18 @@ async function updateEvnSetting(){
 
 }
 
+async function printCurTimeForTest(){
+    let date_ob = new Date();
+    // current hours
+    let hours = date_ob.getHours();
+    // current minutes
+    let minutes = date_ob.getMinutes();
+    // current seconds
+    let seconds = date_ob.getSeconds();
+    console.log(hours + ":" + minutes + ":" + seconds);
+
+}
+
 module.exports = {
     writeConfig,
     readConfig, 
@@ -456,6 +468,8 @@ module.exports = {
     deployLinkInterface,
     settingLinkInterfaceFromConfig,
     settingLinkInterfaceFromParam,
-    updateEvnSetting
+    updateEvnSetting,
+
+    printCurTimeForTest
 
 }

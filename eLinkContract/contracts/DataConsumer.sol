@@ -36,6 +36,11 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
     }
     ChannelInfo[MAX_CHANNEL] private channelInfoList;
 
+    mapping( string => address) jobIdReceiverMap;
+    uint256 platformRate;
+    mapping( uint256 => mapping( bytes32 => string) )chanelNumRequestIdJobIdMap;
+    bool isLocked;
+
     event Log(
       bytes32 indexed requestId,
       uint8 logNum
@@ -156,14 +161,16 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
       public {
       
       emit Log(bytes32(0),0);
+      id ++ ;
       
       //is search result in list
       //if(_isInChannelist(did,method)) return;
       
       uint len = oracles.length;
 
-      uint channelNum = _getCurChannelNum();
-      require(channelNum < MAX_CHANNEL,"to many calls,please wait ");
+      // uint channelNum = _getCurChannelNum();
+      uint channelNum = (id - 1) % 20;
+      require(channelInfoList[channelNum].status != 1,"to many calls,please wait ");
 
       //set channel info 
       channelInfoList[channelNum].did = did;
@@ -196,29 +203,29 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
 
       }
 
-      id ++ ;
+      
 
     }
 
-    function _getCurChannelNum() internal view returns(uint256){
+    // function _getCurChannelNum() internal view returns(uint256){
 
-      //first look at idle list
-      for(uint i = 0 ;i < MAX_CHANNEL ;i ++){
-        if(channelInfoList[i].status == 0){
-          return i;
-        }
-      }
+    //   //first look at idle list
+    //   for(uint i = 0 ;i < MAX_CHANNEL ;i ++){
+    //     if(channelInfoList[i].status == 0){
+    //       return i;
+    //     }
+    //   }
 
-      //then look at finish list
-      for(uint i = 0 ;i < MAX_CHANNEL ;i ++){
-        if(channelInfoList[i].status == 2){
-          return i;
-        }
-      }
+    //   //then look at finish list
+    //   for(uint i = 0 ;i < MAX_CHANNEL ;i ++){
+    //     if(channelInfoList[i].status == 2){
+    //       return i;
+    //     }
+    //   }
 
-      //no idea channel for use  
-      return MAX_CHANNEL + 1;
-    }
+    //   //no idea channel for use  
+    //   return MAX_CHANNEL + 1;
+    // }
 
     function _isInChannelist(string memory did,string memory method) internal view returns(bool){
 
@@ -326,6 +333,7 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
   }
 
   function clearSearchResult() external {
+      id = 0;
       _initChannelInfoList();
   }
 

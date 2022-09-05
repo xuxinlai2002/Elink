@@ -3,7 +3,7 @@ require('dotenv').config({path:'../.env'});
 
 // const web3 = new Web3(`ws://${process.env.internal_url}:${process.env.esc_ws_port}`)
 const web3 = new Web3("wss://api-testnet.elastos.io/esc-ws");
-const { hex2a } = require('./helper')
+const { hex2a,printCurTimeForTest } = require('./helper')
 
 // a list for saving subscribed event instances
 const subscribedEvents = {}
@@ -16,6 +16,7 @@ const subscribeLogEvent = (contract, eventName) => {
     o => o.name === eventName && o.type === 'event',
   )
 
+  let num = 0;
   const subscription = web3.eth.subscribe('logs', {
     address: contract.options.address,
     topics: [eventJsonInterface.signature]
@@ -46,7 +47,8 @@ const subscribeLogEvent = (contract, eventName) => {
         console.log("data requestId :", eventObj.requestId)
         console.log("data searchKey :", eventObj.key)
       }else if(eventObj.hasOwnProperty("data")){
-        console.log("\n**************search result**************"); 
+        printCurTimeForTest();
+        console.log("\n**************search result************** :", ++ num ); 
         //console.log("data bytes:", eventObj.data)
         //console.log("data hash :", web3.utils.sha3(eventObj.data));
         console.log("block number :  ",result.blockNumber); 
@@ -77,7 +79,7 @@ const main = async () => {
   let dataConsumerInstance = new web3.eth.Contract(dataConsumer.abi,dataConsumerAddress)
 
   // subscribeLogEvent(dataConsumerInstance,"Log");
-  subscribeLogEvent(dataConsumerInstance,"SearchInfo");
+  // subscribeLogEvent(dataConsumerInstance,"SearchInfo");
 
   // subscribeLogEvent(dataConsumerInstance,"SearchResult1");
   // subscribeLogEvent(dataConsumerInstance,"SearchResult2");
@@ -85,7 +87,7 @@ const main = async () => {
   // subscribeLogEvent(dataConsumerInstance,"SearchResult4");
 
   subscribeLogEvent(dataConsumerInstance,"SearchConformed");
-  
+  // subscribeLogEvent(dataConsumerInstance,"Log");  
 
   
 

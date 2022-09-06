@@ -227,16 +227,16 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
     //   return MAX_CHANNEL + 1;
     // }
 
-    function _isInChannelist(string memory did,string memory method) internal view returns(bool){
+    // function _isInChannelist(string memory did,string memory method) internal view returns(bool){
 
-      for(uint i = 0 ;i < MAX_CHANNEL ;i ++){
-        if(_compareString(did,channelInfoList[i].did) && _compareString(method,channelInfoList[i].method)){
-          return true;
-        }
-      }
+    //   for(uint i = 0 ;i < MAX_CHANNEL ;i ++){
+    //     if(_compareString(did,channelInfoList[i].did) && _compareString(method,channelInfoList[i].method)){
+    //       return true;
+    //     }
+    //   }
 
-      return false;
-    }
+    //   return false;
+    // }
 
     function fulfillEthereumDidData(bytes32 _requestId, bytes memory _didData) public recordChainlinkFulfillment(_requestId){
 

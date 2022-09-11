@@ -17,6 +17,7 @@ const subscribeLogEvent = (contract, eventName) => {
   )
 
   let num = 0;
+  let otherNum = 0;
   const subscription = web3.eth.subscribe('logs', {
     address: contract.options.address,
     topics: [eventJsonInterface.signature]
@@ -55,6 +56,7 @@ const subscribeLogEvent = (contract, eventName) => {
         console.log("data requestId :", eventObj.requestId)
         console.log("data result :", hex2a(eventObj.data));
       }else{
+        console.log("\n**************search result************** :", ++ otherNum ); 
         console.log(eventObj);
         console.log("other event");
       }
@@ -87,7 +89,10 @@ const main = async () => {
   // subscribeLogEvent(dataConsumerInstance,"SearchResult4");
 
   subscribeLogEvent(dataConsumerInstance,"SearchConformed");
+  subscribeLogEvent(dataConsumerInstance,"LogAddress");
   // subscribeLogEvent(dataConsumerInstance,"Log");  
+
+  
 
   
 

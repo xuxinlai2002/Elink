@@ -1,6 +1,7 @@
 
 const { ethers, getChainId} = require('hardhat')
 const { readConfig,isTxSuccess} = require('./helper')
+const { utils} = require('ethers')
 
 const main = async () => {
 
@@ -37,6 +38,7 @@ const main = async () => {
     // );
 
     // did_resolveCredential
+    let amount = utils.parseEther("0.1");
     let resultObj = await dataConsumer.requestResultFromList(
         "iULReN45NDUrzL1fGx3dHr62zNwMuFsAux",
         //"did:elastos:iULReN45NDUrzL1fGx3dHr62zNwMuFsAux#passport",
@@ -45,7 +47,8 @@ const main = async () => {
         //"did_resolveCredential",
         {
             gasPrice: 0x02540be400,
-            gasLimit: 0x7a1200
+            gasLimit: 0x7a1200,
+            value:amount
         }
     );
 

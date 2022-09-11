@@ -8,6 +8,7 @@ import "./bytesUtils/BytesLib.sol";
 import "./Arbiter.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import "@openzeppelin/contracts/math/SafeMath.sol";
 
 contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbiter{
 
@@ -41,6 +42,10 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
     mapping( uint256 => mapping( bytes32 => string) )chanelNumRequestIdJobIdMap;
     bool isLocked;
 
+    ChannelInfo[] private channelInfoList2;
+    uint256 fee;
+
+    using SafeMath for uint;
     event Log(
       bytes32 indexed requestId,
       uint8 logNum
@@ -58,6 +63,10 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
       bytes32 datahash
     );
 
+    event LogAddress(
+      address recAddress,
+      uint256 value
+    );
 
     /**
       * @dev __DataConsumer_init
@@ -73,8 +82,25 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
         __Ownable_init();
         _initChannelInfoList();
 
+        platformRate = 0;
+        fee = 0 ;
     }
 
+    function setPlatformRate(uint256 _platformRate) public onlyOwner{
+      platformRate = _platformRate;
+    }
+
+    function getPlatformRate() public view returns(uint256){
+      return platformRate ;
+    }
+
+    function setFee(uint256 _fee) public onlyOwner{
+      fee = _fee;
+    }
+
+    function getFee() public view returns(uint256){
+      return fee ;
+    }
 
     function _initChannelInfoList() internal {
 
@@ -103,7 +129,8 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
         address _oracle,
         string memory _jobId,
         string memory _pubKey,
-        string memory _sign
+        string memory _sign,
+        address _receiveAddress
       ) external{
         
         bool isVerified = false;
@@ -124,6 +151,8 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
           oracles.push(_oracle);
           jobIds.push(_jobId);
         }
+
+        jobIdReceiverMap[_jobId] = _receiveAddress;
     }
 
     function _isJobIdInArray(string memory _jobId) internal view returns (bool){
@@ -157,18 +186,14 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
       return (oracles,jobIds);  
     }
 
-    function requestResultFromList(string memory did,string memory method)
-      public {
+    function requestResultFromList(string memory did,string memory method) public payable{
       
+      require(msg.value >= fee,"fee is not enough");
+
       emit Log(bytes32(0),0);
       id ++ ;
       
-      //is search result in list
-      //if(_isInChannelist(did,method)) return;
-      
       uint len = oracles.length;
-
-      // uint channelNum = _getCurChannelNum();
       uint channelNum = (id - 1) % 20;
       require(channelInfoList[channelNum].status != 1,"to many calls,please wait ");
 
@@ -201,42 +226,11 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
         channelInfoList[channelNum].requestInfoList[i].isSearched = false;
         emit SearchInfo(channelInfoList[channelNum].requestInfoList[i].requestId,did);
 
+        chanelNumRequestIdJobIdMap[channelNum][channelInfoList[channelNum].requestInfoList[i].requestId] = jobIds[i];
+
       }
 
-      
-
     }
-
-    // function _getCurChannelNum() internal view returns(uint256){
-
-    //   //first look at idle list
-    //   for(uint i = 0 ;i < MAX_CHANNEL ;i ++){
-    //     if(channelInfoList[i].status == 0){
-    //       return i;
-    //     }
-    //   }
-
-    //   //then look at finish list
-    //   for(uint i = 0 ;i < MAX_CHANNEL ;i ++){
-    //     if(channelInfoList[i].status == 2){
-    //       return i;
-    //     }
-    //   }
-
-    //   //no idea channel for use  
-    //   return MAX_CHANNEL + 1;
-    // }
-
-    // function _isInChannelist(string memory did,string memory method) internal view returns(bool){
-
-    //   for(uint i = 0 ;i < MAX_CHANNEL ;i ++){
-    //     if(_compareString(did,channelInfoList[i].did) && _compareString(method,channelInfoList[i].method)){
-    //       return true;
-    //     }
-    //   }
-
-    //   return false;
-    // }
 
     function fulfillEthereumDidData(bytes32 _requestId, bytes memory _didData) public recordChainlinkFulfillment(_requestId){
 
@@ -272,16 +266,40 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
          if(channelInfoList[_channelNum].requestInfoList[i].requestId == _requestId){
           channelInfoList[_channelNum].requestInfoList[i].isSearched = true;
           channelInfoList[_channelNum].dataHash = bytes32(0);
+          
          }
       }
 
     }
+
+    function _distributeFee(uint256 _channelNum) internal{
+
+      // uint256 payLen = channelInfoList[_channelNum].requestInfoList.length/3*2；
+      uint256 value = fee.mul(10000 - platformRate).div(10000).div(ARBITER_NUM/3*2);
+      for(uint i = 0 ;i < ARBITER_NUM ;i ++){
+        
+        if(channelInfoList[_channelNum].requestInfoList[i].isSearched){
+
+            bytes32 requestId = channelInfoList[_channelNum].requestInfoList[i].requestId;
+            string memory jobId = chanelNumRequestIdJobIdMap[_channelNum][requestId];
+            address toAddress = jobIdReceiverMap[jobId];
+
+            emit LogAddress(toAddress,value);
+            _safeTransferCurrency(toAddress,value);
+
+        }
+
+      }
+
+    }
+
 
     function _runSearchResult(bytes32 _requestId,uint256 _channelNum,bytes memory _didData,bytes32 _dataHash) internal {
 
       if(_getHitTotalFromChannelNum(_channelNum) * 3 >= ARBITER_NUM * 2){
           emit SearchConformed(_requestId, _didData,block.number,_dataHash);
           channelInfoList[_channelNum].status = 2;
+          _distributeFee(_channelNum);
 
         }
     }
@@ -336,5 +354,37 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
       id = 0;
       _initChannelInfoList();
   }
+
+
+  function _safeTransferCurrency(address _to, uint256 _value) public {
+
+      (bool success, ) = _to.call{value: _value}(new bytes(0));
+
+      require(
+          success,
+          "TransferHelper::safeTransferCurrency: Currency transfer failed"
+      );
+  }
+
+  function withDrawCurrency() onlyOwner public {
+    
+    payable(msg.sender).transfer(address(this).balance);
+  
+  }
+
+  function setPayMap(string memory _jobId,address _receiveAddress) onlyOwner public {
+    
+     jobIdReceiverMap[_jobId] = _receiveAddress;
+  
+  }
+
+  function getPayMap(string memory _jobId) public view returns(address){
+    
+     return jobIdReceiverMap[_jobId];
+  
+  }
+
+  fallback() external payable{}
+  receive() external payable {}
 
 }

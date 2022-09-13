@@ -15,6 +15,7 @@ const main = async () => {
     const DataConsumer__Contract = await ethers.getContractFactory('DataConsumer',deployer)
     let dataConsumerAddress = await readConfig("1","DATACONSUMER_ADDRESS");
     let dataConsumer = await DataConsumer__Contract.connect(deployer).attach(dataConsumerAddress);
+    console.log("dataConsumer is :" + dataConsumerAddress);
     
     // function requestResultFromList(string memory did,string memory method)
     // did_resolveDID
@@ -38,7 +39,7 @@ const main = async () => {
     // );
 
     // did_resolveCredential
-    let amount = utils.parseEther("0.1");
+    // let amount = utils.parseEther("0.1");
     let resultObj = await dataConsumer.requestResultFromList(
         "iULReN45NDUrzL1fGx3dHr62zNwMuFsAux",
         //"did:elastos:iULReN45NDUrzL1fGx3dHr62zNwMuFsAux#passport",
@@ -48,7 +49,7 @@ const main = async () => {
         {
             gasPrice: 0x02540be400,
             gasLimit: 0x7a1200,
-            value:amount
+            // value:amount
         }
     );
 

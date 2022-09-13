@@ -17,6 +17,7 @@ const main = async () => {
     let jobId = await readConfig("1","JOB_ID");
     let publicKey = await readConfig("1","PUBLIC_KEY");
     let signture = await readConfig("1","SIGNTRUE");
+    let paymentAddrss = await readConfig("1","PAYMENT_ADDRESS");
     
   
     let dataConsumer = await DataConsumer__Contract.connect(deployer).attach(dataConsumerAddress);  
@@ -30,7 +31,7 @@ const main = async () => {
 
     let oracle =  oracleAddress.toLowerCase();
     await dataConsumer.addOralceAndJobId(
-            oracle,jobId,publicKey,signture,{
+            oracle,jobId,publicKey,signture,paymentAddrss,{
             gasPrice: 0x02540be400,
             gasLimit: 0x7a1200
         }

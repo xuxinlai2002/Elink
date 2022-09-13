@@ -42,8 +42,9 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
     mapping( uint256 => mapping( bytes32 => string) )chanelNumRequestIdJobIdMap;
     bool isLocked;
 
-    ChannelInfo[] private channelInfoList2;
+    // ChannelInfo[] private channelInfoList2;
     uint256 fee;
+    // uint256 maxChannel;
 
     using SafeMath for uint;
     event Log(
@@ -84,6 +85,7 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
 
         platformRate = 0;
         fee = 0 ;
+        // maxChannel = 0;
     }
 
     function setPlatformRate(uint256 _platformRate) public onlyOwner{
@@ -215,7 +217,7 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
         req.add("method", method);
         req.add("path", "result,transaction");
 
-        //set request info
+        // set request info
         channelInfoList[channelNum].requestInfoList[i].requestId = sendOperatorRequestTo(
             oracles[i], 
             req, 
@@ -227,6 +229,7 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
         emit SearchInfo(channelInfoList[channelNum].requestInfoList[i].requestId,did);
 
         chanelNumRequestIdJobIdMap[channelNum][channelInfoList[channelNum].requestInfoList[i].requestId] = jobIds[i];
+
 
       }
 

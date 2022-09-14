@@ -57,12 +57,15 @@ const main = async () => {
 
     // await sleep(5000);
 
-    for(var i = 0 ;i < jobIds.length ;i ++){
+    // for(var i = 0 ;i < jobIds.length ;i ++){
 
-        let address =  await dataConsumer.getPayMap(jobIds[i]);
-        console.log("getPayMap ",jobIds[i],address);
-    }
+    //     let address =  await dataConsumer.getPayMap(jobIds[i]);
+    //     console.log("getPayMap ",jobIds[i],address);
+    // }
     
+    let address =  await dataConsumer.getPayMap("a736c147ba38410294611b404520df5d");
+    console.log("getPayMap ",address);
+
 
 }
 

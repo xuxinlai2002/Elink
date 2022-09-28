@@ -9,6 +9,7 @@ import "./Arbiter.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts/math/SafeMath.sol";
+import "@openzeppelin/contracts/utils/Strings.sol";
 
 contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbiter{
 
@@ -233,7 +234,7 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
       
       require(msg.value >= fee,"fee is not enough");
 
-      emit Log(bytes32(0),0);
+      // emit Log(bytes32(0),0);
       id ++ ;
       
       uint len = oracles.length;
@@ -254,7 +255,7 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
         );
         
         req.add("did", did);
-        req.addUint("id", id);
+        req.add("id", "abc");
         req.add("method", method);
         req.add("path", "result,transaction");
 
@@ -264,8 +265,9 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
             req, 
             ORACLE_PAYMENT
         );
-
+        
         emit Log(channelInfoList[channelNum].requestIds[i],1);
+
         channelInfoList[channelNum].isSearchs[i] = false;
         emit SearchInfo(channelInfoList[channelNum].requestIds[i],did);
 
@@ -284,19 +286,19 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
       bytes32 dataHash = keccak256(_didData);
       if(channelInfoList[channelNum].status == 1){
 
-        emit Log(_requestId,3);
+        //emit Log(_requestId,3);
         if(channelInfoList[channelNum].dataHash == bytes32(0)){
 
-          emit Log(_requestId,4);
+          //emit Log(_requestId,4);
           // channelInfoList[channelNum].data = _didData;
           channelInfoList[channelNum].dataHash = dataHash;
-          _setRequestInfo(channelNum,_requestId);
+          // _setRequestInfo(channelNum,_requestId);
         }else if(channelInfoList[channelNum].dataHash == dataHash){
-          emit Log(_requestId,5);
-          _setRequestInfo(channelNum,_requestId);
+          // emit Log(_requestId,5);
+          // _setRequestInfo(channelNum,_requestId);
         }
 
-        _runSearchResult(_requestId,channelNum,_didData,dataHash);
+        // _runSearchResult(_requestId,channelNum,_didData,dataHash);
 
       }
 
@@ -304,7 +306,7 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
 
     function _setRequestInfo(uint256 _channelNum,bytes32 _requestId) internal{
 
-      emit Log(_requestId,6);
+      // emit Log(_requestId,6);
       for(uint i = 0 ;i < ARBITER_NUM ;i ++){
          
          if(channelInfoList[_channelNum].requestIds[i] == _requestId){

@@ -15,10 +15,12 @@ const main = async () => {
     let dataConsumerAddress = await readConfig("1","DATACONSUMER_ADDRESS");
   
     let dataConsumer = await DataConsumer__Contract.connect(deployer).attach(dataConsumerAddress);    
+    console.log("xxl dataConsumerAddress ",dataConsumerAddress);
 
     let resultParam = await dataConsumer.getChannelInfoList();
+    // console.log("xxl resultParam",resultParam);
 
-    for(var i = 0 ;i < 20 ;i ++){
+    for(var i = 0 ;i < resultParam.length ;i ++){
         if(resultParam[i].status != 0){
             console.log("\n####%d ",i);
             console.log("did      : %s",resultParam[i].did);
@@ -26,13 +28,13 @@ const main = async () => {
             console.log("status   : %s",resultParam[i].status);
             console.log("dataHash : %s",resultParam[i].dataHash);
             console.log("data     : %s",resultParam[i].data);
-            for(var j = 0 ; j < 12 ;j ++){
-                if(resultParam[i].requestInfoList[j].isSearched){
-                    console.log("***requestId ",resultParam[i].requestInfoList[j].requestId);
-                    console.log("***isSearched ",resultParam[i].requestInfoList[j].isSearched);
-                }
+            // for(var j = 0 ; j < 12 ;j ++){
+            //     if(resultParam[i].requestInfoList[j].isSearched){
+            //         console.log("***requestId ",resultParam[i].requestInfoList[j].requestId);
+            //         console.log("***isSearched ",resultParam[i].requestInfoList[j].isSearched);
+            //     }
                
-            }
+            // }
 
         }
     }

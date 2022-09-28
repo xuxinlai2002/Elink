@@ -23,7 +23,7 @@ const main = async () => {
     let nonce = await web3.eth.getTransactionCount(deployer.address);
     console.log("xxl nonce is :",nonce);
 
-    let pressNum = 3;
+    let pressNum = 50;
     let timeForWait = 1000;
 
 
@@ -32,16 +32,30 @@ const main = async () => {
         
         try{
             console.time("test" + i);
+
             dataConsumer.requestResultFromList(
                 // "did:elastos:iULReN45NDUrzL1fGx3dHr62zNwMuFsAux#passport",
                 "did:elastos:iULReN45NDUrzL1fGx3dHr62zNwMuFsAu#passport" + i,
                 "did_resolveCredential",
                 {
                     gasPrice: 0x02540be400 * 2,
+                    // gasLimit: 0x7a1200,
                     nonce:nonce ++ 
                 } 
             );
+
+            // let re = await dataConsumer.requestResultFromList(
+            //     // "did:elastos:iULReN45NDUrzL1fGx3dHr62zNwMuFsAux#passport",
+            //     "did:elastos:iULReN45NDUrzL1fGx3dHr62zNwMuFsAu#passport" + i,
+            //     "did_resolveCredential",
+            //     {
+            //         gasPrice: 0x02540be400 * 2,
+            //         nonce:nonce ++ 
+            //     } 
+            // );
     
+            // console.log("xxl re",re);
+
             await sleep(timeForWait);
             console.timeEnd("test" + i);
         }catch(e){

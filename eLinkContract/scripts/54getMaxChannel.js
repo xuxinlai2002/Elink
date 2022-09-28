@@ -18,12 +18,12 @@ const main = async () => {
     let dataConsumer = await DataConsumer__Contract.connect(deployer).attach(dataConsumerAddress);
 
     // let amount = utils.parseEther("0.1");
-    await dataConsumer.createMaxChannel(50);
+    //await dataConsumer.createMaxChannel(30);
 
     // await sleep(5000);
 
-    // let result  = await dataConsumer.getMaxChannel();
-    // console.log("xxl result :",result);
+    let result  = await dataConsumer.getMaxChannel();
+    console.log("xxl result :",result);
 
 
 }

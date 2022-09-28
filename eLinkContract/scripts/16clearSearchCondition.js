@@ -4,7 +4,7 @@ const { readConfig,isTxSuccess} = require('./helper')
 
 const main = async () => {
 
-    console.log("6 get arbiter list ....");
+    console.log("clear data ....");
 
     let chainID = await getChainId();
     let accounts = await ethers.getSigners()

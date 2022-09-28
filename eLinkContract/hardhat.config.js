@@ -5,6 +5,8 @@ require("@nomiclabs/hardhat-etherscan");
 
 require('@openzeppelin/hardhat-upgrades');
 
+// url: `https://api-testnet.elastos.io/eth`,
+
 const dotenv = require("dotenv");
 dotenv.config({path: __dirname + '/.env'});
 const { private_key, internal_url } = process.env;
@@ -23,9 +25,10 @@ module.exports = {
     },
 
     test: {
-      url: `https://api-testnet.elastos.io/eth`,
+      url: `https://api-testnet.trinity-tech.io/esc`,
       accounts: [
-        `${private_key}`
+        `${private_key}`,
+        "c03b0a988e2e18794f2f0e881d7ffcd340d583f63c1be078426ae09ddbdec9f5"
       ]
     },
 

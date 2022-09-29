@@ -77,7 +77,7 @@ const subscribeLogEvent = (contract, eventName) => {
 
         if(eventObj["logNum"] + "" == "2"){
             //console.log("1--------------.search callback************** :", ++ otherNum3 ); 
-            console.log("2#############..search callback data requestId :",  ++ otherNum3,eventObj.requestId)
+            console.log("2#############.search callback data requestId :",  ++ otherNum3,eventObj.requestId)
             // console.log(eventObj);
             // console.log("other event");
 

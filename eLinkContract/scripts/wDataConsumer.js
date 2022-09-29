@@ -61,7 +61,7 @@ const subscribeLogEvent = (contract, eventName) => {
 
         if(eventObj["logNum"] + "" == "0"){
           // console.log("\n**************request from list start ************** :", ++ otherNum1 ); 
-          console.log("0**************.request start data requestId :", eventObj.requestId)
+          console.log("0**************.request start data requestId :", ++ otherNum1,eventObj.requestId)
           // console.log(eventObj);
           //console.log("other event");
 
@@ -69,7 +69,7 @@ const subscribeLogEvent = (contract, eventName) => {
 
         if(eventObj["logNum"] + "" == "1"){
           // console.log("\n**************search rqueest id ************** :", ++ otherNum2 ); 
-          console.log("1--------------.search rqueest data requestId :", eventObj.requestId)
+          console.log("1--------------.search rqueest data requestId :",  ++ otherNum2,eventObj.requestId)
           // console.log(eventObj);
           // console.log("other event");
 
@@ -77,7 +77,7 @@ const subscribeLogEvent = (contract, eventName) => {
 
         if(eventObj["logNum"] + "" == "2"){
             //console.log("1--------------.search callback************** :", ++ otherNum3 ); 
-            console.log("2#############..search callback data requestId :", eventObj.logNum)
+            console.log("2#############..search callback data requestId :",  ++ otherNum3,eventObj.requestId)
             // console.log(eventObj);
             // console.log("other event");
 

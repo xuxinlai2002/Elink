@@ -17,5 +17,6 @@ cache-ovm
 # Packages
 scripts/node_modules/
 
+.artifacts
 
 .openzeppelin

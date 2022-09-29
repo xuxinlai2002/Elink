@@ -60,26 +60,26 @@ const subscribeLogEvent = (contract, eventName) => {
       }else{
 
         if(eventObj["logNum"] + "" == "0"){
-          console.log("\n**************search rqueest id ************** :", ++ otherNum1 ); 
-          console.log("data requestId :", eventObj.requestId)
+          // console.log("\n**************request from list start ************** :", ++ otherNum1 ); 
+          console.log("0**************.request start data requestId :", eventObj.requestId)
           // console.log(eventObj);
-          console.log("other event");
+          //console.log("other event");
 
         }
 
         if(eventObj["logNum"] + "" == "1"){
-          console.log("\n**************search rqueest id ************** :", ++ otherNum2 ); 
-          console.log("data requestId :", eventObj.requestId)
+          // console.log("\n**************search rqueest id ************** :", ++ otherNum2 ); 
+          console.log("1--------------.search rqueest data requestId :", eventObj.requestId)
           // console.log(eventObj);
-          console.log("other event");
+          // console.log("other event");
 
         }
 
         if(eventObj["logNum"] + "" == "2"){
-            console.log("\n**************search callback************** :", ++ otherNum3 ); 
-            console.log("data requestId :", eventObj.logNum)
+            //console.log("1--------------.search callback************** :", ++ otherNum3 ); 
+            console.log("2#############..search callback data requestId :", eventObj.logNum)
             // console.log(eventObj);
-            console.log("other event");
+            // console.log("other event");
 
         }
       }

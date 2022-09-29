@@ -24,7 +24,7 @@ const main = async () => {
     console.log("xxl nonce is :",nonce);
 
     let pressNum = 50;
-    let timeForWait = 1000;
+    let timeForWait = 5000;
 
 
     printCurTimeForTest();

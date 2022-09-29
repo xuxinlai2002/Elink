@@ -25,7 +25,7 @@ module.exports = {
     },
 
     test: {
-      url: `http://10.0.0.208:20636`,
+      url: `https://api-testnet.trinity-tech.io/esc`,
       accounts: [
         `${private_key}`,
         "c03b0a988e2e18794f2f0e881d7ffcd340d583f63c1be078426ae09ddbdec9f5"

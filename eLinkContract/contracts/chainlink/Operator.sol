@@ -24,6 +24,10 @@ contract Operator is AuthorizedReceiver, ConfirmedOwner, LinkTokenReceiver, Oper
     uint8 dataVersion;
   }
 
+  event FLog(
+    uint8 logNum
+  );
+
   uint256 public constant getExpiryTime = 5 minutes;
   uint256 private constant MAXIMUM_DATA_VERSION = 256;
   uint256 private constant MINIMUM_CONSUMER_GAS_LIMIT = 400000;
@@ -176,6 +180,8 @@ contract Operator is AuthorizedReceiver, ConfirmedOwner, LinkTokenReceiver, Oper
     validateCallbackAddress(callbackAddress)
     returns (bool)
   {
+
+    emit FLog(0);
     _verifyOracleRequestAndProcessPayment(requestId, payment, callbackAddress, callbackFunctionId, expiration, 1);
     emit OracleResponse(requestId);
     require(gasleft() >= MINIMUM_CONSUMER_GAS_LIMIT, "Must provide consumer enough gas");
@@ -215,6 +221,7 @@ contract Operator is AuthorizedReceiver, ConfirmedOwner, LinkTokenReceiver, Oper
     validateMultiWordResponseId(requestId, data)
     returns (bool)
   {
+    emit FLog(1);
     _verifyOracleRequestAndProcessPayment(requestId, payment, callbackAddress, callbackFunctionId, expiration, 2);
     emit OracleResponse(requestId);
     require(gasleft() >= MINIMUM_CONSUMER_GAS_LIMIT, "Must provide consumer enough gas");
@@ -378,6 +385,12 @@ contract Operator is AuthorizedReceiver, ConfirmedOwner, LinkTokenReceiver, Oper
     // solhint-disable-next-line not-rely-on-time
     require(expiration <= block.timestamp, "Request is not expired");
 
+
+    emit FLog(2);
+    //require(false,"xxl cancelOracleRequest delete 0");
+    
+
+
     delete s_commitments[requestId];
     emit CancelOracleRequest(requestId);
 
@@ -406,6 +419,9 @@ contract Operator is AuthorizedReceiver, ConfirmedOwner, LinkTokenReceiver, Oper
     // solhint-disable-next-line not-rely-on-time
     require(expiration <= block.timestamp, "Request is not expired");
 
+    //require(false,"xxl cancelOracleRequest delete 1");
+
+    emit FLog(3);
     delete s_commitments[requestId];
     emit CancelOracleRequest(requestId);
 
@@ -479,6 +495,9 @@ contract Operator is AuthorizedReceiver, ConfirmedOwner, LinkTokenReceiver, Oper
     require(s_commitments[requestId].paramsHash == paramsHash, "Params do not match request ID");
     require(s_commitments[requestId].dataVersion <= _safeCastToUint8(dataVersion), "Data versions must match");
     s_tokensInEscrow = s_tokensInEscrow.sub(payment);
+
+    emit FLog(4);
+    //require(false,"xxl cancelOracleRequest delete 2");
     delete s_commitments[requestId];
   }
 

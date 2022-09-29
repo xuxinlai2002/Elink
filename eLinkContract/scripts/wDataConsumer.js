@@ -57,7 +57,7 @@ const subscribeLogEvent = (contract, eventName) => {
         console.log("block number :  ",result.blockNumber); 
         console.log("data requestId :", eventObj.requestId)
         console.log("data result :", hex2a(eventObj.data));
-      }else{
+      }else if(eventObj.hasOwnProperty("logNum")){
 
         if(eventObj["logNum"] + "" == "0"){
           // console.log("\n**************request from list start ************** :", ++ otherNum1 ); 
@@ -82,6 +82,8 @@ const subscribeLogEvent = (contract, eventName) => {
             // console.log("other event");
 
         }
+      }else{
+         console.log("fLog",eventObj);
       }
 
     }
@@ -116,6 +118,7 @@ const main = async () => {
   subscribeLogEvent(dataConsumerInstance,"SearchConformed");
   //subscribeLogEvent(dataConsumerInstance,"LogAddress");
   subscribeLogEvent(dataConsumerInstance,"Log");  
+  subscribeLogEvent(dataConsumerInstance,"FLog");  
 
   
 

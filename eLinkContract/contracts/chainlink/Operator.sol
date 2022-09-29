@@ -387,10 +387,7 @@ contract Operator is AuthorizedReceiver, ConfirmedOwner, LinkTokenReceiver, Oper
 
 
     emit FLog(2);
-    //require(false,"xxl cancelOracleRequest delete 0");
-    
-
-
+    require(false,"xxl cancelOracleRequest delete 0");
     delete s_commitments[requestId];
     emit CancelOracleRequest(requestId);
 
@@ -422,6 +419,8 @@ contract Operator is AuthorizedReceiver, ConfirmedOwner, LinkTokenReceiver, Oper
     //require(false,"xxl cancelOracleRequest delete 1");
 
     emit FLog(3);
+
+    require(false,"xxl cancelOracleRequestByRequester 1");
     delete s_commitments[requestId];
     emit CancelOracleRequest(requestId);
 
@@ -497,7 +496,8 @@ contract Operator is AuthorizedReceiver, ConfirmedOwner, LinkTokenReceiver, Oper
     s_tokensInEscrow = s_tokensInEscrow.sub(payment);
 
     emit FLog(4);
-    //require(false,"xxl cancelOracleRequest delete 2");
+
+    require(false,"xxl cancelOracleRequest delete 2");
     delete s_commitments[requestId];
   }
 

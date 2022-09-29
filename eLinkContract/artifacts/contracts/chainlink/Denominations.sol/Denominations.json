@@ -1,0 +1,271 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "Denominations",
+  "sourceName": "contracts/chainlink/Denominations.sol",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "ARS",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "AUD",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "BRL",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "BTC",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "CAD",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "CHF",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "CNY",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "ETH",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "EUR",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "GBP",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "INR",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "JPY",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "KRW",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "NGN",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "NZD",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "PHP",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "RUB",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "SGD",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "USD",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "ZAR",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x610619610026600b82828239805160001a60731461001957fe5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600436106101365760003560e01c806356ef4514116100b7578063a4a235951161007b578063a4a2359514610447578063ca9d1a721461047b578063e774928e146104af578063f37fcc42146104e3578063fd760c491461051757610136565b806356ef4514146103435780636b09583c146103775780638322fff2146103ab578063976d5e77146103df5780639db2a4721461041357610136565b80632792949d116100fe5780632792949d1461023f578063294a2bf2146102735780632e79477f146102a7578063465bd0a3146102db57806353f7c3671461030f57610136565b806301b8b3391461013b57806303d698f21461016f5780630c012834146101a357806319342a64146101d75780631bf6c21b1461020b575b600080fd5b61014361054b565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b610177610551565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6101ab610557565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6101df61055c565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b610213610561565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b610247610567565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b61027b61057f565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6102af610585565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6102e361058b565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b610317610591565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b61034b610597565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b61037f61059d565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6103b36105a3565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6103e76105bb565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b61041b6105c1565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b61044f6105c7565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6104836105cc565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6104b76105d2565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6104eb6105d8565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b61051f6105de565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b61033a81565b61023681565b602081565b607c81565b61034881565b73bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb81565b6103d281565b6102be81565b61018881565b61026081565b61019a81565b6103da81565b73eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee81565b61028381565b6102c681565b609c81565b61022a81565b61016481565b6102f481565b60248156fea264697066735822122018d8aa7bae208735077629e62db2315340deb3328e90701481a78b4fe32ba14364736f6c63430007060033",
+  "deployedBytecode": "0x73000000000000000000000000000000000000000030146080604052600436106101365760003560e01c806356ef4514116100b7578063a4a235951161007b578063a4a2359514610447578063ca9d1a721461047b578063e774928e146104af578063f37fcc42146104e3578063fd760c491461051757610136565b806356ef4514146103435780636b09583c146103775780638322fff2146103ab578063976d5e77146103df5780639db2a4721461041357610136565b80632792949d116100fe5780632792949d1461023f578063294a2bf2146102735780632e79477f146102a7578063465bd0a3146102db57806353f7c3671461030f57610136565b806301b8b3391461013b57806303d698f21461016f5780630c012834146101a357806319342a64146101d75780631bf6c21b1461020b575b600080fd5b61014361054b565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b610177610551565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6101ab610557565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6101df61055c565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b610213610561565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b610247610567565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b61027b61057f565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6102af610585565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6102e361058b565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b610317610591565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b61034b610597565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b61037f61059d565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6103b36105a3565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6103e76105bb565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b61041b6105c1565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b61044f6105c7565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6104836105cc565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6104b76105d2565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6104eb6105d8565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b61051f6105de565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b61033a81565b61023681565b602081565b607c81565b61034881565b73bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb81565b6103d281565b6102be81565b61018881565b61026081565b61019a81565b6103da81565b73eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee81565b61028381565b6102c681565b609c81565b61022a81565b61016481565b6102f481565b60248156fea264697066735822122018d8aa7bae208735077629e62db2315340deb3328e90701481a78b4fe32ba14364736f6c63430007060033",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

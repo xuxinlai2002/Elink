@@ -9,7 +9,7 @@ deployments
 node_modules/
 
 # Hardhat build outputs
-artifacts/
+# artifacts/
 artifacts-ovm/
 cache/
 cache-ovm

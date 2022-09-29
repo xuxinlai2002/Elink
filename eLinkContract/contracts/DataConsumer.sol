@@ -234,7 +234,7 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
       
       require(msg.value >= fee,"fee is not enough");
 
-      // emit Log(bytes32(0),0);
+      emit Log(bytes32(0),0);
       id ++ ;
       
       uint len = oracles.length;

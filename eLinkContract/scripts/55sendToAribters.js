@@ -31,7 +31,7 @@ const main = async () => {
     for(var i = 0 ;i < addressList.length ;i ++){
         await deployer.sendTransaction({
             to: addressList[i],
-            value: ethers.utils.parseEther("2.0"), // Sends exactly 1.0 ether
+            value: ethers.utils.parseEther("10.0"), // Sends exactly 1.0 ether
         });
 
         await sleep(2000);

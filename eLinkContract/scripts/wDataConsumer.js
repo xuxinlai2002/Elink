@@ -17,8 +17,9 @@ const subscribeLogEvent = (contract, eventName) => {
   )
 
   let num = 0;
-  let otherNum = 0;
+  let otherNum1 = 0;
   let otherNum2 = 0;
+  let otherNum3 = 0;
   const subscription = web3.eth.subscribe('logs', {
     address: contract.options.address,
     topics: [eventJsonInterface.signature]
@@ -58,6 +59,14 @@ const subscribeLogEvent = (contract, eventName) => {
         console.log("data result :", hex2a(eventObj.data));
       }else{
 
+        if(eventObj["logNum"] + "" == "0"){
+          console.log("\n**************search rqueest id ************** :", ++ otherNum1 ); 
+          console.log("data requestId :", eventObj.requestId)
+          // console.log(eventObj);
+          console.log("other event");
+
+        }
+
         if(eventObj["logNum"] + "" == "1"){
           console.log("\n**************search rqueest id ************** :", ++ otherNum2 ); 
           console.log("data requestId :", eventObj.requestId)
@@ -67,7 +76,7 @@ const subscribeLogEvent = (contract, eventName) => {
         }
 
         if(eventObj["logNum"] + "" == "2"){
-            console.log("\n**************search callback************** :", ++ otherNum ); 
+            console.log("\n**************search callback************** :", ++ otherNum3 ); 
             console.log("data requestId :", eventObj.logNum)
             // console.log(eventObj);
             console.log("other event");
@@ -91,6 +100,8 @@ const main = async () => {
   console.log("**************** watch elink data ****************");
   let dataConsumerAddress = await readConfig("1","DATACONSUMER_ADDRESS");
   const dataConsumer = require('../artifacts/contracts/DataConsumer.sol/DataConsumer.json');
+  console.log("dataConsumerAddress is ",dataConsumerAddress);
+
 
   let dataConsumerInstance = new web3.eth.Contract(dataConsumer.abi,dataConsumerAddress)
 

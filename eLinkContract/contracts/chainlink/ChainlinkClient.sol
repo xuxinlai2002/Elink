@@ -28,7 +28,7 @@ abstract contract ChainlinkClient {
   bytes32 private constant ENS_ORACLE_SUBNAME = keccak256("oracle");
 
   // need to change 
-  address private constant LINK_TOKEN_POINTER = 0xa9e0A397E7Ff13cfE4DD6632B48DA41375292C2F;
+  address private constant LINK_TOKEN_POINTER = 0x594977168362c625d0C61e4B74b13ce48FCE2845;
 
   ENSInterface private s_ens;
   bytes32 private s_ensNode;

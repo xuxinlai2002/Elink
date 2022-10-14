@@ -1273,3 +1273,25 @@
 =============== Jun 18, 2022 (CST) ===============
 20:46:23.797617 db@close closing
 20:46:23.801180 db@close done T·3.558616ms
+=============== Oct 13, 2022 (CST) ===============
+09:51:52.532693 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+09:51:52.534087 version@stat F·[0 27] S·54MiB[0B 54MiB] Sc·[0.00 0.54]
+09:51:52.534154 db@open opening
+09:51:52.537262 version@stat F·[0 27] S·54MiB[0B 54MiB] Sc·[0.00 0.54]
+09:51:52.590488 db@janitor F·30 G·1
+09:51:52.590531 db@janitor removing table-429
+09:51:52.590689 db@open done T·56.512641ms
+09:51:52.600175 db@close closing
+09:51:52.600317 db@close done T·140.369µs
+=============== Oct 13, 2022 (CST) ===============
+09:51:52.875490 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+09:51:52.875866 version@stat F·[0 27] S·54MiB[0B 54MiB] Sc·[0.00 0.54]
+09:51:52.875908 db@open opening
+09:51:52.876100 journal@recovery F·1
+09:51:52.886707 journal@recovery recovering @459
+09:51:52.895204 memdb@flush created L0@461 N·1 S·712B "eth..\x124\x16,v2527861":"eth..\x124\x16,v2527861"
+09:51:52.905762 version@stat F·[1 27] S·54MiB[712B 54MiB] Sc·[0.25 0.54]
+09:51:52.972292 db@janitor F·30 G·0
+09:51:52.972384 db@open done T·96.456558ms
+12:17:03.807273 db@close closing
+12:17:03.807808 db@close done T·532.014µs

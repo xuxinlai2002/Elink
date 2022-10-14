@@ -13,7 +13,7 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 
 contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbiter{
 
-    // uint256 constant public maxChannel = 20;
+    uint256 constant public maxChannel = 50;
     uint256 constant private ORACLE_PAYMENT = 0;
 
     using Chainlink for Chainlink.Request;
@@ -27,7 +27,7 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
     //   bytes32 requestId;
     //   bool isSearched;
     // }
-    mapping(bytes32=>bool) RequestIdIsSearchMap;
+    // mapping(bytes32=>bool) RequestIdIsSearchMap;
 
     struct ChannelInfo {
         string did;
@@ -41,18 +41,18 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
 
         //bytes data;
         // RequestInfo[ARBITER_NUM] requestInfoList;
-
     }
-    // ChannelInfo[maxChannel] private channelInfoList;
+
+    ChannelInfo[maxChannel] private channelInfoList;
 
     mapping( string => address) jobIdReceiverMap;
     uint256 platformRate;
     mapping( uint256 => mapping( bytes32 => string) )chanelNumRequestIdJobIdMap;
     bool isLocked;
 
-    ChannelInfo[] private channelInfoList;
+    // ChannelInfo[] private channelInfoList;
     uint256 fee;
-    uint256 maxChannel;
+    // uint256 maxChannel;
 
     using SafeMath for uint;
     event Log(
@@ -93,42 +93,38 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
 
         platformRate = 0;
         fee = 0 ;
-        maxChannel = 0;
+        // maxChannel = 0;
     }
 
-    function createMaxChannel(uint256 _maxChannel) external onlyOwner{
+    // function createMaxChannel(uint256 _maxChannel) external onlyOwner{
       
-      id = 0;
-      delete channelInfoList;
+    //   id = 0;
+    //   delete channelInfoList;
 
-      //maxChannel = _maxChannel;
-      //channelInfoList = new ChannelInfo(_maxChannel);
+    //   //maxChannel = _maxChannel;
+    //   //channelInfoList = new ChannelInfo(_maxChannel);
 
-      maxChannel = _maxChannel;
-      for(uint256 i = 0 ;i < maxChannel ;i ++){
-          ChannelInfo memory curChannelInfo;
+    //   maxChannel = _maxChannel;
+    //   for(uint256 i = 0 ;i < maxChannel ;i ++){
+    //       ChannelInfo memory curChannelInfo;
 
-          curChannelInfo.did = "";
-          curChannelInfo.method = "";
-          curChannelInfo.status = 0;
-          curChannelInfo.dataHash = bytes32(0);
+    //       curChannelInfo.did = "";
+    //       curChannelInfo.method = "";
+    //       curChannelInfo.status = 0;
+    //       curChannelInfo.dataHash = bytes32(0);
   
-          // for(uint i = 0 ; i <  ARBITER_NUM; i ++ ){
-          //   curChannelInfo.requestIds[i] = bytes32(0);
-          //   curChannelInfo.isSearchs[i] = false;
-          // }
-          channelInfoList.push(curChannelInfo);
-      }
+    //       // for(uint i = 0 ; i <  ARBITER_NUM; i ++ ){
+    //       //   curChannelInfo.requestIds[i] = bytes32(0);
+    //       //   curChannelInfo.isSearchs[i] = false;
+    //       // }
+    //       channelInfoList.push(curChannelInfo);
+    //   }
 
-    }
+    // }
 
-    function getMaxChannel() public view returns(uint256){
-      
-      return maxChannel ;
-
-
-
-    }
+    // function getMaxChannel() public view returns(uint256){
+    //   return maxChannel ;
+    // }
     
     function setPlatformRate(uint256 _platformRate) public onlyOwner{
       platformRate = _platformRate;
@@ -255,8 +251,9 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
         );
         
         req.add("did", did);
-        // req.add("id", uint2str(id));
-        req.add("id", "abc");
+        //req.add("id", uint2str(id));
+        req.addUint("id", id);
+        // req.add("id", "abc");
         req.add("method", method);
         req.add("path", "result,transaction");
 
@@ -293,13 +290,13 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
           //emit Log(_requestId,4);
           // channelInfoList[channelNum].data = _didData;
           channelInfoList[channelNum].dataHash = dataHash;
-          // _setRequestInfo(channelNum,_requestId);
+          _setRequestInfo(channelNum,_requestId);
         }else if(channelInfoList[channelNum].dataHash == dataHash){
           // emit Log(_requestId,5);
-          // _setRequestInfo(channelNum,_requestId);
+          _setRequestInfo(channelNum,_requestId);
         }
 
-        // _runSearchResult(_requestId,channelNum,_didData,dataHash);
+        _runSearchResult(_requestId,channelNum,_didData,dataHash);
 
       }
 
@@ -393,7 +390,7 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
      return "";
   }
 
-  function getChannelInfoList() external view returns( ChannelInfo[] memory) {
+  function getChannelInfoList() external view returns( ChannelInfo[maxChannel] memory) {
     return channelInfoList;
   }
 
@@ -434,31 +431,31 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
   fallback() external payable{}
   receive() external payable {}
 
-function uint2str( uint256 _i )
-  internal
-  pure
-  returns (string memory str)
-{
-      if (_i == 0)
-      {
-        return "0";
-      }
-      uint256 j = _i;
-      uint256 length;
-      while (j != 0)
-      {
-        length++;
-        j /= 10;
-      }
-      bytes memory bstr = new bytes(length);
-      uint256 k = length;
-      j = _i;
-      while (j != 0)
-      {
-        bstr[--k] = bytes1(uint8(48 + j % 10));
-        j /= 10;
-      }
-      str = string(bstr);
-}
+// function uint2str( uint256 _i )
+//   internal
+//   pure
+//   returns (string memory str)
+// {
+//       if (_i == 0)
+//       {
+//         return "0";
+//       }
+//       uint256 j = _i;
+//       uint256 length;
+//       while (j != 0)
+//       {
+//         length++;
+//         j /= 10;
+//       }
+//       bytes memory bstr = new bytes(length);
+//       uint256 k = length;
+//       j = _i;
+//       while (j != 0)
+//       {
+//         bstr[--k] = bytes1(uint8(48 + j % 10));
+//         j /= 10;
+//       }
+//       str = string(bstr);
+// }
 
 }

@@ -20,3 +20,5 @@ scripts/node_modules/
 .artifacts
 
 .openzeppelin
+
+.1node

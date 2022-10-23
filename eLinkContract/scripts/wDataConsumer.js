@@ -59,21 +59,21 @@ const subscribeLogEvent = (contract, eventName) => {
         console.log("data result :", hex2a(eventObj.data));
       }else if(eventObj.hasOwnProperty("logNum")){
 
-        if(eventObj["logNum"] + "" == "0"){
-          // console.log("\n**************request from list start ************** :", ++ otherNum1 ); 
-          console.log("0**************.request start data requestId :", ++ otherNum1,eventObj.requestId)
-          // console.log(eventObj);
-          //console.log("other event");
+        // if(eventObj["logNum"] + "" == "0"){
+        //   // console.log("\n**************request from list start ************** :", ++ otherNum1 ); 
+        //   console.log("0**************.request start data requestId :", ++ otherNum1,eventObj.requestId)
+        //   // console.log(eventObj);
+        //   //console.log("other event");
 
-        }
+        // }
 
-        if(eventObj["logNum"] + "" == "1"){
-          // console.log("\n**************search rqueest id ************** :", ++ otherNum2 ); 
-          console.log("1--------------.search rqueest data requestId :",  ++ otherNum2,eventObj.requestId)
-          // console.log(eventObj);
-          // console.log("other event");
+        // if(eventObj["logNum"] + "" == "1"){
+        //   // console.log("\n**************search rqueest id ************** :", ++ otherNum2 ); 
+        //   console.log("1--------------.search rqueest data requestId :",  ++ otherNum2,eventObj.requestId)
+        //   // console.log(eventObj);
+        //   // console.log("other event");
 
-        }
+        // }
 
         if(eventObj["logNum"] + "" == "2"){
             //console.log("1--------------.search callback************** :", ++ otherNum3 ); 
@@ -116,8 +116,8 @@ const main = async () => {
   // subscribeLogEvent(dataConsumerInstance,"SearchResult4");
 
   subscribeLogEvent(dataConsumerInstance,"SearchConformed");
-  //subscribeLogEvent(dataConsumerInstance,"LogAddress");
-  subscribeLogEvent(dataConsumerInstance,"Log");  
+  // subscribeLogEvent(dataConsumerInstance,"LogAddress");
+  // subscribeLogEvent(dataConsumerInstance,"Log");  
   // subscribeLogEvent(dataConsumerInstance,"FLog");  
 
   

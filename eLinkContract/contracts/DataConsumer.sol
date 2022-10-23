@@ -13,7 +13,7 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 
 contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbiter{
 
-    uint256 constant public maxChannel = 50;
+    uint256 constant public maxChannel = 20;
     uint256 constant private ORACLE_PAYMENT = 0;
 
     using Chainlink for Chainlink.Request;
@@ -251,9 +251,9 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
         );
         
         req.add("did", did);
-        req.add("id", uint2str(id));
+        //req.add("id", uint2str(id));
         //req.addUint("id", id);
-        // req.add("id", "abc");
+        req.add("id", "abc");
         req.add("method", method);
         req.add("path", "result,transaction");
 

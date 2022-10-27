@@ -13,7 +13,7 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 
 contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbiter{
 
-    uint256 constant public maxChannel = 20;
+    uint256 constant public maxChannel = 50;
     uint256 constant private ORACLE_PAYMENT = 0;
 
     using Chainlink for Chainlink.Request;
@@ -23,11 +23,6 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
     string    private version;
     uint256   private id;
     
-    // struct RequestInfo{
-    //   bytes32 requestId;
-    //   bool isSearched;
-    // }
-    // mapping(bytes32=>bool) RequestIdIsSearchMap;
 
     struct ChannelInfo {
         string did;
@@ -35,12 +30,8 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
         uint8 status; //0: idle 1:searching 2:finish
         bytes32 dataHash;
         uint8 totalReqestNum;
-        //mapping(bytes32=>bool) requestIdIsSearchMap;
         bytes32[ARBITER_NUM] requestIds;
         bool[ARBITER_NUM] isSearchs;
-
-        //bytes data;
-        // RequestInfo[ARBITER_NUM] requestInfoList;
     }
 
     ChannelInfo[maxChannel] private channelInfoList;
@@ -49,10 +40,9 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
     uint256 platformRate;
     mapping( uint256 => mapping( bytes32 => string) )chanelNumRequestIdJobIdMap;
     bool isLocked;
-
-    // ChannelInfo[] private channelInfoList;
     uint256 fee;
-    // uint256 maxChannel;
+
+    uint256 usedChannel;
 
     using SafeMath for uint;
     event Log(
@@ -93,39 +83,22 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
 
         platformRate = 0;
         fee = 0 ;
-        // maxChannel = 0;
+        usedChannel = 20;
+
     }
 
-    // function createMaxChannel(uint256 _maxChannel) external onlyOwner{
-      
-    //   id = 0;
-    //   delete channelInfoList;
-
-    //   //maxChannel = _maxChannel;
-    //   //channelInfoList = new ChannelInfo(_maxChannel);
-
-    //   maxChannel = _maxChannel;
-    //   for(uint256 i = 0 ;i < maxChannel ;i ++){
-    //       ChannelInfo memory curChannelInfo;
-
-    //       curChannelInfo.did = "";
-    //       curChannelInfo.method = "";
-    //       curChannelInfo.status = 0;
-    //       curChannelInfo.dataHash = bytes32(0);
-  
-    //       // for(uint i = 0 ; i <  ARBITER_NUM; i ++ ){
-    //       //   curChannelInfo.requestIds[i] = bytes32(0);
-    //       //   curChannelInfo.isSearchs[i] = false;
-    //       // }
-    //       channelInfoList.push(curChannelInfo);
-    //   }
-
-    // }
-
-    // function getMaxChannel() public view returns(uint256){
-    //   return maxChannel ;
-    // }
+    function getUsedChannel() view public returns(uint256){
+      return usedChannel;
     
+    }
+
+    function setUsedChannel(uint _usedChannel) public onlyOwner{
+
+      require(maxChannel >= usedChannel,"set channel too big " );
+      usedChannel = _usedChannel;
+
+    }
+
     function setPlatformRate(uint256 _platformRate) public onlyOwner{
       platformRate = _platformRate;
     }
@@ -156,7 +129,6 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
       channelInfoList[_channelNum].method = "";
       channelInfoList[_channelNum].status = 0;
       channelInfoList[_channelNum].dataHash = bytes32(0);
-      //channelInfoList[_channelNum].data = "";
 
         for(uint i = 0 ;i < ARBITER_NUM ;i ++ ){
           channelInfoList[_channelNum].requestIds[i] = bytes32(0);
@@ -251,13 +223,10 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
         );
         
         req.add("did", did);
-        //req.add("id", uint2str(id));
-        //req.addUint("id", id);
-        req.add("id", "abc");
+        req.addUint("id", id);
         req.add("method", method);
         req.add("path", "result,transaction");
 
-        // set request info
         channelInfoList[channelNum].requestIds[i] = sendOperatorRequestTo(
             oracles[i], 
             req, 
@@ -287,8 +256,6 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
         //emit Log(_requestId,3);
         if(channelInfoList[channelNum].dataHash == bytes32(0)){
 
-          //emit Log(_requestId,4);
-          // channelInfoList[channelNum].data = _didData;
           channelInfoList[channelNum].dataHash = dataHash;
           _setRequestInfo(channelNum,_requestId);
         }else if(channelInfoList[channelNum].dataHash == dataHash){
@@ -364,7 +331,7 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
 
     function _getChannelNumberFormRequestId(bytes32 _requestId) internal view returns(uint256){
 
-      for(uint i = 0 ; i < maxChannel ;i ++){
+      for(uint i = 0 ; i < usedChannel ;i ++){
 
         for(uint j = 0 ;j < ARBITER_NUM ; j ++){
           if(channelInfoList[i].requestIds[j] == _requestId){
@@ -399,6 +366,28 @@ contract DataConsumer is ChainlinkClient,Initializable,OwnableUpgradeable,Arbite
       _initChannelInfoList();
   }
 
+  function resetOracleAndSet() external{
+
+    address[] memory tempOracles;
+    string[]  memory tempJobIds;
+
+    tempOracles = oracles;
+    tempJobIds = jobIds;
+
+    uint headFrom = oracles.length - ARBITER_NUM;
+
+    delete oracles;
+    delete jobIds;
+
+    for(uint i = 0 ;i < ARBITER_NUM ;i ++){
+
+      oracles.push(tempOracles[i + headFrom]);
+      jobIds.push(tempJobIds[i + headFrom]);
+
+    }
+
+  }
+  
 
   function _safeTransferCurrency(address _to, uint256 _value) public {
 

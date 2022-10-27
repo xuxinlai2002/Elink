@@ -18,7 +18,7 @@ const main = async () => {
     let dataConsumer = await DataConsumer__Contract.connect(deployer).attach(dataConsumerAddress);
 
     // let amount = utils.parseEther("0.1");
-    await dataConsumer.createMaxChannel(50);
+    await dataConsumer.setUsedChannel(20);
 
     // await sleep(5000);
 

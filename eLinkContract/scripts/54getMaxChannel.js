@@ -22,7 +22,7 @@ const main = async () => {
 
     // await sleep(5000);
 
-    let result  = await dataConsumer.getMaxChannel();
+    let result  = await dataConsumer.getUsedChannel();
     console.log("xxl result :",result);
 
 

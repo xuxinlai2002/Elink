@@ -23,7 +23,7 @@ const main = async () => {
     let nonce = await web3.eth.getTransactionCount(deployer.address);
     console.log("xxl nonce is :",nonce);
 
-    let pressNum = 50;
+    let pressNum = 1;
     let timeForWait = 1000;
 
 

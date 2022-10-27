@@ -117,7 +117,7 @@ const main = async () => {
 
   subscribeLogEvent(dataConsumerInstance,"SearchConformed");
   // subscribeLogEvent(dataConsumerInstance,"LogAddress");
-  // subscribeLogEvent(dataConsumerInstance,"Log");  
+  subscribeLogEvent(dataConsumerInstance,"Log");  
   // subscribeLogEvent(dataConsumerInstance,"FLog");  
 
   

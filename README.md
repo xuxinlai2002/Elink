@@ -1,5 +1,5 @@
 <h1 align="center">ELINK</h1>
-<p align="center">ERC20 Withdraw is to withdraw assets transferred from other chains to the ESC chain to the project on the original chain. </p>
+<p align="center">Developed the function of getting DID chain data through ESC chain based on the Chainlink Data Feeds function.. </p>
 <div align="center">
 
 [![License: GPL v3.0](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
